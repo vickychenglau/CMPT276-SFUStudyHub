@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.5'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
@@ -37,4 +37,3 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
