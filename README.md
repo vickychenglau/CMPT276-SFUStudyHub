@@ -8,7 +8,7 @@ Heroku git link: https://git.heroku.com/floating-wave-72301.git
 ## Broad overview of proposed project:
 The SFU Study Hub will be a centralized place that connects students with tutors and their fellow classmates in order to help them succeed in their studies. The app will include student and tutor profiles (along with related functions such as tutor search and session scheduling), class-specific discussion boards, and ways to facilitate connections such as private messaging and suggested study groups.
 
--
+---
 
 # ruby-getting-started
 
