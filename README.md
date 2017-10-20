@@ -2,7 +2,7 @@
 CMPT 276 Group Project
 Group 2
 
-Heroku link: https://floating-wave-72301.herokuapp.com/
+Heroku link: https://sfu-study-hub.herokuapp.com/
 Heroku git link: https://git.heroku.com/floating-wave-72301.git
 
 ## Broad overview of proposed project:
