@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'messageboard/index'
+
+  get 'messageboard/new'
+
   resources :widgets
 
   # The priority is based upon order of creation: first created -> highest priority.
