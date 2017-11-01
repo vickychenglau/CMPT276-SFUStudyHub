@@ -1,13 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  course_id: 
+  topic_id: 
   user_id: 
-  description: MyText
-  title: MyString
+  text: MyText
+  rating: 1.5
+  parent: 
+  anon: 
 
 two:
-  course_id: 
+  topic_id: 
   user_id: 
-  description: MyText
-  title: MyString
+  text: MyText
+  rating: 1.5
+  parent: 
+  anon: 
