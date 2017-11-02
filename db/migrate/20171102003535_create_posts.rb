@@ -1,12 +1,12 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.reference :topic
-      t.reference :user
+      t.references :topic
+      t.references :user
       t.text :text
       t.float :rating
-      t.bool :anon
-      t.int :parent
+      t.boolean :anon
+      t.integer :parent
       t.datetime :created_at
       t.datetime :updated_at
 
