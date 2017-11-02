@@ -1,0 +1,20 @@
+<h1>Postspage#index</h1>
+<p>Find me in app/views/postspage/index.html.erb</p>
+
+<table>
+  <thead></thead>
+  <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            TEMP Username
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= post.text %>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
