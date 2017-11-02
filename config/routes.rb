@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
+
   get 'course/index'
 
   get 'course/new'
+
+  get 'postspage/index'
 
   get 'messageboard/index'
 
   get 'messageboard/new'
 
   resources :widgets
+  resources :users
+  resources :topics
+  resources :posts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
