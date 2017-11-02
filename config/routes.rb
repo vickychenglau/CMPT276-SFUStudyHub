@@ -1,32 +1,27 @@
 Rails.application.routes.draw do
-
+  
   get 'user/profile'
-
   get 'user/register'
-
   get 'user/login'
-
   get 'course/index'
-
   get 'course/new'
-
   get 'postspage/index'
-
   get 'messageboard/index'
-
   get 'messageboard/new'
 
   resources :widgets
   resources :users
+  resources :courses
   resources :topics
   resources :posts
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 
-  root 'welcome#index'
+  root 'course#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
