@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'course/index'
+
+  get 'course/new'
+
   get 'messageboard/index'
 
   get 'messageboard/new'
