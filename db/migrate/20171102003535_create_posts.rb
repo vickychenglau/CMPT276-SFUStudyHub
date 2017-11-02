@@ -7,7 +7,8 @@ class CreatePosts < ActiveRecord::Migration
       t.float :rating
       t.bool :anon
       t.int :parent
-      t.datetime :date
+      t.datetime :created_at
+      t.datetime :updated_at
 
       t.timestamps null: false
     end
