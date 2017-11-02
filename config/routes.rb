@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'user/profile'
+
+  get 'user/register'
+
+  get 'user/login'
+
   get 'course/index'
 
   get 'course/new'
