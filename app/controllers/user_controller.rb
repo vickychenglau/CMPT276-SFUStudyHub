@@ -7,6 +7,10 @@ class UserController < ApplicationController
   def register
   end
 
+  def new
+  end
+
+
   def login
   end
 end
