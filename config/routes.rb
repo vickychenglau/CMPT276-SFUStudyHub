@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  
+
+  get 'postspages/index'
+
+  get 'posts/index'
+
   get 'user/profile'
   get 'user/register'
   get 'user/login'
