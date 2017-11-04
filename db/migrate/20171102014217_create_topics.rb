@@ -8,7 +8,11 @@ class CreateTopics < ActiveRecord::Migration
 
       t.timestamps null: false
 
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 3967ef43531f6896b6336b214862aee380b7fe4f
 
 
 
