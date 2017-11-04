@@ -8,7 +8,7 @@ class CreateTopics < ActiveRecord::Migration
 
       t.timestamps null: false
 
-      validates :title, :presence =>true
+      
 
 
 
