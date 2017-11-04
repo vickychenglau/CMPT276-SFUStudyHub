@@ -5,7 +5,8 @@ class MessageboardController < ApplicationController
   end
 
   def show
-    # redirect_to(:controller => 'posts', :action => 'index')
+    @id = params[:id]
+    @topic = Topic.find(@id)
   end
 
   def new
