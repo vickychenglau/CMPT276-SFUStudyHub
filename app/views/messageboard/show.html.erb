@@ -1,10 +1,15 @@
 <h1>[<%= @topic.description %>] <%= @topic.title %></h1>
 
+<hr>
+
 <h4>Comments</h4>
 
 <% @topic.posts.each do |post| %>
-<p>
-  <strong>Comment</strong>
-<%= post.text %>
-</p>
+  <p>
+    <strong>User</strong>
+    <%= post.users.username %>
+    <br>
+    <strong>Comment</strong>
+    <%= post.text %>
+  </p>
 <% end %>

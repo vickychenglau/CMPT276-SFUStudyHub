@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
 
 
 
-  
+
   validates :rating, :presence =>true
   validates_length_of :text, presence: true, :minimum => 7
 

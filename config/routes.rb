@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'user/login'
   get 'messageboard/index'
   get 'messageboard/new'
+  get 'messageboard/show'
 
   resources :widgets
   resources :users

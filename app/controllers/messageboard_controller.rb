@@ -7,6 +7,7 @@ class MessageboardController < ApplicationController
   def show
     @id = params[:id]
     @topic = Topic.find(@id)
+    @posts = Post.includes(:users).where(topic_id: @id)
   end
 
   def new
