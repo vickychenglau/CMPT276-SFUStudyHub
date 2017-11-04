@@ -2,11 +2,13 @@ class PostsController < ApplicationController
   def index
     #@topics = Topic.where(id: id of current topic)
     #@topics = Topic.find(params[:id])
-    @posts = Post.all
+    # @posts = Post.all
     #@posts = Post.where(topic: id of current topic)
     #@users = User.where(id: @posts.user_id)
 
-    @newpost = Post.new
+    # @newpost = Post.new
+    @topic = params[:topic]
+    @posts = Post.where(:topic_id => @topic)
   end
 
   def create

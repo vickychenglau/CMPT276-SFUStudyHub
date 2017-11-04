@@ -1,2 +1,7 @@
 <h1>Messageboard#index</h1>
 <p>Find me in app/views/messageboard/index.html.erb</p>
+<p>
+<% @topics.each do |topic| %>
+<%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %>
+<% end %>
+</p>

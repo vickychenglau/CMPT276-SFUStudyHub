@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   resources :widgets
   resources :users
   resources :courses
-  resources :topics
-  resources :posts
+  # resources :posts
+  # Nest posts inside of messageboard
+  resources :messageboard do
+    resources :posts
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

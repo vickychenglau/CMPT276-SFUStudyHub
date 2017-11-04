@@ -16,8 +16,39 @@ ActiveRecord::Schema.define(version: 20171102014217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "coursees", force: :cascade do |t|
+    t.string   "course_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "enrollls", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "course_id"
+    t.string   "percentage"
+    t.string   "lettergrade"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "enrolls", force: :cascade do |t|
+    t.integer  "studentId"
+    t.string   "course_id"
+    t.string   "Percentage"
+    t.string   "lettergrade"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "histograms", force: :cascade do |t|
+    t.integer  "bound"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,6 +60,22 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.float    "rating"
     t.boolean  "anon"
     t.integer  "parent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "studentts", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
