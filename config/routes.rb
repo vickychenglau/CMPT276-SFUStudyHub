@@ -1,19 +1,11 @@
 Rails.application.routes.draw do
 
   get 'courses/index'
-
   get 'courses/new'
-
-  get 'postspages/index'
-
   get 'posts/index'
-
   get 'user/profile'
   get 'user/register'
   get 'user/login'
-  get 'course/index'
-  get 'course/new'
-  get 'postspage/index'
   get 'messageboard/index'
   get 'messageboard/new'
 
