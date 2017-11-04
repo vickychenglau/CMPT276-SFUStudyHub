@@ -1,7 +1,7 @@
 class MessageboardController < ApplicationController
   def index
-    # Maybe show this in the admin page?
-    @topics = Topic.all
+    @course = params[:course]
+    @topics = Topic.where(:course_id => @course)
   end
 
   def show
