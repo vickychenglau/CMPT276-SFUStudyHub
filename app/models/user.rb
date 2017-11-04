@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :topics
   validates :username, :presence =>true
-  validates_length_of :password, :minimum => 7
+  validates_length_of :password, presence: true, :minimum => 7
   validates :email, presence: true, email: true
   validates :first_name, :presence =>true
   validates :role, :presence =>true
