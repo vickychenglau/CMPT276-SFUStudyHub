@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+#root 'sessions#login'
+#root 'courses#index'
+
+root 'sessions#home'
+
+match "signup", :to => "users#new", via: :get
+match "login", :to => "sessions#login", via: :get
+match "logout", :to => "sessions#logout", via: :get
+match "home", :to => "sessions#home", via: :get
+match "profile", :to => "sessions#profile", via: :get
+match "setting", :to => "sessions#setting", via: :get
+
   get 'users/new'
 
   get 'courses/index'
@@ -34,7 +46,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'courses#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
