@@ -1,4 +1,9 @@
 <h4> Topic Title </h4>
+<p>
+<% @posts.each do |post| %>
+<%= post.text %>
+<% end %>
+</p>
 
 <table>
   <thead>
