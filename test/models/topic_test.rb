@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class TopicTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "If title is there" do
+    topic=Topic.new(:title => "Some title")
+    assert topic.valid?, "Please enter title"
+  end
 end

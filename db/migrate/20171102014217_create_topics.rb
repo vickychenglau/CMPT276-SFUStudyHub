@@ -7,6 +7,12 @@ class CreateTopics < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
+
+      validates :title, :presence =>true
+
+
+
+
     end
   end
 end
