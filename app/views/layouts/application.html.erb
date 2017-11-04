@@ -9,6 +9,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+
+<% @page_title = "UserAuth | Signup" %>
+<div class="Sign_Form">
+  <h1>Sign Up</h1>
+  <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
+    <p> Username:</br> <%= f.text_field :username%> </p>
+    <p> Email:</br> <%= f.text_field :email%> </p>
+    <p> Last_Name:</br> <%= f.text_field :last_name%> </p>
+    <p> First_Name:</br> <%= f.text_field :first_name%> </p>
+    <p> Password:</br> <%= f.password_field :password%></p>
+    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
+    <%= f.submit :Signup %>
+  <% end %>
+  <% if @user.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @user.errors.full_messages %>
+      <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
+
+
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
   <div class="container">
     <ul class="nav navbar-nav">
