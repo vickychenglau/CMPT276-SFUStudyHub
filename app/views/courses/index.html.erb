@@ -22,10 +22,9 @@
 				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
 			</td>
 			<td>
-				Edit
-			</td>
+				<%= link_to 'Edit', edit_course_path(course) %>
 			<td>
-				<%= link_to "Delete", courses_path(@course), method: :delete, data: { confirm: "Are you sure you want to delete this course?"} %>
+				<%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
 			</td>
 		</tr>
 	<% end %>
