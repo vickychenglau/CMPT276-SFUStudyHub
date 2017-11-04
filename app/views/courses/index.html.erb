@@ -1,12 +1,34 @@
 <h1>Courses</h1>
-<p>Click on a course below to view its message board</p>
+<p>Click on a course below to view its message board.</p>
+
+<!-- once users are set up, add in: if user is admin, then they can add a course -->
+<p><%= link_to "Add Course", courses_new_path %></p>
 
 <table>
-<% @courses.each do |course| %>
-<tr>
-	<td>
-		<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
-	</td>
-</tr>
-<% end %>
+	<col width = '700'>
+	<col width = '50'>
+	<tr>
+		<th>
+			Course
+		</th>
+		<th colspan=2>
+			Admin-only functions to add later
+		</th>
+	</tr>
+	<% @courses.order(:name).limit(10).each do |course| %>
+
+		<tr>
+			<td>
+				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
+			</td>
+			<td>
+				Edit
+			</td>
+			<td>
+				<%= link_to "Delete", courses_path(@course), method: :delete, data: { confirm: "Are you sure you want to delete this course?"} %>
+			</td>
+		</tr>
+	<% end %>
 </table>
+
+
