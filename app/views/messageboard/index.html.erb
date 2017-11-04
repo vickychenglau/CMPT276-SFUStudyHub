@@ -1,2 +1,8 @@
 <h1>Messageboard#index</h1>
 <p>Find me in app/views/messageboard/index.html.erb</p>
+<p>
+  <p><%= @course %> </p>
+<% @topics.each do |topic| %>
+<%= link_to(topic.title, {:controller => 'posts', :action => 'index', :topic => topic.id}) %>
+<% end %>
+</p>
