@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
+
   get 'courses/index'
   get 'courses/new'
   get 'posts/index'
