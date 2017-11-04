@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  root 'home#index'
+
+  devise_for :users, controllers: {registrations: "registrations"}
   get 'user/profile'
   get 'user/register'
   get 'user/login'
@@ -21,7 +24,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'course#index'
+  # root 'course#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
