@@ -1,7 +1,12 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
-<p>
+<h1>Courses</h1>
+<p>Click on a course below to view its message board</p>
+
+<table>
 <% @courses.each do |course| %>
-<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
+<tr>
+	<td>
+		<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
+	</td>
+</tr>
 <% end %>
-</p>
+</table>

@@ -4,7 +4,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :name
 
       t.timestamps null: false
-      validates :name, :presence =>true
     end
   end
 end
