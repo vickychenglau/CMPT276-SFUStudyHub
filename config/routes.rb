@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'courses/index'
+
+  get 'courses/new'
+
   get 'postspages/index'
 
   get 'posts/index'
