@@ -1,19 +1,11 @@
 Rails.application.routes.draw do
 
   get 'courses/index'
-
   get 'courses/new'
-
-  get 'postspages/index'
-
   get 'posts/index'
-
   get 'user/profile'
   get 'user/register'
   get 'user/login'
-  get 'course/index'
-  get 'course/new'
-  get 'postspage/index'
   get 'messageboard/index'
   get 'messageboard/new'
 
@@ -29,7 +21,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'course#index'
+  root 'courses#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
