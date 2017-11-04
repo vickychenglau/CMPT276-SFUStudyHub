@@ -1,0 +1,5 @@
+<%= form_for(@course) do |c| %>
+	<%= c.label :name, "Enter Course Name (format CMPT276: Introduction to Software Engineering)   " %>
+	<%= c.text_field :name %><br>
+	<%= c.submit %>
+<% end %>

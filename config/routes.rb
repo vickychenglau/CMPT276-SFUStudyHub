@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'courses/index'
-
-  get 'courses/new'
-
   get 'postspages/index'
 
   get 'posts/index'
+  get 'courses/index'
+  get 'courses/new'
 
   get 'user/profile'
   get 'user/register'
@@ -25,6 +23,7 @@ Rails.application.routes.draw do
   resources :messageboard do
     resources :posts
   end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
