@@ -62,7 +62,7 @@ test:
   <<: *default
   database: cmpt276_test
   username: cmpt276
-  password: cmpt276
+  password: thecmpt276Passw0rd
   host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
