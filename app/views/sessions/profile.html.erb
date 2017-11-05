@@ -1,4 +1,27 @@
 <h1>Profile</h1>
 
-<h3>Welcome back, <%= current_user.username %>!</h3>
+<h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
 
+<table>
+  <tr>
+    <th>Field</th>
+    <th>User Information</th> 
+  </tr>
+  
+  <tr>
+    <td>Username</td>
+    <td><%= current_user.username %></td>
+  </tr>
+  <tr>
+    <td>First Name</td>
+    <td><%= current_user.first_name %></td>
+  </tr>
+  <tr>
+    <td>Last Name</td>
+    <td><%= current_user.last_name %></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td><%= current_user.email %></td>
+  </tr>
+</table>
