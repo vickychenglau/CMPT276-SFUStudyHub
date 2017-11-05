@@ -17,7 +17,11 @@
         <td>
           <strong> <%= post.user.username %> </strong>
         </td>
-        <td> <%= post.created_at %> </td>
+        <td>
+          <small>
+            Submitted <%= time_ago_in_words(@topic.created_at) %> ago
+          </small>
+        </td>
       </tr>
       <tr>
         <td colspan=2> <%= post.text %> </td>
@@ -42,7 +46,10 @@
     </tr>
     <tr>
       <td colspan=2>
-          Comment box here
+        <%= form_for [@topic, Post.new] do |f| %>
+          <%= f.text_area :text, placeholder: "Add a comment" %><br/>
+          <%= f.submit "Post" %>
+        <% end %>
         <hr>
       </td>
     </tr>
@@ -67,11 +74,6 @@
   </tbody>
 
 </table>
-
-<%= form_for [@topic, Post.new] do |f| %>
-  <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
-  <%= f.submit "Add Comment" %>
-<% end %>
 
 <ul>
   <%= render(partial: 'posts/post', collection: @topic.posts) %>

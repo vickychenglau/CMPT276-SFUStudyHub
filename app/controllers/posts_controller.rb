@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action: find_postable
+before_action :find_postable
 
   def index
     @posts = Post.all
@@ -21,13 +21,13 @@ before_action: find_postable
 
   private
 
-  def comment_params
+  def post_params
     params.require(:post).permit(:text)
   end
 
   def find_postable
     @postable = Post.find_by_id(params[:post_id]) if params[:post_id]
-    @postable = Topic.find_by_id(params[:topic_id]) if params[:topic:id]
+    @postable = Topic.find_by_id(params[:topic_id]) if params[:topic_id]
   end
-  
+
 end

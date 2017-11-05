@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   resources :messageboard do
     resources :posts
   end
+  resources :topic do
+    resources :posts
+  end
   resources :posts do
     resources :posts
   end

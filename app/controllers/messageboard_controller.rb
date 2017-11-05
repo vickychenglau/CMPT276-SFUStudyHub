@@ -7,8 +7,6 @@ class MessageboardController < ApplicationController
   def show
     @id = params[:id]
     @topic = Topic.find(@id)
-
-    @post = Post.new
   end
 
   def new
