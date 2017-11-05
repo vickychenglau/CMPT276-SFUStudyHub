@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 root 'courses#index'
 
   get "signup", :to => "users#new"
-  get "login", :to => "sessions#login_attempt"
+  get "login", :to => "sessions#login"
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
   get "profile", :to => "sessions#profile"

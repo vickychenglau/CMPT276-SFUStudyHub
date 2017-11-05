@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ruby Getting Started on Heroku</title>
+  <title>SFU Study Hub</title>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag  '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -13,15 +13,32 @@
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li class="active">
+      <li>
         <a href=<%= root_path %>><span class="glyphicon glyphicon-home"></span> Home</a>
       </li>
-      <li>
-        <a href=<%= login_path %>><span class="glyphicon glyphicon-log-in"></span> Log In</a>
-      </li>
-      <li>
-        <a href=<%= signup_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-      </li>
+      <% if current_user %>
+        <li>
+          Signed in as <%= current_user.username %> with role <%= current_user.role %>
+        </li>
+        <li>
+          <a href=<%= logout_path %>><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+        </li>
+        <% if current_user.role == 'admin' %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="navbar-right">
+            <a href=<%= users_list_path %>><span class="glyphicon glyphicon-user"></span> Manage Users</a>
+          </li>
+        </ul>
+        <% end %>
+      <% else %>
+        <li>
+          <a href=<%= login_path %>><span class="glyphicon glyphicon-log-in"></span> Log In</a>
+        </li>
+        <li>
+          <a href=<%= signup_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+        </li>
+      <% end %>
+
 <!--      <li class="dropdown"> 
         <a href=<%= signup_path %>><span class="glyphicon glyphicon-user"></span> Sign Up<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -39,17 +56,15 @@
           </ul>
       </li> -->
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="navbar-right">
-        <a href="https://devcenter.heroku.com"><span class="glyphicon glyphicon-book"></span> Heroku Dev Center</a>
-      </li>
-    </ul>
+
   </div>
 </nav>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: "alert alert-info" %>
 <% end %>
+
+
 
 <%= yield %>
 

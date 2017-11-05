@@ -2,7 +2,12 @@
 <p>Click on a course below to view its message board.</p>
 
 <!-- once users are set up, add in: if user is admin, then they can add a course -->
-<p><%= link_to "Add Course (for admin only - add functionality after user authentication is done)", courses_new_path %></p>
+
+<% if current_user.nil? %>
+  <p></p>
+<% elsif current_user.role == 'admin' %>
+	<p><%= link_to "Add Course (for admin only - add functionality after user authentication is done)", courses_new_path %></p>
+<% end %>
 
 <table>
 	<col width = '700'>

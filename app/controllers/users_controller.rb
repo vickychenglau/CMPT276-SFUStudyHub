@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-before_filter :save_login_state, :only => [:new, :create]
+#before_filter :authorize, :only => [:list]
+#before_filter :save_login_state, :only => [:new, :create]
 
   def new
     @user = User.new 
@@ -8,7 +9,7 @@ before_filter :save_login_state, :only => [:new, :create]
 
   def create
     @user = User.new(user_params)
-    @user.role = "user"
+    @user.role = "admin"
     if @user.save
       flash[:notice] = "You signed up successfully"
       redirect_to login_path
