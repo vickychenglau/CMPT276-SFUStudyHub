@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#Course.destroy_all
+Course.create( name: 'CMPT276: Introduction to Software Engineering' )
+
+User.create([
+	{ username: 'TestAdmin', password: 'TestAdmin', last_name: 'Admin', first_name: 'Test', 
+		email: 'testadmin@test.ca', role: 'admin' },
+	{ username: 'TestUser', password: 'TestUser', last_name: 'User', first_name: 'Test', 
+		email: 'testuser@test.ca', role: 'user' }])

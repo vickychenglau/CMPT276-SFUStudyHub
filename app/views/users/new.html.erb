@@ -1,18 +1,12 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>New User</h1>
 
 <% @page_title = "UserAuth | Signup" %>
 <div class="Sign_Form">
   <h1>Sign Up</h1>
-  <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
-    <p> Username:</br> <%= f.text_field :username%> </p>
-    <p> Email:</br> <%= f.text_field :email%> </p>
-    <p> Last_Name:</br> <%= f.text_field :last_name%> </p>
-    <p> First_Name:</br> <%= f.text_field :first_name%> </p>
-    <p> Password:</br> <%= f.password_field :password%></p>
-    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
-    <%= f.submit :Signup %>
-  <% end %>
+
+<%= render 'form' %>
+
+
   <% if @user.errors.any? %>
     <ul class="Signup_Errors">
     <% for message_error in @user.errors.full_messages %>
@@ -20,4 +14,7 @@
     <% end %>
     </ul>
   <% end %>
+
+<%= link_to 'Show all users (visible only to admins)', users_list_path %>
+
 </div>
