@@ -9,10 +9,10 @@ end
 
 class MyValidator < ActiveModel::Validator
   def validate(record)
-      if (record.password == record.username)
-        record.errors[:name] << 'username cannot equal password'
+      #if (record.password == record.username)
+      #  record.errors[:name] << 'username cannot equal password'
 
-    end
+      #end
   end
 end
 
