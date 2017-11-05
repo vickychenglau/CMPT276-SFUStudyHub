@@ -8,13 +8,13 @@ before_filter :save_login_state, :only => [:login, :login_attempt]
   end
   def logout
   session[:user_id] = nil
-  redirect_to :action => 'login'
+  redirect_to :method => 'login'
   end
   def login_attempt
     authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
     if authorized_user
       flash[:notice] = "Welcome again, you logged in as #{authorized_user.username}"
-      redirect_to(:action => 'home')
+      redirect_to(:method => 'home')
     else
       flash[:notice] = "Invalid Username or Password"
       flash[:color]= "invalid"

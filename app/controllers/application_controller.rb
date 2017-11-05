@@ -10,13 +10,13 @@ def authenticate_user
     @current_user = User.find session[:user_id] 
     return true	
   else
-    redirect_to(:controller => 'sessions', :action => 'login')
+    redirect_to(:controller => 'sessions', :method => 'login')
     return false
   end
 end
 def save_login_state
   if session[:user_id]
-    redirect_to(:controller => 'sessions', :action => 'home')
+    redirect_to(:controller => 'sessions', :method => 'home')
     return false
   else
     return true
