@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def login
-    #login form
+    
   end
 
   def logout
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       #flash[:notice] = "Welcome again, you logged in as #{user.username}"
       redirect_to root_path
     else
-      flash[:notice] = "Invalid username or password - why is this message showing up everywhere?"
+      #flash[:notice] = "Invalid username or password - why is this message showing up everywhere?"
       render "login"	
     end
     #render :text => @user.inspect
@@ -33,3 +33,4 @@ class SessionsController < ApplicationController
   end
 
 end
+
