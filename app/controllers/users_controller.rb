@@ -15,7 +15,7 @@ before_filter :save_login_state, :only => [:new, :create]
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
     end
-    render "new"
+    #render "new"
 
   end
 

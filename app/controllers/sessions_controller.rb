@@ -3,14 +3,11 @@ class SessionsController < ApplicationController
 before_filter :authenticate_user, :only => [:home, :profile, :setting]
 before_filter :save_login_state, :only => [:login, :login_attempt]
 
-  def login
-    #Login Form
-  end
   def logout
   session[:user_id] = nil
   redirect_to :method => 'login'
   end
-  def login_attempt
+  def login
     authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
     if authorized_user
       flash[:notice] = "Welcome again, you logged in as #{authorized_user.username}"
