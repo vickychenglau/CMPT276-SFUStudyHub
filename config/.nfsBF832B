@@ -23,8 +23,6 @@ match "setting", :to => "sessions#setting", via: :get
   get 'postspages/index'
 
   get 'posts/index'
-  get 'courses/index'
-  get 'courses/new'
 
   get 'user/profile'
   get 'user/register'
@@ -43,7 +41,6 @@ match "setting", :to => "sessions#setting", via: :get
   resources :messageboard do
     resources :posts
   end
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.
