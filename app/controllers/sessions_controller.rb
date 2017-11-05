@@ -3,10 +3,9 @@ class SessionsController < ApplicationController
 before_filter :authenticate_user, :only => [:home, :profile, :setting]
 before_filter :save_login_state, :only => [:login, :login_attempt]
 
-def login
-  #login form
-end
-
+  def login
+    #login form
+  end
   def logout
   session[:user_id] = nil
   redirect_to :method => 'login'

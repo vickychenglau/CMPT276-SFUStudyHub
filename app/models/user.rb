@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
 
 end
 
+def match_password(login_password="")
+  password == login_password
+end
+
 def self.authenticate(username_or_email="", login_password="")
   if  EMAIL_REGEX.match(username_or_email)    
     user = User.find_by_email(username_or_email)
@@ -42,6 +46,3 @@ def self.authenticate(username_or_email="", login_password="")
     return false
   end
 end   
-def match_password(login_password="")
-  password == login_password
-end
