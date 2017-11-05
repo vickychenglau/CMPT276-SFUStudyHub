@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
   get 'courses/index'
   get 'courses/new'
   get 'posts/index'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get 'user/login'
   get 'messageboard/index'
   get 'messageboard/new'
+  get 'messageboard/show'
 
   resources :widgets
   resources :users
@@ -15,6 +17,12 @@ Rails.application.routes.draw do
   # resources :posts
   # Nest posts inside of messageboard
   resources :messageboard do
+    resources :posts
+  end
+  resources :topic do
+    resources :posts
+  end
+  resources :posts do
     resources :posts
   end
 
