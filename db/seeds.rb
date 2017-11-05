@@ -10,7 +10,10 @@
 Course.create( name: 'CMPT276: Introduction to Software Engineering' )
 
 User.create([
-	{ username: 'TestAdmin', password: 'TestAdmin', last_name: 'Admin', first_name: 'Test', 
+	{ username: 'TestAdmin', password: 'TestAdmin', last_name: 'Admin', first_name: 'Test',
 		email: 'testadmin@test.ca', role: 'admin' },
-	{ username: 'TestUser', password: 'TestUser', last_name: 'User', first_name: 'Test', 
+	{ username: 'TestUser', password: 'TestUser', last_name: 'User', first_name: 'Test',
 		email: 'testuser@test.ca', role: 'user' }])
+
+Topic.create([{description: 'tutor', title: 'Anyone able to help?' },
+	{description: 'general', title: 'How was the test?'}])
