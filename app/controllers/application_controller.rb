@@ -14,9 +14,11 @@ def authenticate_user
     return false
   end
 end
+
+
 def save_login_state
   if session[:user_id]
-    redirect_to(:controller => 'sessions', :method => 'home')
+    #redirect_to(:controller => 'sessions', :method => 'home')
     return false
   else
     return true

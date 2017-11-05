@@ -6,13 +6,11 @@ class EmailValidator < ActiveModel::EachValidator
   end
 end
 
-
 class MyValidator < ActiveModel::Validator
   def validate(record)
-      #if (record.password == record.username)
-      #  record.errors[:name] << 'username cannot equal password'
-
-      #end
+      if (record.password == record.username)
+        record.errors[:name] << 'username cannot equal password'
+      end
   end
 end
 
@@ -24,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :topics
 
 
-  #validates :username, :presence =>true
+  validates :username, :presence =>true
   #validates_length_of :password, presence: true, :minimum => 7
   #validates :email, presence: true, email: true
   #validates :first_name, :presence =>true
