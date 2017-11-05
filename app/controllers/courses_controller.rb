@@ -12,8 +12,10 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   def create
   	@course = Course.new(course_params)
     if @course.save
+      flash[:notice] = "Successfully added #{@course.name}"
       redirect_to courses_path
     else
+      flash[:notice] = "Course not added"
    	  render 'new'
     end
   end
@@ -31,6 +33,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
 
 
   def destroy
+    flash[:notice] = "Deleted #{@course.name}"
   	@course.destroy
   	redirect_to courses_path
   end
