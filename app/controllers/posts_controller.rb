@@ -11,12 +11,20 @@ before_action :find_postable
 
   def create
     @post = @postable.posts.new post_params
+    @post.user_id = 1 #will need to change this later to the user in session
+    @post.rating = 0.0
+    @post.parent = 1
 
     if @post.save
       redirect_to :back, notice: 'Comment posted.'
     else
       redirect_to :back, notice: 'You comment was not posted.'
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to :back, notice: 'Post deleted'
   end
 
   private

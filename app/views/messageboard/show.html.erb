@@ -1,82 +1,23 @@
 <div class="containter">
+<h4>[<%= @topic.description %>] <%= @topic.title %></h4>
 
-<table border=0>
+<hr>
+<%= form_for [@topic, Post.new] do |f| %>
+  <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
+  <%= f.check_box :anon %>
+  <small>
+    Post anonymously
+  </small>
+  <br/>
+  <%= f.submit "Post" %>
+<% end %>
 
-  <thead>
-    <div class="main-post">
-    <tr>
-      <td colspan=2>
-        <h4>[<%= @topic.description %>] <%= @topic.title %></h4>
-        <hr>
-      </td>
-    </tr>
+<hr>
 
-    <% @topic.posts.where(parent: 0).each do |post| %>
-
-      <tr>
-        <td>
-          <strong> <%= post.user.username %> </strong>
-        </td>
-        <td>
-          <small>
-            Submitted <%= time_ago_in_words(@topic.created_at) %> ago
-          </small>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2> <%= post.text %> </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          Quote / Edit / Delete
-        </td>
-      </tr>
-    <% end %>
-    </div>
-
-  </thead>
-
-  <tbody>
-    <div class="post-form">
-    <tr>
-      <td colspan=2>
-        <hr>
-        Comment:
-      </td>
-    </tr>
-    <tr>
-      <td colspan=2>
-        <%= form_for [@topic, Post.new] do |f| %>
-          <%= f.text_area :text, placeholder: "Add a comment" %><br/>
-          <%= f.submit "Post" %>
-        <% end %>
-        <hr>
-      </td>
-    </tr>
-    </div>
-
-    <div class="comments">
-    <% @topic.posts.where.not(parent: 0).each do |post| %>
-      <tr>
-        <td>
-          <strong> <%= post.user.username %> </strong>
-        </td>
-        <td> <%= post.created_at %> </td>
-      </tr>
-      <tr>
-        <td colspan=2> <%= post.text %> </td>
-      </tr>
-      <tr>
-        <td colspan=2> Quote / Edit / Delete </td>
-      </tr>
-    <% end %>
-    </div>
-  </tbody>
-
+<table border=1>
+  <%= render(partial: 'posts/post', collection: @topic.posts) %>
 </table>
 
-<ul>
-  <%= render(partial: 'posts/post', collection: @topic.posts) %>
-</ul>
+<hr>
 
 </div>
