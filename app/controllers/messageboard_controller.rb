@@ -2,6 +2,7 @@ class MessageboardController < ApplicationController
   def index
     @course = params[:course]
     @topics = Topic.where(:course_id => @course)
+    @course_title = Course.find(@course).name
   end
 
   def show
@@ -10,12 +11,12 @@ class MessageboardController < ApplicationController
   end
 
   def new
-    @course = params[:course_id]
+    @course = params[:course]
     @topic = Topic.new
   end
 
   def create
-    @course = params[:course_id]
+    @course = params[:course]
     @topic = Topic.new(topic_params)
     if @topic.save
       redirect_to action: 'index', :course_id => @course

@@ -1,5 +1,4 @@
-<h1>Messageboard#index</h1>
-<p>Find me in app/views/messageboard/index.html.erb</p>
+<h1><%= @course_title%></h1>
 <% @topics.each do |topic| %>
 <% if topic.title.nil? || topic.description.nil? %>
   </p> something is missing </p>
@@ -8,4 +7,4 @@
 <% end %>
 <% end %>
 </p>
-<%= link_to "Create New Topic", messageboard_path('new', :course_id => @course) %>
+<%= link_to "Create New Topic", messageboard_path('new', :course => @course) %>
