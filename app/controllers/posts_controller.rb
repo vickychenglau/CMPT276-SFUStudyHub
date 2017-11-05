@@ -18,7 +18,7 @@ before_action :find_postable
     if @post.save
       redirect_to :back, notice: 'Comment posted.'
     else
-      redirect_to :back, notice: 'You comment was not posted.'
+      redirect_to :back, notice: 'Your comment was not posted.'
     end
   end
 

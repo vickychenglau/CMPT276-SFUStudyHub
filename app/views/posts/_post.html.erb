@@ -9,31 +9,37 @@ $(function()
 });
 </script>
 
-<div>
-<li>
-  <%= post.user.username unless post.user.blank?%> -
-  <small>Submitted <%= time_ago_in_words(post.created_at) %> ago</small>
-  <br/>
-  <p> <%= post.text %> </p>
+<div class="nested_posts">
 
-  <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
-  <div id="hide_comment_box_<%= post.id %>" style="display: none;">
+  <% if post.parent != 0 %>
+    <div class="post">
+    <%= post.user.username unless post.user.blank? %>
+    <% if post.anon == true %>
+      Anon
+    <% end %>
+    -
+    <small> <%= time_ago_in_words(post.created_at) %> ago</small>
     <br/>
-    <%= form_for [post, Post.new] do |f| %>
-      <%= f.text_area :text, placeholder: "Reply to this post" %> <br/>
-      <%= f.check_box :anon %>
-      <small> Post anonymously </small> <br/>
-      <%= f.submit "Reply"  %>
-      <% end %>
-  </div>
+    <%= post.text %>
+    <br/>
+    <small>
+      <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
+    </small>
+      <div id="hide_comment_box_<%= post.id %>" style="display: none;">
+        <br/>
+        <%= form_for [post, Post.new] do |f| %>
+          <%= f.text_area :text, placeholder: "Reply to this post" %> <br/>
+          <%= f.check_box :anon %>
+          <small> Post anonymously </small> <br/>
+          <%= f.submit "Reply"  %>
+        <% end %>
+      </div>
+    <br/><br/>
+    </div>
+  <% end %>
 
-  <br/>
-
-  <ul>
-      <%= render partial: 'posts/post', collection: post.posts %>
-  </ul>
+  <%= render partial: 'posts/post', collection: post.posts %>
 
   <hr>
 
-</li>
 </div>
