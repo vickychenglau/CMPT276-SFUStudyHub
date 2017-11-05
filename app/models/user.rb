@@ -19,14 +19,14 @@ end
 
 
 class User < ActiveRecord::Base
-  include ActiveModel::Validations
-  validates_with MyValidator
+  #include ActiveModel::Validations
+  #validates_with MyValidator
   has_many :posts
   has_many :topics
-  validates :username, :presence =>true
-  validates_length_of :password, presence: true, :minimum => 7
-  validates :email, presence: true, email: true
-  validates :first_name, :presence =>true
-  validates :role, :presence =>true
+  #validates :username, :presence =>true
+  #validates_length_of :password, presence: true, :minimum => 7
+  #validates :email, presence: true, email: true
+  #validates :first_name, :presence =>true
+  #validates :role, :presence =>true
 
 end

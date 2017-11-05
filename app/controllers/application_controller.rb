@@ -10,7 +10,7 @@ def authenticate_user
     @current_user = User.find session[:user_id] 
     return true	
   else
-    redirect_to(:controller => 'sessions', :method => 'login')
+    redirect_to login_path #(:controller => 'sessions', :method => 'login')
     return false
   end
 end

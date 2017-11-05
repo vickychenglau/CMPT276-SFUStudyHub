@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #root 'sessions#login'
 #root 'courses#index'
 
-root 'sessions#home'
+root 'users#new'
 
 match "signup", :to => "users#new", via: :get
 match "login", :to => "sessions#login", via: :get
