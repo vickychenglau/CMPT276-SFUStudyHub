@@ -5,3 +5,4 @@
 <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %>
 <% end %>
 </p>
+<%= link_to "Create New Topic", messageboard_path('new', id:topic.id) %>
