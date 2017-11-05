@@ -16,11 +16,10 @@ class MyValidator < ActiveModel::Validator
   end
 end
 
-
-
+#had to comment out validates for it to work
 class User < ActiveRecord::Base
-  #include ActiveModel::Validations
-  #validates_with MyValidator
+  include ActiveModel::Validations
+  validates_with MyValidator
   has_many :posts
   has_many :topics
   #validates :username, :presence =>true
@@ -29,4 +28,20 @@ class User < ActiveRecord::Base
   #validates :first_name, :presence =>true
   #validates :role, :presence =>true
 
+end
+
+def self.authenticate(username_or_email="", login_password="")
+  if  EMAIL_REGEX.match(username_or_email)    
+    user = User.find_by_email(username_or_email)
+  else
+    user = User.find_by_username(username_or_email)
+  end
+  if user && user.match_password(login_password)
+    return user
+  else
+    return false
+  end
+end   
+def match_password(login_password="")
+  password == login_password
 end
