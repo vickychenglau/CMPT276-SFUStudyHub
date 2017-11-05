@@ -5,16 +5,16 @@ Rails.application.routes.draw do
 
 root 'courses#index'
 
-match "signup", :to => "users#new", via: :get
-match "login", :to => "sessions#login", via: :get
-match "logout", :to => "sessions#logout", via: :get
-match "home", :to => "sessions#home", via: :get
-match "profile", :to => "sessions#profile", via: :get
-match "setting", :to => "sessions#setting", via: :get
+  get "signup", :to => "users#new"
+  get "login", :to => "sessions#login_attempt"
+  get "logout", :to => "sessions#logout"
+  get "home", :to => "sessions#home"
+  get "profile", :to => "sessions#profile"
+  get "setting", :to => "sessions#setting"
 
   get 'users/list', to: "users#list"
 
-  post 'login', to: "courses#index"
+  post 'login', to: "sessions#login_attempt"
 
   get 'users/new'
 

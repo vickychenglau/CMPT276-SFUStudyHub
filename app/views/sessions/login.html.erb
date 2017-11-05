@@ -2,8 +2,10 @@
 <div class= "Sign_Form">
   <h1>Log in</h1>
   <%= form_tag(:method => 'login_attempt') do %>
-    <p>Username or Email:</br> <%= text_field_tag(:username_or_email) %></p> 
+    <p>Username:</br> <%= text_field_tag :login_username %></p> 
     <p>Password:</br> <%= password_field_tag :login_password %></p> 
     <%= submit_tag("Log In") %>
   <% end %>
 </div>
+
+<%= link_to 'Show all users (visible only to admins)', users_list_path %>
