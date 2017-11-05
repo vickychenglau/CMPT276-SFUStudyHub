@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.nested_posts_border{
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #d7dae0;
+}
+
 div.nested_posts{
   margin-left: 15px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #d7dae0;
 }

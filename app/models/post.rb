@@ -7,7 +7,8 @@ class Post < ActiveRecord::Base
   validates :rating, :presence =>true
   validates :user_id, :presence =>true
   validates :parent, :presence =>true
-  validates :anon, :presence =>true
+  validates :anon, :inclusion => {:in => [true, false]}
+  validates :deleted, :inclusion => {:in => [true, false]}
   validates_length_of :text, presence: true, :minimum => 1
 
 end

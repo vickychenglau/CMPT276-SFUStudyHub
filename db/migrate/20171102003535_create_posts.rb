@@ -4,11 +4,12 @@ class CreatePosts < ActiveRecord::Migration
       t.references :topic
       t.references :user
       t.text :text
-      t.float :rating
+      t.integer :rating
       t.boolean :anon
       t.integer :parent
       t.integer :postable_id
       t.string :postable_type
+      t.boolean :deleted
 
       t.timestamps null: false
     end

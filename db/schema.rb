@@ -16,19 +16,6 @@ ActiveRecord::Schema.define(version: 20171105005954) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "user_id"
-    t.text     "body"
-    t.integer  "rating"
-    t.boolean  "anon"
-    t.integer  "parent"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -39,11 +26,12 @@ ActiveRecord::Schema.define(version: 20171105005954) do
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.float    "rating"
+    t.integer  "rating"
     t.boolean  "anon"
     t.integer  "parent"
     t.integer  "postable_id"
     t.string   "postable_type"
+    t.boolean  "deleted"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

@@ -12,13 +12,23 @@ before_action :find_postable
   def create
     @post = @postable.posts.new post_params
     @post.user_id = 1 #will need to change this later to the user in session
-    @post.rating = 0.0
+    @post.rating = 0
     @post.parent = 1
+    @post.deleted = false
 
     if @post.save
       redirect_to :back, notice: 'Comment posted.'
     else
       redirect_to :back, notice: 'Your comment was not posted.'
+    end
+  end
+
+  def update
+    @post = Post.find params[:id]
+    if @post.update(post_params)
+      redirect_to :back, notice: 'Post was successfully updated.'
+    else
+      redirect_to :back, notice: 'Post was not updated.'
     end
   end
 
@@ -30,7 +40,7 @@ before_action :find_postable
   private
 
   def post_params
-    params.require(:post).permit(:text)
+    params.require(:post).permit(:user_id, :text, :anon, :deleted)
   end
 
   def find_postable
