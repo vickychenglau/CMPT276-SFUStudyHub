@@ -1,0 +1,14 @@
+<li>
+  <%= post.text %> -
+  <small>Submitted <%= time_ago_in_words(post.created_at) %> ago</small>
+
+  <%= form_for [post, Post.new] do |f| %>
+      <%= f.text_area :text, placeholder: "Add a Reply" %><br/>
+      <%= f.submit "Reply"  %>
+      <% end %>
+
+  <ul>
+      <%= render partial: 'posts/post', collection: post.posts %>
+  </ul>
+
+</li>

@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102014217) do
+ActiveRecord::Schema.define(version: 20171105005954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "rating"
+    t.boolean  "anon"
+    t.integer  "parent"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -29,8 +42,10 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.float    "rating"
     t.boolean  "anon"
     t.integer  "parent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "postable_id"
+    t.string   "postable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "topics", force: :cascade do |t|
@@ -52,6 +67,7 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
+    t.string   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

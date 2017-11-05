@@ -1,15 +1,80 @@
-<h1>[<%= @topic.description %>] <%= @topic.title %></h1>
+<div class="containter">
 
-<hr>
+<table border=0>
 
-<h4>Comments</h4>
+  <thead>
+    <div class="main-post">
+    <tr>
+      <td colspan=2>
+        <h4>[<%= @topic.description %>] <%= @topic.title %></h4>
+        <hr>
+      </td>
+    </tr>
 
-<% @topic.posts.each do |post| %>
-  <p>
-    <strong>User</strong>
-    <%= post.users.username %>
-    <br>
-    <strong>Comment</strong>
-    <%= post.text %>
-  </p>
+    <% @topic.posts.where(parent: 0).each do |post| %>
+
+      <tr>
+        <td>
+          <strong> <%= post.user.username %> </strong>
+        </td>
+        <td> <%= post.created_at %> </td>
+      </tr>
+      <tr>
+        <td colspan=2> <%= post.text %> </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          Quote / Edit / Delete
+        </td>
+      </tr>
+    <% end %>
+    </div>
+
+  </thead>
+
+  <tbody>
+    <div class="post-form">
+    <tr>
+      <td colspan=2>
+        <hr>
+        Comment:
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2>
+          Comment box here
+        <hr>
+      </td>
+    </tr>
+    </div>
+
+    <div class="comments">
+    <% @topic.posts.where.not(parent: 0).each do |post| %>
+      <tr>
+        <td>
+          <strong> <%= post.user.username %> </strong>
+        </td>
+        <td> <%= post.created_at %> </td>
+      </tr>
+      <tr>
+        <td colspan=2> <%= post.text %> </td>
+      </tr>
+      <tr>
+        <td colspan=2> Quote / Edit / Delete </td>
+      </tr>
+    <% end %>
+    </div>
+  </tbody>
+
+</table>
+
+<%= form_for [@topic, Post.new] do |f| %>
+  <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
+  <%= f.submit "Add Comment" %>
 <% end %>
+
+<ul>
+  <%= render(partial: 'posts/post', collection: @topic.posts) %>
+</ul>
+
+</div>
