@@ -12,6 +12,8 @@ match "home", :to => "sessions#home", via: :get
 match "profile", :to => "sessions#profile", via: :get
 match "setting", :to => "sessions#setting", via: :get
 
+  get 'users/list', to: "users#list"
+
   post 'login', to: "courses#index"
 
   get 'users/new'
