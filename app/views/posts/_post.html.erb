@@ -17,25 +17,30 @@ $(function()
     <% if post.deleted == true %>
         [deleted]
     <% else %>   <!-- Start of post -->
-      <% if post.anon == true %>
-        Anon
-      <% else %>
-        <%= post.user.username unless post.user.blank?%>
-      <% end %>
+      <strong>
+        <% if post.anon == true %>
+          Anon
+        <% else %>
+          <%= post.user.username unless post.user.blank?%>
+        <% end %>
+      </strong>
       -
       <small> <%= time_ago_in_words(post.created_at) %> ago</small>
       <br/>
       <%= post.text %>
       <br/>
 
+      <% if current_user %>
       <small>
         <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
 
-        <%= link_to "Delete",
-            post_path(post, :post => { :deleted => true}),
-            :method => :put,
-            :confirm => "Are you sure?"
-        %>
+        <% if current_user.role == 'admin' %>
+          <%= link_to "Delete",
+              post_path(post, :post => { :deleted => true}),
+              :method => :put,
+              :confirm => "Are you sure?"
+          %>
+        <% end %>
       </small>
 
       <div id="hide_comment_box_<%= post.id %>" style="display: none;">
@@ -47,6 +52,7 @@ $(function()
           <%= f.submit "Reply"  %>
         <% end %>
       </div>
+      <% end %>
 
     <% end %> <!-- end of post -->
 

@@ -11,7 +11,7 @@ before_action :find_postable
 
   def create
     @post = @postable.posts.new post_params
-    @post.user_id = 1 #will need to change this later to the user in session
+    @post.user_id = current_user.id
     @post.rating = 0
     @post.parent = 1
     @post.deleted = false

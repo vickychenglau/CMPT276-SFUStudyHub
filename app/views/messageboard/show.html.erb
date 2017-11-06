@@ -1,7 +1,6 @@
 <div class="container">
+<hr />
 <h4>[<%= @topic.description %>] <%= @topic.title %></h4>
-
-<hr/>
 
 <% @post.each do |post| %>
   <strong>
@@ -9,24 +8,22 @@
   </strong>
   -
   <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
-  <br/>
+  <br/> <br/>
   <p> <%= post.text %> </p>
 <% end %>
 
-<hr/>
+  <hr/>
 
-<%= form_for [@topic, Post.new] do |f| %>
-  <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
-  <%= f.check_box :anon %>
-  <small>
-    Post anonymously
-  </small>
-  <br/>
-  <%= f.submit "Post" %>
+<% if current_user %>
+  <%= form_for [@topic, Post.new] do |f| %>
+    <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
+    <%= f.check_box :anon %>
+    <small> Post anonymously </small>
+    <br/>
+    <%= f.submit "Post" %>
+  <% end %>
 <% end %>
 
-<hr>
 <%= render(partial: 'posts/post', collection: @topic.posts) %>
-<hr>
 
 </div>
