@@ -22,11 +22,10 @@ class User < ActiveRecord::Base
   has_many :topics
 
 
-  validates :username, :presence =>true
+  validates :username, :presence =>true, uniqueness: true
   validates_length_of :password, presence: true, :minimum => 7
-  validates :email, presence: true, email: true
+  validates :email, presence: true, email: true, uniqueness: true
   validates :first_name, :presence =>true
   #validates :role, :presence =>true
 
 end
-
