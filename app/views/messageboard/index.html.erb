@@ -7,7 +7,11 @@
 <% if topic.title.nil? || topic.description.nil? %>
   </p> something is missing </p>
 <% else %>
-<p><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></p>
+<h3><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></h3>
+<% if current_user.role == 'admin' %>
+  <p><%= link_to 'DELETE', messageboard_path(topic, :course => @course),
+  method: :delete, data: {confirm: 'Are you sure?' } %></p>
+<% end %>
 <% end %>
 <% end %>
 </p>

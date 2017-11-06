@@ -12,14 +12,20 @@ class MessageboardController < ApplicationController
   def show
     @id = params[:id]
     @topic = Topic.find(@id)
+    @user = User.find(@topic.user_id)
     @post = Post.where(parent: 0).where(topic_id: @id)
   end
-
-
 
   def new
     @course = params[:course]
     @topic = Topic.new
+  end
+
+  def destroy
+    @course = params[:course]
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+    redirect_to action: 'index', :course => @course
   end
 
   def create
@@ -27,9 +33,7 @@ class MessageboardController < ApplicationController
     topic_params[:course_id] = @course
     @topic = Topic.new(topic_params)
     @topic.course_id = @course
-    if @topic.course_id.nil?
-        flash[:notice] = "Still not working"
-    end
+    @topic.user_id = current_user.id
     if @topic.save
       redirect_to action: 'index', :course => @course
     else

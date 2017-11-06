@@ -1,7 +1,7 @@
 <div class="container">
 <hr />
 <h4>[<%= @topic.description %>] <%= @topic.title %></h4>
-
+<p> Posted by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %></p>
 <% @post.each do |post| %>
   <strong>
     <a href= <%= user_path('show',id: post.user_id) %>>
