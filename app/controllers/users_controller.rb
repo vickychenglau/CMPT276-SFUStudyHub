@@ -30,6 +30,10 @@ class UsersController < ApplicationController
     redirect_to users_list_path
   end
 
+  def show
+    @user = User.find(params[:id])
+    @topics = Topic.where(user_id: @user.id)
+  end
 
   private
     def user_params

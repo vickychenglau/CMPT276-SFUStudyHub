@@ -29,3 +29,4 @@ class User < ActiveRecord::Base
   #validates :role, :presence =>true
 
 end
+

@@ -18,13 +18,13 @@
       </li>
       <% if current_user %>
         <li>
-          Signed in as <%= current_user.username %> with role <%= current_user.role %>
-        </li>
-        <li>
           <a href=<%= profile_path %>><span class="glyphicon glyphicon-user"></span> Profile</a>
         </li>
         <li>
           <a href=<%= logout_path %>><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+        </li>
+        <li>
+          Signed in as <%= current_user.username %> with role <%= current_user.role %>
         </li>
         <% if current_user.role == 'admin' %>
         <ul class="nav navbar-nav navbar-right">
