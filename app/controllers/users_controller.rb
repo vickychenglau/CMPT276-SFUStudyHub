@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 #before_filter :save_login_state, :only => [:new, :create]
 
   def new
-    @user = User.new 
+    @user = User.new
   end
 
   def create
@@ -34,10 +34,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @topics = Topic.where(user_id: @user.id)
   end
-  
+
   private
     def user_params
       params.require(:user).permit(:username, :email, :last_name, :first_name, :password)
     end
-  
+
 end

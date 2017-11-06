@@ -35,9 +35,9 @@
 <% end %>
 
 <table>
-  <% @topics.each do |topics| %>
+  <% @topics.each do |topic| %>
     <tr>
-      <td><%= @topics.title unless @topic.title.blank? %></td>
+      <td><%= topic.title unless topic.title.blank? %></td>
     </tr>
   <% end %>
 </table>
