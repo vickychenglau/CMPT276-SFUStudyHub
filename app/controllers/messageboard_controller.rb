@@ -20,13 +20,14 @@ class MessageboardController < ApplicationController
   end
 
   def create
-    @course = params[:][:course_id]
+    @course = params[:topic][:course]
+    topic_params[:course_id] = @course
     @topic = Topic.new(topic_params)
+    @topic.course_id = @course
     if @topic.course_id.nil?
-      @topic.course_id = @course
+        flash[:notice] = "Still not working"
     end
     if @topic.save
-      flash[:notice] = params[:course_id]
       redirect_to action: 'index', :course => @course
     else
       render 'new'
