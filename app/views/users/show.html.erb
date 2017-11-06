@@ -7,9 +7,9 @@
 <table>
   <tr>
     <th>Field</th>
-    <th>User Information</th> 
+    <th>User Information</th>
   </tr>
-  
+
   <tr>
     <td>Username</td>
     <td><%= @user.username %></td>
@@ -37,7 +37,7 @@
 <table>
   <% @topics.each do |topics| %>
     <tr>
-      <td><%= @topics.title %></td>
+      <td><%= @topics.title unless @topic.title.blank? %></td>
     </tr>
   <% end %>
 </table>

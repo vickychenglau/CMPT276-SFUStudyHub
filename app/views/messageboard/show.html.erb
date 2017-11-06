@@ -4,7 +4,9 @@
 
 <% @post.each do |post| %>
   <strong>
-    <%= post.user.username unless post.user.blank?%>
+    <a href= <%= user_path('show',id: post.user_id) %>>
+      <%= post.user.username unless post.user.blank?%>
+    </a>
   </strong>
   -
   <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>

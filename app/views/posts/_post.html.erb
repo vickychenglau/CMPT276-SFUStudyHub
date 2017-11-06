@@ -21,7 +21,9 @@ $(function()
         <% if post.anon == true %>
           Anon
         <% else %>
-          <%= post.user.username unless post.user.blank?%>
+          <a href= <%= user_path('show',id: post.user_id) %>>
+            <%= post.user.username unless post.user.blank?%>
+          </a>
         <% end %>
       </strong>
       -

@@ -10,8 +10,7 @@ class MessageboardController < ApplicationController
     @post = Post.where(parent: 0).where(topic_id: @id)
   end
 
-  @id = params[:id]
-  @user = User.find(@id)
+
 
   def new
   end
