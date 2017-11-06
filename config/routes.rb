@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #root 'sessions#login'
 #root 'courses#index'
 
-root 'courses#index'
+  root 'courses#index'
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
@@ -17,26 +17,16 @@ root 'courses#index'
   post 'login', to: "sessions#login_attempt"
 
   get 'users/new'
-
   get 'courses/index'
-
   get 'courses/new'
-
-  get 'postspages/index'
-
   get 'posts/index'
-  get 'courses/index'
-  get 'courses/new'
-
   get 'user/profile'
   get 'user/show'
   get 'user/register'
   get 'user/login'
-  get 'course/index'
-  get 'course/new'
-  get 'postspage/index'
   get 'messageboard/index'
   get 'messageboard/new'
+  get 'messageboard/show'
 
   resources :widgets
   resources :users
@@ -46,7 +36,12 @@ root 'courses#index'
   resources :messageboard do
     resources :posts
   end
-
+  resources :topic do
+    resources :posts
+  end
+  resources :posts do
+    resources :posts
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -54,7 +49,7 @@ root 'courses#index'
 
   # You can have the root of your site routed with "root"
 
-  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
