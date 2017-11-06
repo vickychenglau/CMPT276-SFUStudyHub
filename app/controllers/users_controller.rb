@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @topics = Topic.where(user_id: @user.id)
   end
-
+  
   private
     def user_params
       params.require(:user).permit(:username, :email, :last_name, :first_name, :password)

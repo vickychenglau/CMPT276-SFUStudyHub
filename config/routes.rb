@@ -10,6 +10,9 @@ root 'courses#index'
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
   get "profile", :to => "sessions#profile"
+
+  #get "profile", :to => "users/current_user.id#show"
+  
   get "setting", :to => "sessions#setting"
 
   get 'users/list', to: "users#list"

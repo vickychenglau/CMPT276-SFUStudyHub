@@ -24,12 +24,16 @@
   </tr>
 </table>
 
-<h3>User's Topics</h3>
+<% if @user.id == current_user.id %>
+  <h3>My Topics</h3>
+<% else %>
+  <h3>User's Topics</h3>
+<% end %>
 
 <table>
-<% @topics.each do |topics| %>
-  <tr>
-    <td><%= @topics.title %></td>
-  </tr>
-<% end %>
+  <% @topics.each do |topics| %>
+    <tr>
+      <td><%= @topics.title %></td>
+    </tr>
+  <% end %>
 </table>
