@@ -1,4 +1,8 @@
+<% if @course_title.nil? %>
+<h1>All the topics</h1>
+<% else %>
 <h1><%= @course_title%></h1>
+<% end %>
 <% @topics.each do |topic| %>
 <% if topic.title.nil? || topic.description.nil? %>
   </p> something is missing </p>
@@ -7,4 +11,8 @@
 <% end %>
 <% end %>
 </p>
+<% if @course_title.nil? %>
+<% else %>
 <%= link_to "Create New Topic", messageboard_path('new', :course => @course) %>
+<% end %>
+<p><%= link_to "Back to Courses", :controller => 'courses', :action => 'index' %></p>

@@ -10,8 +10,9 @@
   <%= f.text_area :title %>
  </p>
  <p>
-  <%= f.submit params:{:course_id => @course} %>
+   <f.hidden_field :course_id, value: @course %>
+  <%= f.submit "Submit" %>
  </p>
 <% end %>
 
-<%= link_to 'Back', messageboard_path('index', :course => @course)  %>
+<%= link_to 'Back', messageboard_path('index')  %>
