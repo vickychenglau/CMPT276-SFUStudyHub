@@ -1,20 +1,17 @@
-<h1>New User</h1>
-
 <% @page_title = "UserAuth | Signup" %>
-<div class="Sign_Form">
-  <h1>Sign Up</h1>
 
-<%= render 'form' %>
+	<div class="Sign_Form">
+	  <h1>Sign Up</h1>
+
+	<%= render 'form' %>
 
 
-  <% if @user.errors.any? %>
-    <ul class="Signup_Errors">
-    <% for message_error in @user.errors.full_messages %>
-      <li>* <%= message_error %></li>
-    <% end %>
-    </ul>
-  <% end %>
+	  <% if @user.errors.any? %>
+	    <ul class="Signup_Errors">
+	    <% for message_error in @user.errors.full_messages %>
+	      <li>* <%= message_error %></li>
+	    <% end %>
+	    </ul>
+	  <% end %>
 
-<%= link_to 'Show all users (visible only to admins)', users_list_path %>
-
-</div>
+	</div>

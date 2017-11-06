@@ -1,10 +1,29 @@
-<h1>[<%= @topic.description %>] <%= @topic.title %></h1>
+<div class="container">
+<hr />
+<h4>[<%= @topic.description %>] <%= @topic.title %></h4>
 
-<h4>Comments</h4>
-
-<% @topic.posts.each do |post| %>
-<p>
-  <strong>Comment</strong>
-<%= post.text %>
-</p>
+<% @post.each do |post| %>
+  <strong>
+    <%= post.user.username unless post.user.blank?%>
+  </strong>
+  -
+  <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
+  <br/> <br/>
+  <p> <%= post.text %> </p>
 <% end %>
+
+  <hr/>
+
+<% if current_user %>
+  <%= form_for [@topic, Post.new] do |f| %>
+    <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
+    <%= f.check_box :anon %>
+    <small> Post anonymously </small>
+    <br/>
+    <%= f.submit "Post" %>
+  <% end %>
+<% end %>
+
+<%= render(partial: 'posts/post', collection: @topic.posts) %>
+
+</div>
