@@ -9,9 +9,6 @@ root 'courses#index'
   get "login", :to => "sessions#login"
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
-  get "profile", :to => "sessions#profile"
-
-  #get "profile", :to => "users/current_user.id#show"
   
   get "setting", :to => "sessions#setting"
 
@@ -32,6 +29,7 @@ root 'courses#index'
   get 'courses/new'
 
   get 'user/profile'
+  get 'user/show'
   get 'user/register'
   get 'user/login'
   get 'course/index'
