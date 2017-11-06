@@ -1,38 +1,37 @@
-<h1>Courses</h1>
+<h1>SFU Study Hub Message Board</h1>
 <p>Click on a course below to view its message board.</p>
 
-<!-- once users are set up, add in: if user is admin, then they can add a course -->
-
-<% if current_user.nil? %>
-  <p></p>
-<% elsif current_user.role == 'admin' %>
-	<p><%= link_to "Add Course (for admin only - add functionality after user authentication is done)", courses_new_path %></p>
+<% if current_user && current_user.role == 'admin' %>
+	<p><%= link_to "Add Course", courses_new_path %></p>
 <% end %>
 
 <table>
 	<col width = '700'>
-	<col width = '50'>
+	<% if current_user && current_user.role == 'admin' %>
+		<col width = '100'>
+		<col width = '100'>
+	<% end %>
 	<tr>
 		<th>
 			Course
 		</th>
-		<th colspan=2>
-			Admin-only functions to add later
-		</th>
+		<% if current_user && current_user.role == 'admin' %>
+			<th></th>
+			<th></th>
+		<% end %>
 	</tr>
 	<% @courses.order(:name).each do |course| %>
-
 		<tr>
 			<td>
 				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
 			</td>
-			<td>
-				<%= link_to 'Edit', edit_course_path(course) %>
-			<td>
-				<%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
-			</td>
+			<% if current_user && current_user.role == 'admin' %>
+				<td>
+					<%= link_to 'Edit', edit_course_path(course) %>
+				<td>
+					<%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			<% end %>
 		</tr>
 	<% end %>
 </table>
-
-

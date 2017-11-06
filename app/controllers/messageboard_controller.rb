@@ -12,7 +12,10 @@ class MessageboardController < ApplicationController
   def show
     @id = params[:id]
     @topic = Topic.find(@id)
+    @post = Post.where(parent: 0).where(topic_id: @id)
   end
+
+
 
   def new
     @course = params[:course]
