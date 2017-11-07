@@ -9,6 +9,6 @@ class Post < ActiveRecord::Base
   validates :parent, :presence =>true
   validates :anon, :inclusion => {:in => [true, false]}
   validates :deleted, :inclusion => {:in => [true, false]}
-  validates_length_of :text, presence: true, :minimum => 1
+  validates_length_of :text, presence: true, :minimum => 7
 
 end
