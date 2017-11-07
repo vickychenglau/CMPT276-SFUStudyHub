@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
 #before_filter :authorize, :only => [:list]
 #before_filter :save_login_state, :only => [:new, :create]
 
@@ -9,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.role = "admin"
+    @user.role = "user"
     if @user.save
       flash[:notice] = "You signed up successfully"
       redirect_to login_path
@@ -18,6 +17,21 @@ class UsersController < ApplicationController
       render "new"
     end
 
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "User updated"
+      redirect_to users_list_path
+    else
+      flash[:notice] = "User not updated"
+      render 'edit'
+    end
   end
 
   def list
@@ -37,7 +51,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:username, :email, :last_name, :first_name, :password)
+      params.require(:user).permit(:username, :email, :last_name, :first_name, :password, :role)
     end
 
 end

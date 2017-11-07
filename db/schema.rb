@@ -26,14 +26,11 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.integer  "rating"
+    t.float    "rating"
     t.boolean  "anon"
     t.integer  "parent"
-    t.integer  "postable_id"
-    t.string   "postable_type"
-    t.boolean  "deleted"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|
@@ -55,7 +52,6 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
-    t.string   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

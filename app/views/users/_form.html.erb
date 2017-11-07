@@ -1,9 +1,19 @@
-  <%= form_for(:user, :url => {:controller => 'users', :method => 'create'}) do |f| %>
+  <%= form_for(@user) do |f| %>
     <p> Username:</br> <%= f.text_field :username%> </p>
     <p> Email:</br> <%= f.text_field :email%> </p>
     <p> Last Name:</br> <%= f.text_field :last_name%> </p>
     <p> First Name:</br> <%= f.text_field :first_name%> </p>
-    <p> Password:</br> <%= f.password_field :password%></p>
-    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
-    <%= f.submit :Signup %>
+	<% if current_user && current_user.role == 'admin' %>
+      	<p> Password:</br> <%= f.text_field :password%></p>
+    	<p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
+     	<p> Role:</br> 
+    	<%= f.radio_button(:role, "user") %>
+    	<%= label_tag(:role, "User") %>
+    	<%= f.radio_button(:role, "admin") %>
+    	<%= label_tag(:role, "Admin") %></br>
+    <% else %>
+    	<p> Password:</br> <%= f.password_field :password%></p>
+    	<p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
+	<% end %>
+    <%= f.submit %>
   <% end %>
