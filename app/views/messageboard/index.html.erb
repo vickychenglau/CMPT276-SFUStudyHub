@@ -4,11 +4,74 @@
   <h1><%= @course_title%></h1>
 <% end %>
 
+<script>
+
+function collapse_ele(arrayEle){
+  for (var ele in arrayEle){
+    arrayEle[ele].display.style = "none";
+  }
+}
+
+function show_ele(arrayEle){
+  for (var ele in arrayEle){
+    arrayEle[ele].display.style = "block";
+  }
+}
+
+function check_general(){
+  console.log("worked");
+  var general = document.getElementsByClassName("general");
+  if (document.getElementById("generalcheck").checked){
+    show_ele(general);
+  }else{
+    collapse_ele(general);
+      }
+}
+
+function check_tutor(){
+  var tutors = document.getElementsByClassName("tutor");
+  if (document.getElementById("tutorcheck").checked){
+    for (tutor in tutors){
+      tutors[tutor].display.style = "block";
+    }
+  }else{
+    for (tutor in tutors){
+      tutors[tutor].display.style = "none";
+    }
+  }
+}
+
+function check_studygroup(){
+  var studygroup = document.getElementsByClassName("studygroup");
+  if (document.getElementById("studygroupcheck").checked){
+    show_ele(studygroup);
+  }else{
+    collapse_ele(studygroup);
+  }
+}
+</script>
+
+<%= check_box_tag(:generalcheck) %>
+<%= label_tag(:generalcheck, "GENERAL") %>
+<%= check_box_tag(:tutorcheck) %>
+<%= label_tag(:tutorcheck, "TUTOR") %>
+<%= check_box_tag(:studygroupcheck) %>
+<%= label_tag(:studygroupcheck, "STUDYGROUP") %>
+
+
+
+<form>
+<input type="checkbox" id="generalcheck" onclick="check_general">General<br/>
+<input type="checkbox" id="tutorcheck" onclick="check_tutor">Tutor<br/>
+<input type="checkbox" id="studygroup" onclick="check_studygroup">Study Group<br/>
+</form>
+
+
 <% @topics.each do |topic| %>
   <% if topic.title.nil? || topic.description.nil? %>
     </p> something is missing </p>
   <% else %>
-    <h3><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></h3>
+    <p class= "<%= topic.description %>" ><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></p>
     <% if current_user && current_user.role == 'admin' %>
       <p><%= link_to 'DELETE', messageboard_path(topic, :course => @course),
               method: :delete, data: {confirm: 'Are you sure?' } %></p>
