@@ -26,8 +26,9 @@ User.create([{username: 'Admin', password: '12345678', last_name: 'Al', first_na
 			{username: 'Admin2', password: 'a12345678', last_name: 'Cucumber', first_name: 'James',
 				email: 'CuJames@test.ca', role: 'admin'}])
 
-Topic.create([{description: 'tutor', title: 'Anyone able to help?', user_id: 2 , course_id: 1},
-	{description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2,  first_post: "Well?"},
-	 {description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2,  first_post: "Well?"},
-	 {description: 'general', title: 'How was the exam', user_id: 1 , course_id: 2,  first_post: "Well?"},
-	 {description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1,  first_post: "Well?"}])
+Topic.create([
+	{description: 'tutor', title: 'Anyone able to help?', user_id: 2 , course_id: 1, first_post: "Please?"},
+	{description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2, first_post: "Well?"},
+	{description: 'general', title: 'How was the exam', user_id: 1 , course_id: 2, first_post: "Well?"},
+	{description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1, first_post: "I did terrible. :("}
+	])
