@@ -7,9 +7,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    @pass = params[:user][:password]
+    @passconfirm = params[:user][:password_confirmation]
+
     @user = User.new(user_params)
+    if @pass != @passconfirm
+      @user.errors.add(:password_confirmation, " and Password do not match")
+    end
     @user.role = "user"
-    if @user.save
+    if @pass == @passconfirm && @user.save
       flash[:notice] = "You signed up successfully"
       redirect_to login_path
     else

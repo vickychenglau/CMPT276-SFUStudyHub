@@ -19,6 +19,7 @@ end
 class User < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with MyValidator
+
   has_many :posts
   has_many :topics
 
