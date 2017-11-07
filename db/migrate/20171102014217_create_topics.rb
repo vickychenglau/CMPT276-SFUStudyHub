@@ -5,13 +5,9 @@ class CreateTopics < ActiveRecord::Migration
       t.string :title
       t.references :course, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
+      t.text :first_post
 
       t.timestamps null: false
-
-      validates :title, :presence =>true
-
-
-
 
     end
   end
