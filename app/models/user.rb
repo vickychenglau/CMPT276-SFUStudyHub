@@ -14,6 +14,7 @@ class MyValidator < ActiveModel::Validator
   end
 end
 
+
 #had to comment out validates for it to work
 class User < ActiveRecord::Base
   include ActiveModel::Validations
@@ -26,6 +27,8 @@ class User < ActiveRecord::Base
   validates_length_of :password, presence: true, :minimum => 7
   validates :email, presence: true, email: true, uniqueness: true
   validates :first_name, :presence =>true
+  validates :password_confirmation, :presence =>true
+  validates :password, confirmation: true
   #validates :role, :presence =>true
 
 end
