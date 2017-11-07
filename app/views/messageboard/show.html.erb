@@ -1,20 +1,15 @@
 <div class="container">
 <hr />
 <h4>[<%= @topic.description %>] <%= @topic.title %></h4>
-<p> Posted by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %></p>
-<% @post.each do |post| %>
-  <strong>
-    <a href= <%= user_path('show',id: post.user_id) %>>
-      <%= post.user.username unless post.user.blank?%>
-    </a>
-  </strong>
-  -
-  <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
-  <br/> <br/>
-  <p> <%= post.text %> </p>
-<% end %>
 
-  <hr/>
+Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %>
+-
+<small> <%= time_ago_in_words(@topic.created_at) %> ago</small>
+<br/> <br/>
+
+<p> <%= @topic.first_post %> </p>
+
+<hr/>
 
 <% if current_user %>
   <%= form_for [@topic, Post.new] do |f| %>

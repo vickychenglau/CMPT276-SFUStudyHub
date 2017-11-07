@@ -1,20 +1,26 @@
-<h1>Messageboard#new</h1>
-<p>Find me in app/views/messageboard/new.html.erb</p>
-<p><%= form_for @topic, url:{action: 'create'} do |f|  %><p>
+<div class="container">
+<h1>Create a New Topic</h1>
+
+<p><%= form_for @topic, url:{action: 'create'} do |f|  %></p>
   <%= f.radio_button(:description, "general") %>
   <%= label_tag(:description, "general") %>
+
   <%= f.radio_button(:description, "tutor") %>
   <%= label_tag(:description, "tutor") %>
+
   <%= f.radio_button(:description, "studygroup") %>
   <%= label_tag(:description, "studygroup") %>
   <p>
-  <%= f.label :title %><br/>
-  <%= f.text_area :title %>
- </p>
- <p>
-   <%= f.hidden_field :course, value: @course %>
-  <%= f.submit "Submit" %>
- </p>
+    <%= f.label :title %><br/>
+    <%= f.text_area :title %><br/>
+    <%= f.label :first_post %><br/>
+    <%= f.text_area :first_post %><br/>
+  </p>
+  <p>
+    <%= f.hidden_field :course, value: @course %>
+    <%= f.submit "Submit" %>
+  </p>
 <% end %>
 
 <%= link_to 'Back', messageboard_path('index', :course=> @course)  %>
+</div>
