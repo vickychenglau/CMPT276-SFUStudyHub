@@ -1,0 +1,26 @@
+<table>
+	<tr>
+		<th>User ID</th>
+		<th>Username</th>
+		<th>Password</th>
+		<th>Email</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Role</th>
+		<th>Edit</th>
+		<th>Delete?</th>
+	</tr>
+	<% @users.order(:username).each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.username %></td>
+			<td><%= user.password %></td>
+			<td><%= user.email %></td>
+			<td><%= user.first_name %></td>
+			<td><%= user.last_name %></td>
+			<td><%= user.role %></td>
+			<td><%= link_to 'Edit', edit_user_path(user) %>
+			<td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+	<% end %>
+</table>

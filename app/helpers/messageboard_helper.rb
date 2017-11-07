@@ -1,0 +1,2 @@
+module MessageboardHelper
+end

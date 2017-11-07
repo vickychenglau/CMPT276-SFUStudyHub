@@ -1,0 +1,26 @@
+<div class="container">
+<hr />
+<h4>[<%= @topic.description %>] <%= @topic.title %></h4>
+
+Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %>
+-
+<small> <%= time_ago_in_words(@topic.created_at) %> ago</small>
+<br/> <br/>
+
+<p> <%= @topic.first_post %> </p>
+
+<hr/>
+
+<% if current_user %>
+  <%= form_for [@topic, Post.new] do |f| %>
+    <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
+    <%= f.check_box :anon %>
+    <small> Post anonymously </small>
+    <br/>
+    <%= f.submit "Post" %>
+  <% end %>
+<% end %>
+
+<%= render(partial: 'posts/post', collection: @topic.posts) %>
+
+</div>

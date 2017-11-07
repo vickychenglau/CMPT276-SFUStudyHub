@@ -1,0 +1,37 @@
+<h1>SFU Study Hub Message Board</h1>
+<p>Click on a course below to view its message board.</p>
+
+<% if current_user && current_user.role == 'admin' %>
+	<p><%= link_to "Add Course", courses_new_path %></p>
+<% end %>
+
+<table>
+	<col width = '700'>
+	<% if current_user && current_user.role == 'admin' %>
+		<col width = '100'>
+		<col width = '100'>
+	<% end %>
+	<tr>
+		<th>
+			Course
+		</th>
+		<% if current_user && current_user.role == 'admin' %>
+			<th></th>
+			<th></th>
+		<% end %>
+	</tr>
+	<% @courses.order(:name).each do |course| %>
+		<tr>
+			<td>
+				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
+			</td>
+			<% if current_user && current_user.role == 'admin' %>
+				<td>
+					<%= link_to 'Edit', edit_course_path(course) %>
+				<td>
+					<%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
