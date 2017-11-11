@@ -15,3 +15,11 @@ two:
   first_name: MyString
   email: MyString
   role: MyString
+
+david:
+  username: dHam
+  password: bestPassword
+  last_name: Ham
+  first_name: David
+  email: EmailmeatDham@gmail.com
+  role: user
