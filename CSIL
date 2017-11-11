@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "export GEM_HOME=$HOME/.gemsexport PATH=.bundle/bin:$GEM_HOME/bin:$PATH"
+export GEM_HOME=$HOME/.gemsexport PATH=.bundle/bin:$GEM_HOME/bin:$PATH
+
+echo "bundle install"
+bundle install
+
+echo "rake db:migrate"
+rake db:migrate
+
+echo "rake db:migrate RAILS_ENV=test"
+rake db:migrate RAILS_ENV=test
