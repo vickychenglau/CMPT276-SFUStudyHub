@@ -21,4 +21,23 @@ class PostTest < ActiveSupport::TestCase
     post=Post.new(:rating => 5, :text => "Some textlksdlkjasd", :user_id => 1, :anon => false, :parent => 0 , :deleted => false)
     assert post.valid?, "Please enter text more than 7 characters"
   end
+
+  test "text is less than 7 characters" do
+    user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
+                  :first_name => "Somename", :role => "Some role")
+    post=Post.new(:rating => 5, :text => "So", :user_id => 1, :anon => false, :parent => 0 , :deleted => false)
+    assert post.invalid?, "test is valid with less than 7 characters"
+  end
+
+  test "No user with the post" do
+    post=Post.new(:rating => 5, :text => "So", :user_id => 1, :anon => false, :parent => 0 , :deleted => false)
+    assert post.invalid?, "test is valid with no user attached to message"
+  end
+
+  test "text is less than 7 characters" do
+    user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
+                  :first_name => "Somename", :role => "Some role")
+    post=Post.new(:rating => 5, :text => "Solkasjfljsafklsa", :user_id => 1, :anon => true, :parent => 0 , :deleted => false)
+    assert post.valid?, "invalid with anonymous tag"
+  end
 end
