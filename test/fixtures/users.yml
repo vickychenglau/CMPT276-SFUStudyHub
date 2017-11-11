@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: MyString
-  password: MyString
-  last_name: MyString
-  first_name: MyString
-  email: MyString
-  role: MyString
+regular:
+  username: Username1
+  password: Password1
+  last_name: Regular
+  first_name: User
+  email: regular@sfu.ca
+  role: user
 
-two:
-  username: MyString
-  password: MyString
-  last_name: MyString
-  first_name: MyString
-  email: MyString
-  role: MyString
+admin:
+  username: Username2
+  password: Password2
+  last_name: Admin
+  first_name: User
+  email: admin@sfu.ca
+  role: admin
