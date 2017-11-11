@@ -11,33 +11,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015063410) do
+ActiveRecord::Schema.define(version: 20171102014217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
-    t.string   "course_id"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "enrolls", force: :cascade do |t|
-    t.string   "student_id"
-    t.string   "course_id"
-    t.string   "percentage"
-    t.string   "lettergrade"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.string   "student_id"
     t.string   "name"
-    t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.integer  "rating"
+    t.boolean  "anon"
+    t.integer  "parent"
+    t.integer  "postable_id"
+    t.string   "postable_type"
+    t.boolean  "deleted"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "description"
+    t.string   "title"
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.text     "first_post"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "topics", ["course_id"], name: "index_topics_on_course_id", using: :btree
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "email"
+    t.string   "role"
+    t.string   "salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "stock"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_foreign_key "topics", "courses"
+  add_foreign_key "topics", "users"
 end
