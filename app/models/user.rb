@@ -15,7 +15,6 @@ class MyValidator < ActiveModel::Validator
 end
 
 
-#had to comment out validates for it to work
 class User < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with MyValidator
