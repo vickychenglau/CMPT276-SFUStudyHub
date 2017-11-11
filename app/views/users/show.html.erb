@@ -1,10 +1,10 @@
 <h1><%= @user.username %></h1>
 
-if defined?(current_user)
+<%if defined?(current_user)%>
   <% if @user.id == current_user.id %>
   <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
   <% end %>
-end
+<% end %>
 
 <table>
   <tr>
@@ -31,22 +31,38 @@ end
 </table>
 
 
-if defined?(current_user)
+<%if defined?(current_user)%>
   <% if @user.id == current_user.id %>
     <h3>My Topics</h3>
   <% else %>
     <h3>User's Topics</h3>
   <% end %>
-else
+<% else %>
   <h3>User's Topics</h3>
-  <% end %>
-end
-
+<% end %>
 
 <table>
   <% @topics.each do |topic| %>
     <tr>
       <td><%= topic.title unless topic.title.blank? %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%if defined?(current_user)%>
+  <% if @user.id == current_user.id %>
+    <h3>My Posts</h3>
+  <% else %>
+    <h3>User's Posts</h3>
+  <% end %>
+<% else %>
+  <h3>User's Posts</h3>
+<% end %>
+
+<table>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.text unless post.text.blank? %></td>
     </tr>
   <% end %>
 </table>
