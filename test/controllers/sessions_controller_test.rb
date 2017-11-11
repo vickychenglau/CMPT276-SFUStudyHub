@@ -16,7 +16,6 @@ class SessionsControllerTest  < ActionController::TestCase
     assert_response(:success, message = nil)
   end
 
-  
 
   test "should get setting" do
     get :setting

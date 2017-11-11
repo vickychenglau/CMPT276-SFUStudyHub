@@ -13,47 +13,6 @@ test "If username is there" do
   assert user.valid?, "PLease enter username"
 end
 
-test "Password length more than 7" do
-  user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
-                :first_name => "Somename", :role => "Some role")
-    assert user.valid?, "Password length must be more than 7 characters"
-end
-
-
-test "Valid email" do
-  user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
-                :first_name => "Somename", :role => "Some role")
-  assert user.valid?, "PLease enter a valid email"
-end
-
-test "Usernanme and Password cannot be same" do
-  user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
-                :first_name => "Somename", :role => "Some role")
-  assert user.valid?, "Usernanme and Password cannot be same"
-end
-
-test "If First name is there" do
-  user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
-                :first_name => "Somename", :role => "Some role")
-  assert user.valid?, "Please enter First name"
-end
-
-test "If role is there" do
-  user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
-                :first_name => "Somename", :role => "Some role")
-  assert user.valid?, "PLease enter your role"
-end
-
-# Do tests properly, you keep testing the same thing and that is if the user is valid with the same data
-# All your test are exactly the same which does not mean anything and is redundant
-
-test "Check if user is valid" do
-  user=User.new(:username => "Somename", :password => "Somepass", :email => "manikrai29@gmail.com",
-                :first_name => "Somename", :role => "Some role", :last_name=> "Lastname")
-  assert user.valid?, "User is invalid"
-end
-
-# All your tests can be summed into this single test above
 
 test "Username required" do
   user=User.new(:password => "Somepass1", :email => "manikrai29@gmail.com",
