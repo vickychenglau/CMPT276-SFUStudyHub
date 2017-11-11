@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102014217) do
+ActiveRecord::Schema.define(version: 20171111210847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,20 +20,18 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "term"
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.integer  "rating"
+    t.float    "rating"
     t.boolean  "anon"
     t.integer  "parent"
-    t.integer  "postable_id"
-    t.string   "postable_type"
-    t.boolean  "deleted"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|
@@ -41,7 +39,6 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.string   "title"
     t.integer  "course_id"
     t.integer  "user_id"
-    t.text     "first_post"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -56,7 +53,6 @@ ActiveRecord::Schema.define(version: 20171102014217) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
-    t.string   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -48,7 +48,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   # These variables are used above
   private
   	def course_params
-  		params.require(:course).permit(:name)
+  		params.require(:course).permit(:name, :term)
 	  end
 
     def find_course

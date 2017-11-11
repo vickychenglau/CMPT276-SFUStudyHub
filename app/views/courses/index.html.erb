@@ -6,12 +6,16 @@
 <% end %>
 
 <table>
+	<col width = '150'>
 	<col width = '700'>
 	<% if current_user && current_user.role == 'admin' %>
 		<col width = '100'>
 		<col width = '100'>
 	<% end %>
 	<tr>
+		<th>
+			Term
+		</th>
 		<th>
 			Course
 		</th>
@@ -22,6 +26,9 @@
 	</tr>
 	<% @courses.order(:name).each do |course| %>
 		<tr>
+			<td>
+				<%= course.term %>
+			</td>
 			<td>
 				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
 			</td>
