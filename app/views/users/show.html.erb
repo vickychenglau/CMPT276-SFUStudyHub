@@ -1,49 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script type="text/javascript">
-
-  function saveEdits() {
-  var editElem = document.getElementById("edit");
-
-  <%if defined?(current_user)%>
-    <% if @user.id == current_user.id %>
-      editElem.contenteditable == "true"
-    <% end %>
-  <% else %>
-      editElem.contenteditable == "false"
-  <% end %>
-
-  var userVersion = editElem.innerHTML;
-  localStorage.userEdits = userVersion;
-  document.getElementById("update").innerHTML="Status updated!";
-  }
-  function checkEdits() {
-  if(localStorage.userEdits!=null)
-  document.getElementById("edit").innerHTML = localStorage.userEdits;
-  }
-
-</script>
-</head>
-
-<body onload="checkEdits()">
-
 <h1><%= @user.username %></h1>
 
 <%if defined?(current_user)%>
   <% if @user.id == current_user.id %>
   <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
-  <% end %>
-<% end %>
-
-<div id="edit" contenteditable="true">
-Write your status here!
-</div>
-
-<%if defined?(current_user)%>
-    <% if @user.id == current_user.id %>
-      <div id="update"></div>
-      <input type="button" value="Update Status" onclick="saveEdits()"/>
   <% end %>
 <% end %>
 
@@ -107,6 +66,3 @@ Write your status here!
     </tr>
   <% end %>
 </table>
-
-</body>
-</html>
