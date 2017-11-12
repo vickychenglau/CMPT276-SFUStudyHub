@@ -11,7 +11,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   	@course = Course.new
   end
 
-  # Create new course. Checks if course already exists.
+  # Create new course
   def create
    	@course = Course.new(course_params)
     if @course.save
@@ -42,6 +42,10 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
     flash[:notice] = "Deleted #{@course.name}"
   	@course.destroy
   	redirect_to courses_path
+  end
+
+  # Download courses
+  def download
   end
 
 

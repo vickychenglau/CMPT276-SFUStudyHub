@@ -2,7 +2,8 @@
 <p>Click on a course below to view its message board.</p>
 
 <% if current_user && current_user.role == 'admin' %>
-	<p><%= link_to "Add Course", courses_new_path %></p>
+	<p><%= link_to "Manually Add Single Course", courses_new_path %></p>
+	<p><%= link_to "Download Courses by Term and Department", courses_download_path %></p>
 <% end %>
 
 <table>

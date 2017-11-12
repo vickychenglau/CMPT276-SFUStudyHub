@@ -37,3 +37,6 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use to interact with REST API
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
