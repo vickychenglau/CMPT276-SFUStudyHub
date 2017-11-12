@@ -25,7 +25,7 @@ development:
   <<: *default
   database: cmpt276
   username: cmpt276
-  password: thecmpt276Passw0rd
+  password: cmpt276
   host: localhost
 
   # The specified database role being used to connect to postgres.
@@ -62,7 +62,7 @@ test:
   <<: *default
   database: cmpt276_test
   username: cmpt276
-  password: thecmpt276Passw0rd
+  password: cmpt276
   host: localhost
 
 #thecmpt276Passw0rd
