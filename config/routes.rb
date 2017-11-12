@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
 #root 'sessions#login'
 #root 'courses#index'
 

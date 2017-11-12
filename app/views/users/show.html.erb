@@ -6,6 +6,9 @@
   <% end %>
 <% end %>
 
+<p>Tutoring Service Ratings for <%= @user.username %></p>
+<%= rating_for @user,'tutoring_service',disable_after_rate: true,imdb_avg: true,enable_half: true %>
+
 <table>
   <tr>
     <th>Field</th>
@@ -66,3 +69,4 @@
     </tr>
   <% end %>
 </table>
+
