@@ -8,4 +8,5 @@
 <%		course.save %>
 <% end %>
 <% flash[:notice] = "Courses added" %>
-<% controller.redirect_to root_path %>
+<% redirect_to root_path %>
+
