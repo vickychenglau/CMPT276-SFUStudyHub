@@ -7,5 +7,6 @@
 <%		course = Course.new(:name => coursename, :term => courseterm) %>
 <%		course.save %>
 <% end %>
-<% flash[:notice] = "Processing finished" %>
-<% controller.redirect_to root_path %>
+<% flash[:notice] = "Courses added" %>
+<% redirect_to root_path %>
+

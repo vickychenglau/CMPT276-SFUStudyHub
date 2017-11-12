@@ -3,17 +3,45 @@
 
 <% if current_user && current_user.role == 'admin' %>
 	<p><%= link_to "Manually Add Single Course", courses_new_path %></p>
-	<p><%= link_to "Download Courses by Term and Department", courses_download_path %></p>
+	<p><%= link_to "Bulk Add Courses by Term and Department", courses_download_path %></p>
 <% end %>
 
-<table>
+Search for course:
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+</br>
+<p><input type='text' id='myInput' onkeyup='myFunction()' placeholder='Enter course number of name'></p>
+</br>
+
+<table id='myTable'>
 	<col width = '150'>
 	<col width = '700'>
 	<% if current_user && current_user.role == 'admin' %>
 		<col width = '100'>
 		<col width = '100'>
 	<% end %>
-	<tr>
+	<tr class='header'>
 		<th>
 			Term
 		</th>
@@ -25,7 +53,7 @@
 			<th></th>
 		<% end %>
 	</tr>
-	<% @courses.order(:name).each do |course| %>
+	<% @courses.order(:term, :name).each do |course| %>
 		<tr>
 			<td>
 				<%= course.term %>
