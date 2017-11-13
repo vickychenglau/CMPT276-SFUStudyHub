@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :widgets
   resources :users
+  resources :fbsessions
   resources :courses
   # resources :posts
   # Nest posts inside of messageboard
