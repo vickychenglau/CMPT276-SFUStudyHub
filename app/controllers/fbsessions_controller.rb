@@ -13,6 +13,14 @@ class FbsessionsController < ApplicationController
 
 
   end
+
+
+
+  def omniauth_failure
+   redirect_to :controller => 'courses', :action => 'index'
+   #redirect wherever you want.
+ end
+
 end
 
 

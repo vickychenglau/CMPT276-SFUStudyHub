@@ -32,6 +32,7 @@ gem 'spring',        group: :development
 
 gem 'puma'
 gem 'omniauth-facebook', '~> 1.4.1'
+gem 'oauth'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

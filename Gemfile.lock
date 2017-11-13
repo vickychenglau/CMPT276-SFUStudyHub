@@ -81,6 +81,7 @@ GEM
     netrc (0.11.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    oauth (0.5.3)
     oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -177,6 +178,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  oauth
   omniauth-facebook (~> 1.4.1)
   pg
   puma

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 #root 'sessions#login'
 #root 'courses#index'
 
-  root 'courses#index'
+#  root 'courses#index'
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
@@ -65,7 +65,7 @@ Rails.application.routes.draw do
       resources :fbsessions, only: [:create, :destroy]
       resource :home, only: [:show]
 
-      
+      root to: "courses#index"
   end
 
 
