@@ -14,16 +14,40 @@
   <% end %>
 <% end %>
 
-<p>Tutoring Service Ratings for <%= @user.username %></p>
+<!-- Overall Tutoring Service: <%= imdb_style_rating_for @user, current_user %> -->
 
-<!-- Overall Rating: <%= imdb_style_rating_for @user, current_user %> -->
+ <table>
+   <caption>Tutoring Service Ratings for <%= @user.username %></caption>
+  <tr>
+    <th>Field</th>
+    <th>Rating</th>
+    <th>Number of Ratings</th>
+  </tr>
+  <tr>
+    <td>Knowledgeability</td>
+    <td><%= rating_for @user,'Knowledgeability',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Knowledgeability").count %></td>
+  </tr>
+  <tr>
+    <td>Clarity</td>
+    <td><%= rating_for @user,'Clarity',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Clarity").count %></td>
+  </tr>
+  <tr>
+    <td>Availability</td>
+    <td><%= rating_for @user,'Availability',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Availability").count %></td>
+  </tr>
+  <tr>
+    <td>Enthusiasm</td>
+    <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Enthusiasm").count %></td>
+  </tr>
 
-<%= rating_for @user,'tutoring_service',disable_after_rate: false ,imdb_avg: true, enable_half: true %>
-
-Number of Ratings:
-<%= @user.rates("tutoring_service").count %>
+</table> 
 
 <table>
+  <caption>About <%= @user.username %></caption>
   <tr>
     <th>Field</th>
     <th>User Information</th>
@@ -52,10 +76,10 @@ Number of Ratings:
   <% if @user.id == current_user.id %>
     <h3>My Topics</h3>
   <% else %>
-    <h3>User's Topics</h3>
+    <h3><%= @user.username%>'s Topics</h3>
   <% end %>
 <% else %>
-  <h3>User's Topics</h3>
+  <h3><%= @user.username%>'s Topics</h3>
 <% end %>
 
 <table>
@@ -70,10 +94,10 @@ Number of Ratings:
   <% if @user.id == current_user.id %>
     <h3>My Posts</h3>
   <% else %>
-    <h3>User's Posts</h3>
+    <h3><%= @user.username%>'s Posts</h3>
   <% end %>
 <% else %>
-  <h3>User's Posts</h3>
+  <h3><%= @user.username%>'s Posts</h3>
 <% end %>
 
 <table>

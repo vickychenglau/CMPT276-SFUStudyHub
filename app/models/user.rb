@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   validates :role, :inclusion => {:in => ["admin", "user"]}
   
   ratyrate_rater
-  ratyrate_rateable 'tutoring_service'
+  ratyrate_rateable 'Knowledgeability','Clarity','Availability','Enthusiasm'
 end
 
 
