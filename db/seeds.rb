@@ -11,11 +11,6 @@ Course.create([ {name: 'CMPT276: Introduction to Software Engineering'},
 									{name: 'CMPT307: Algorithm Design'},
 									{name: 'CMPT225: Algorithms and Database analysis'}] )
 
-User.create([
-	{ username: 'TestAdmin', password: 'TestAdmin', last_name: 'Admin', first_name: 'Test',
-		email: 'testadmin@test.ca', role: 'admin' },
-	{ username: 'TestUser', password: 'TestUser', last_name: 'User', first_name: 'Test',
-		email: 'testuser@test.ca', role: 'user' }])
 # Remember it also has to pass the validators as well or it secretly fails
 User.create([{username: 'Admin', password: '12345678', last_name: 'Al', first_name: 'Admin',
 	email: 'admin@test.ca', role:'admin'},

@@ -34,8 +34,13 @@ gem 'puma'
 
 gem 'ratyrate'
 
+gem 'omniauth-facebook', '~> 1.4.1'
+gem 'oauth'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+##just migrate
+# Use to interact with REST API
+gem 'rest-client', '~> 2.0', '>= 2.0.2'

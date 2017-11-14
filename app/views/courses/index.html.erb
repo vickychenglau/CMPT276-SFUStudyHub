@@ -2,16 +2,50 @@
 <p>Click on a course below to view its message board.</p>
 
 <% if current_user && current_user.role == 'admin' %>
-	<p><%= link_to "Add Course", courses_new_path %></p>
+	<p><%= link_to "Manually Add Single Course", courses_new_path %></p>
+	<p><%= link_to "Bulk Add Courses by Term and Department", courses_download_path %></p>
 <% end %>
 
-<table>
+Search for course:
+
+<script>
+// This script is from w3schools
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+</br>
+<p><input type='text' size='40' id='myInput' onkeyup='myFunction()' placeholder='Enter course number or name'></p>
+</br>
+
+<table id='myTable'>
+	<col width = '150'>
 	<col width = '700'>
 	<% if current_user && current_user.role == 'admin' %>
 		<col width = '100'>
 		<col width = '100'>
 	<% end %>
-	<tr>
+	<tr class='header'>
+		<th>
+			Term
+		</th>
 		<th>
 			Course
 		</th>
@@ -20,8 +54,11 @@
 			<th></th>
 		<% end %>
 	</tr>
-	<% @courses.order(:name).each do |course| %>
+	<% @courses.order(:term, :name).each do |course| %>
 		<tr>
+			<td>
+				<%= course.term %>
+			</td>
 			<td>
 				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
 			</td>
@@ -35,3 +72,34 @@
 		</tr>
 	<% end %>
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  <title>Facebook Auth Example</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div>
+
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+
+</div>
+<%= yield %>
+
+</body>

@@ -2,17 +2,31 @@ Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
 
-  root 'courses#index'
+  get 'fbsessions/create'
+
+  get 'fbsessions/destroy'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  get 'home/show'
+
+#root 'sessions#login'
+#root 'courses#index'
+
+#  root 'courses#index'
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
-  
+
   get "setting", :to => "sessions#setting"
 
   get 'users/list', to: "users#list"
-
+  get 'courses/download', to: "courses#download_request"
+  post 'courses/download', to: "courses#download"
   post 'login', to: "sessions#login_attempt"
 
   get 'users/new'
@@ -29,6 +43,7 @@ Rails.application.routes.draw do
 
   resources :widgets
   resources :users
+  resources :fbsessions
   resources :courses
   # resources :posts
   # Nest posts inside of messageboard
@@ -41,6 +56,25 @@ Rails.application.routes.draw do
   resources :posts do
     resources :posts
   end
+
+
+
+
+  Rails.application.routes.draw do
+      get 'auth/:provider/callback', to: 'fbsessions#create'
+      get 'auth/failure', to: redirect('/')
+      get 'signout', to: 'fbsessions#destroy', as: 'signout'
+
+      resources :fbsessions, only: [:create, :destroy]
+      resource :home, only: [:show]
+
+      root to: "courses#index"
+  end
+
+
+
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
