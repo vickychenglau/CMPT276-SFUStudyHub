@@ -1,71 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if @course_title.nil? %>
+  <title>Courses Messageboard</title>
+  <% else %>
+  <title><%= @course_title%></title>
+  <% end %>
+  <%= javascript_include_tag('application') %>
+</head>
+
 <% if @course_title.nil? %>
   <h1>All the topics</h1>
 <% else %>
   <h1><%= @course_title%></h1>
 <% end %>
 
-<script>
-
-function collapse_ele(arrayEle){
-  for (var ele in arrayEle){
-    arrayEle[ele].display.style = "none";
-  }
-}
-
-function show_ele(arrayEle){
-  for (var ele in arrayEle){
-    arrayEle[ele].display.style = "block";
-  }
-}
-
-function check_general(){
-  console.log("worked");
-  var general = document.getElementsByClassName("general");
-  if (document.getElementById("generalcheck").checked){
-    show_ele(general);
-  }else{
-    collapse_ele(general);
-      }
-}
-
-function check_tutor(){
-  var tutors = document.getElementsByClassName("tutor");
-  if (document.getElementById("tutorcheck").checked){
-    for (tutor in tutors){
-      tutors[tutor].display.style = "block";
-    }
-  }else{
-    for (tutor in tutors){
-      tutors[tutor].display.style = "none";
-    }
-  }
-}
-
-function check_studygroup(){
-  var studygroup = document.getElementsByClassName("studygroup");
-  if (document.getElementById("studygroupcheck").checked){
-    show_ele(studygroup);
-  }else{
-    collapse_ele(studygroup);
-  }
-}
-</script>
-
-<%= check_box_tag(:generalcheck) %>
+<%= check_box_tag(:generalcheck, :general)%>
 <%= label_tag(:generalcheck, "GENERAL") %>
-<%= check_box_tag(:tutorcheck) %>
+<%= check_box_tag(:tutorcheck, :tutor) %>
 <%= label_tag(:tutorcheck, "TUTOR") %>
-<%= check_box_tag(:studygroupcheck) %>
+<%= check_box_tag(:studygroupcheck, :studygroup) %>
 <%= label_tag(:studygroupcheck, "STUDYGROUP") %>
-
-
-
-<form>
-<input type="checkbox" id="generalcheck" onclick="check_general">General<br/>
-<input type="checkbox" id="tutorcheck" onclick="check_tutor">Tutor<br/>
-<input type="checkbox" id="studygroup" onclick="check_studygroup">Study Group<br/>
-</form>
-
 
 <% @topics.each do |topic| %>
   <% if topic.title.nil? || topic.description.nil? %>
@@ -88,3 +43,5 @@ function check_studygroup(){
 <% end %>
 
 <p><%= link_to "Back to Courses", :controller => 'courses', :action => 'index' %></p>
+
+</html>
