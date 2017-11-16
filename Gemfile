@@ -36,6 +36,12 @@ gem 'ratyrate'
 
 gem 'omniauth-facebook', '~> 1.4.1'
 gem 'oauth'
+gem 'rspec-rails', :group => [:test, :development]
+group :test do
+  gem 'factory_bot_rails'
+  gem "capybara"
+  gem "guard-rspec"
+end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

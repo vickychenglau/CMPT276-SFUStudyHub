@@ -3,11 +3,11 @@
 one:
   description: MyString
   title: MyString
-  course_id: 
-  user_id: 
+  course_id:
+  user_id:
 
 two:
   description: MyString
   title: MyString
-  course_id: 
-  user_id: 
+  course_id:
+  user_id:

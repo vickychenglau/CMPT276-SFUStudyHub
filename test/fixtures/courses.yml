@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+CMPT276:
+  name: CMPT 276
 
-two:
-  name: MyString
+CMPT405:
+  name: CMPT 405
