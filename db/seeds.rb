@@ -11,11 +11,6 @@ Course.create([ {name: 'CMPT276: Introduction to Software Engineering'},
 									{name: 'CMPT307: Algorithm Design'},
 									{name: 'CMPT225: Algorithms and Database analysis'}] )
 
-User.create([
-	{ username: 'TestAdmin', password: 'TestAdmin', last_name: 'Admin', first_name: 'Test',
-		email: 'testadmin@test.ca', role: 'admin' },
-	{ username: 'TestUser', password: 'TestUser', last_name: 'User', first_name: 'Test',
-		email: 'testuser@test.ca', role: 'user' }])
 # Remember it also has to pass the validators as well or it secretly fails
 User.create([{username: 'Admin', password: '12345678', last_name: 'Al', first_name: 'Admin',
 	email: 'admin@test.ca', role:'admin'},
@@ -26,8 +21,9 @@ User.create([{username: 'Admin', password: '12345678', last_name: 'Al', first_na
 			{username: 'Admin2', password: 'a12345678', last_name: 'Cucumber', first_name: 'James',
 				email: 'CuJames@test.ca', role: 'admin'}])
 
-Topic.create([{description: 'tutor', title: 'Anyone able to help?', user_id: 2 , course_id: 1},
-	{description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2},
-	 {description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2},
-	 {description: 'general', title: 'How was the exam', user_id: 1 , course_id: 2},
-	 {description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1}])
+Topic.create([
+	{description: 'tutor', title: 'Anyone able to help?', user_id: 2 , course_id: 1, first_post: "Please?"},
+	{description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2, first_post: "Well?"},
+	{description: 'general', title: 'How was the exam', user_id: 1 , course_id: 2, first_post: "Well?"},
+	{description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1, first_post: "I did terrible. :("}
+	])

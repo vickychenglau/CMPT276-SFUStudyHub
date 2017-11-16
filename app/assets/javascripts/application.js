@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= requre messageboard
+//= require jquery.raty
+//= require ratyrate
+//= require messageboard

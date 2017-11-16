@@ -44,7 +44,7 @@ class MessageboardController < ApplicationController
   private
   def topic_params
     # Also have to include that they are logged in
-    params.require(:topic).permit(:description, :title, :course_id)
+    params.require(:topic).permit(:description, :title, :course_id, :first_post)
   end
 
 end
