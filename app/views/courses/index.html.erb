@@ -1,28 +1,32 @@
 <h1>SFU Study Hub Message Board</h1>
-<p>Click on a course below to view its message board.</p>
 
 <% if current_user && current_user.role == 'admin' %>
+	<h3>Administrator Functions:</h3>
 	<p><%= link_to "Manually Add Single Course", courses_new_path %></p>
 	<p><%= link_to "Bulk Add Courses by Term and Department", courses_download_path %></p>
+	<h3>Basic User Functions:</h3>
 <% end %>
 
-Search for course:
 
 <script>
-// This script is from w3schools
-function myFunction() {
+// This script is adapted from www.w3schools.com/howto/howto_js_filter_table.asp
+function filterCourseTable() {
   // Declare variables
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
+  var termInput, termFilter, courseInput, courseFilter, table, tr, td, i;
+  termInput = document.getElementById("termFilter");
+  termFilter = termInput.value.toUpperCase();
+  courseInput = document.getElementById("courseFilter");
+  courseFilter = courseInput.value.toUpperCase();
+  table = document.getElementById("courseTable");
   tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
+  // Loop through all table rows, hiding those that don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+  	// Checking term column
+  	tdTerm = tr[i].getElementsByTagName("td")[0];
+  	tdCourse = tr[i].getElementsByTagName("td")[1];
+    if (tdTerm && tdCourse) {
+      if (tdTerm.innerHTML.toUpperCase().indexOf(termFilter) > -1 && tdCourse.innerHTML.toUpperCase().indexOf(courseFilter) > -1 ) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -32,10 +36,14 @@ function myFunction() {
 }
 </script>
 </br>
-<p><input type='text' size='40' id='myInput' onkeyup='myFunction()' placeholder='Enter course number or name'></p>
+
+<p>Search by term or year: <input type='text' size='20' id='termFilter' onkeyup='filterCourseTable()' placeholder='Enter term or year'></p>
+<p>Search by course number or name: <input type='text' size='40' id='courseFilter' onkeyup='filterCourseTable()' placeholder='Enter course number or name'></p>
 </br>
 
-<table id='myTable'>
+<p>Click on a course name below to view its message board.</p>
+
+<table id='courseTable'>
 	<col width = '150'>
 	<col width = '700'>
 	<% if current_user && current_user.role == 'admin' %>
