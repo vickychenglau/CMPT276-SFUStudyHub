@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'reviews/new'
+
+  get 'reviews/create'
+
+  get 'reviews/update'
+
+  get 'reviews/edit'
+
+  get 'reviews/destroy'
+
+  get 'reviews/index'
+
+  get 'reviews/show'
+
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
@@ -61,6 +75,20 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
+  get 'reviews/new'
+
+  get 'reviews/create'
+
+  get 'reviews/update'
+
+  get 'reviews/edit'
+
+  get 'reviews/destroy'
+
+  get 'reviews/index'
+
+  get 'reviews/show'
+
       get 'auth/:provider/callback', to: 'fbsessions#create'
       get 'auth/failure', to: redirect('/')
       get 'signout', to: 'fbsessions#destroy', as: 'signout'

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :topics
 
+  has_many :rated_reviews, :class_name => 'Review', :foreign_key => 'person_rating_id'
+  has_many :tutor_reviews, :class_name => 'Review', :foreign_key => 'person_rated_id'
+
   validates :username, :presence =>true, uniqueness: {case_sensitive: false}
   validates_length_of :password, presence: true, :minimum => 7
   validates :email, presence: true, email: true, uniqueness: {case_sensitive: false}
