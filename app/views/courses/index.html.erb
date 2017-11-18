@@ -46,6 +46,7 @@ function filterCourseTable() {
 <table id='courseTable'>
 	<col width = '150'>
 	<col width = '700'>
+	<col width = '150'>
 	<% if current_user && current_user.role == 'admin' %>
 		<col width = '100'>
 		<col width = '100'>
@@ -56,6 +57,9 @@ function filterCourseTable() {
 		</th>
 		<th>
 			Course
+		</th>
+		<th>
+			# of Discussions
 		</th>
 		<% if current_user && current_user.role == 'admin' %>
 			<th></th>
@@ -69,6 +73,9 @@ function filterCourseTable() {
 			</td>
 			<td>
 				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
+			</td>
+			<td>
+				<%= Topic.where(:course_id => course.id).count %>
 			</td>
 			<% if current_user && current_user.role == 'admin' %>
 				<td>
