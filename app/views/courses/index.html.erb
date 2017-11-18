@@ -1,7 +1,7 @@
 <h1>SFU Study Hub Message Board</h1>
 <p>Click on a course below to view its message board.</p>
 
-<% if current_user && current_user.role == 'admin' %>
+<% if current_user  %>
 	<p><%= link_to "Manually Add Single Course", courses_new_path %></p>
 	<p><%= link_to "Bulk Add Courses by Term and Department", courses_download_path %></p>
 <% end %>
@@ -38,7 +38,7 @@ function myFunction() {
 <table id='myTable'>
 	<col width = '150'>
 	<col width = '700'>
-	<% if current_user && current_user.role == 'admin' %>
+	<% if current_user  %>
 		<col width = '100'>
 		<col width = '100'>
 	<% end %>
@@ -49,7 +49,7 @@ function myFunction() {
 		<th>
 			Course
 		</th>
-		<% if current_user && current_user.role == 'admin' %>
+		<% if current_user  %>
 			<th></th>
 			<th></th>
 		<% end %>
@@ -62,7 +62,7 @@ function myFunction() {
 			<td>
 				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
 			</td>
-			<% if current_user && current_user.role == 'admin' %>
+			<% if current_user  %>
 				<td>
 					<%= link_to 'Edit', edit_course_path(course) %>
 				<td>

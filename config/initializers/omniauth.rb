@@ -6,3 +6,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   },
     token_params: { parse: :json }
 end
+
+
+OmniAuth.config.logger = Rails.logger
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :google_oauth2, '528934832779-hvn3j18v70a9ni9dfetk172rrvaf701h.apps.googleusercontent.com', 'z0-wlR_5G46AaHfnvNeuPc6d', {client_options: {ssl: {ca_file: Rails.root.join("cacert.pem").to_s}}}
+end

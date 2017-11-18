@@ -3,13 +3,19 @@
 one:
   provider: MyString
   uid: MyString
-  name: MyString
+  username: MyString
+  last_name: MyString
+  first_name: MyString
   oauth_token: MyString
-  oauth_expires_at: 2017-11-12 14:19:25
+  oauth_expires_at: 2017-11-18 15:08:25
+  role: MyString
 
 two:
   provider: MyString
   uid: MyString
-  name: MyString
+  username: MyString
+  last_name: MyString
+  first_name: MyString
   oauth_token: MyString
-  oauth_expires_at: 2017-11-12 14:19:25
+  oauth_expires_at: 2017-11-18 15:08:25
+  role: MyString
