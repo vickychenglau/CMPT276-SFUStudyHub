@@ -1,6 +1,6 @@
-<h1>Create a New Topic</h1>
+<h4> Edit Topic </h4>
 
-<p><%= form_for @topic, url:{action: 'create'} do |f|  %></p>
+<p><%= form_for @topic, url:{action: 'update'} do |f|  %></p>
   <%= f.radio_button(:description, "general") %>
   <%= label_tag(:description, "general") %>
 
@@ -17,7 +17,7 @@
   </p>
   <p>
     <%= f.hidden_field :course, value: @course %>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Save Changes" %>
   </p>
 <% end %>
 

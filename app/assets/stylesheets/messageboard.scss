@@ -1,3 +1,23 @@
 // Place all the styles related to the Messageboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.check_box_filter{
+  float: left;
+  width: auto;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+div.topic_listing {
+  width: 80%;
+  align-self: center;
+  margin-left: 10px;
+  padding-left: 20px;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #d7dae0;
+  display: inline-block;
+
+
+}
