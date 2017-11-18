@@ -15,7 +15,6 @@ class MyValidator < ActiveModel::Validator
 end
 
 
-#had to comment out validates for it to work
 class User < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with MyValidator
@@ -23,12 +22,15 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :topics
 
-
   validates :username, :presence =>true, uniqueness: {case_sensitive: false}
   validates_length_of :password, presence: true, :minimum => 7
   validates :email, presence: true, email: true, uniqueness: {case_sensitive: false}
   validates :first_name, :presence =>true
   validates :last_name, :presence =>true
   validates :role, :inclusion => {:in => ["admin", "user"]}
-
+  
+  ratyrate_rater
+  ratyrate_rateable 'Knowledgeability','Clarity','Availability','Enthusiasm'
 end
+
+
