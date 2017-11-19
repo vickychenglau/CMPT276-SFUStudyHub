@@ -11,14 +11,15 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   	@course = Course.new
   end
 
-  # Create new course. Checks if course already exists.
+  # Create new course
   def create
    	@course = Course.new(course_params)
+    @course.term = @course.term.capitalize
     if @course.save
       flash[:notice] = "Successfully added #{@course.name}"
       redirect_to courses_path
     else
-      flash[:notice] = "Course not added"
+      flash[:notice] = "Course not added. Please double-check your input."
  	    render 'new'
     end
   end
@@ -44,11 +45,15 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   	redirect_to courses_path
   end
 
+  # Download courses
+  def download
+  end
+
 
   # These variables are used above
   private
   	def course_params
-  		params.require(:course).permit(:name)
+  		params.require(:course).permit(:name, :term)
 	  end
 
     def find_course

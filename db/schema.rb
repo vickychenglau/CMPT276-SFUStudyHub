@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171112021215) do
+=======
+ActiveRecord::Schema.define(version: 20171118230825) do
+>>>>>>> 5688e7a7b20ea97c3d8a4197bc30614b6f79015b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +33,28 @@ ActiveRecord::Schema.define(version: 20171112021215) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "term"
+  end
+
+  create_table "fbusers", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "username"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string   "role"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "overall_averages", force: :cascade do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "overall_avg",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "overall_averages", force: :cascade do |t|
@@ -78,6 +104,14 @@ ActiveRecord::Schema.define(version: 20171112021215) do
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
+  create_table "reviews", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "rater_id"
+    t.integer  "ratee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string   "description"
     t.string   "title"
@@ -98,7 +132,6 @@ ActiveRecord::Schema.define(version: 20171112021215) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
-    t.string   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

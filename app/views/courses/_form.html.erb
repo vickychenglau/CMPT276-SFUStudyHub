@@ -1,6 +1,11 @@
-Enter course name in the format "CMPT276: Introduction to Software Engineering"
 <%= form_for(@course) do |c| %>
+	<p>Enter term of the course in the format "Spring 2018" (valid terms are "Spring", "Summer", or "Fall", and year must be between 2000 and 2099)</p>
+	<%= c.label :term %>
+	<%= c.text_field :term %><br><br>
+	<p>Enter course name in the format "CMPT276: Introduction to Software Engineering"</p>
 	<%= c.label :name %>
 	<%= c.text_field :name %><br><br><br>
 	<%= c.submit %><br><br>
+
 <% end %>
+
