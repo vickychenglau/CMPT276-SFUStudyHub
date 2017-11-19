@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get 'fbsessions/destroy'
 
+  get 'fbsessions/create'
+
+  get 'fbsessions/destroy'
+
   get 'sessions/create'
 
   get 'sessions/destroy'
@@ -65,19 +69,6 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
-  get 'reviews/new'
-
-  get 'reviews/create'
-
-  get 'reviews/update'
-
-  get 'reviews/edit'
-
-  get 'reviews/destroy'
-
-  get 'reviews/index'
-
-  get 'reviews/show'
 
       get 'auth/:provider/callback', to: 'fbsessions#create'
       get 'auth/failure', to: redirect('/')
