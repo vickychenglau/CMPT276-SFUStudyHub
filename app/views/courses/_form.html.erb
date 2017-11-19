@@ -1,5 +1,5 @@
 <%= form_for(@course) do |c| %>
-	<p>Enter term of the course in the format "Spring 2018"</p>
+	<p>Enter term of the course in the format "Spring 2018" (valid terms are "Spring", "Summer", or "Fall", and year must be between 2000 and 2099)</p>
 	<%= c.label :term %>
 	<%= c.text_field :term %><br><br>
 	<p>Enter course name in the format "CMPT276: Introduction to Software Engineering"</p>

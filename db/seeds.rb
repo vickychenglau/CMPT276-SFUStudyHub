@@ -8,8 +8,7 @@
 
 #Course.destroy_all
 Course.create([ {term: 'Spring 2018', name: 'CMPT276: Introduction to Software Engineering'},
-				{term: 'Spring 2018', name: 'CMPT307: Algorithm Design'},
-				{term: 'Spring 2018', name: 'CMPT225: Algorithms and Database analysis'}] )
+				{term: 'Spring 2018', name: 'CMPT307: Algorithm Design'}] )
 
 # Remember it also has to pass the validators as well or it secretly fails
 User.create([{username: 'Admin', password: '12345678A', last_name: 'Al', first_name: 'Admin',

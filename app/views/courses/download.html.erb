@@ -1,4 +1,4 @@
-<% if params[:year] !~ /^2\d{3}$/ %>
+<% if params[:year] !~ /\A20\d{2}\z/ %>
 <% 		flash[:notice] = "Please enter a valid year" %>
 <% 		controller.redirect_to courses_download_path %>
 <% else %>
