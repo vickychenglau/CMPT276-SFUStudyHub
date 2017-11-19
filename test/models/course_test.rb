@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  term       :string
+#
+
 require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
@@ -17,6 +28,3 @@ class CourseTest < ActiveSupport::TestCase
   end
 
 end
-
-
-##testinggggg
