@@ -11,9 +11,11 @@
 <body>
 
 <div class = "header">
-  <h1 class= "headertitle">
-    <strong> SFU Study Hub </strong>
-  </h1>
+  <div class = "container">
+    <h1 class= "headertitle">
+      <strong> SFU Study Hub </strong>
+    </h1>
+  </div>
 </div>
 
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
@@ -65,11 +67,12 @@
 
   </div>
 </nav>
+
+<div class="container">
+
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: "alert alert-info" %>
 <% end %>
-
-<div class="container">
 
 <%= yield %>
 

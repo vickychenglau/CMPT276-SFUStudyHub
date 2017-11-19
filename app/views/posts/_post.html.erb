@@ -35,7 +35,6 @@
 
       <% if current_user %>
         <small>
-          <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
 
           <% if (current_user.id == post.user_id) || (current_user.role == 'admin') %>
             <a href="#" id="edit_toggle_<%= post.id %>"> Edit </a>
@@ -60,14 +59,14 @@
             <small> Post anonymously </small> <br/>
             <%= f.submit "Reply"  %>
           <% end %>
+        <br/>
         <% else %>
-          Please log in to reply.
+          <p> Please log in to reply </p>
         <% end %>
       </div>
 
     <% end %> <!-- end of post -->
 
-    <br/>
     <br/>
   </div>
 

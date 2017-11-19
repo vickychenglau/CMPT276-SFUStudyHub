@@ -15,14 +15,12 @@
  */
 
 div.header{
-  background-color: black;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  background-color: #222222;
+  padding-top: 25px;
+  padding-bottom: 5px;
 }
 
 h1.headertitle{
-  margin-left: 20px;
-  margin-right: 20px;
   margin-top: 4px;
   margin-bottom: 4px;
   color: white;
