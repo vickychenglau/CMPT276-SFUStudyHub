@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   get 'fbsessions/destroy'
 
+  get 'fbsessions/create'
+
+  get 'fbsessions/destroy'
+
   get 'sessions/create'
 
   get 'sessions/destroy'
@@ -61,6 +65,10 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
+  get 'fbsessions/create'
+
+  get 'fbsessions/destroy'
+
       get 'auth/:provider/callback', to: 'fbsessions#create'
       get 'auth/failure', to: redirect('/')
       get 'signout', to: 'fbsessions#destroy', as: 'signout'

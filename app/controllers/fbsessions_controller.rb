@@ -1,8 +1,13 @@
 class FbsessionsController < ApplicationController
+
   def create
     user = Fbuser.from_omniauth(env["omniauth.auth"])
-      # fbsession[:user_id] = user.id
-        redirect_to :controller => 'fbsessions', :action => 'index'
+
+     session[:user_id] = user.id
+      #flash[:notice] = "Welcome again, you logged in as #{user.username}"
+      redirect_to root_path
+
+
 
   end
 
