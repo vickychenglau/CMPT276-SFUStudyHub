@@ -48,7 +48,6 @@
     <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
     <td><%= @user.rates("Enthusiasm").count %></td>
   </tr>
-
 </table> 
 
 
@@ -76,7 +75,6 @@
     <td><%= @user.email %></td>
   </tr>
 </table>
-
 
 <%if defined?(current_user)%>
   <% if @user.id == current_user.id %>
