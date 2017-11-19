@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  username   :string
+#  password   :string
+#  last_name  :string
+#  first_name :string
+#  email      :string
+#  role       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
@@ -31,9 +46,9 @@ class User < ActiveRecord::Base
   validates :first_name, :presence =>true
   validates :last_name, :presence =>true
   validates :role, :inclusion => {:in => ["admin", "user"]}
-  
+  validates_format_of :password, :with => /\A(?=.*[A-Z])(?=.*[0-9]).+\Z/i, :on => :create
+
+
   ratyrate_rater
   ratyrate_rateable 'Knowledgeability','Professionalism','Flexibility', 'Communication', 'Enthusiasm'
 end
-
-

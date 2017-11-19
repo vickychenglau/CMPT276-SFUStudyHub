@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id            :integer          not null, primary key
+#  topic_id      :integer
+#  user_id       :integer
+#  text          :text
+#  rating        :integer
+#  anon          :boolean
+#  parent        :integer
+#  postable_id   :integer
+#  postable_type :string
+#  deleted       :boolean
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic

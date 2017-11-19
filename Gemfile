@@ -34,6 +34,10 @@ gem 'puma'
 
 gem 'ratyrate'
 
+group :development do
+  gem 'annotate'
+end
+
 gem 'omniauth-facebook', '~> 1.4.1'
 gem 'oauth'
 # Use Capistrano for deployment

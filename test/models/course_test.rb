@@ -1,8 +1,19 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  term       :string
+#
+
 require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
   test "If course name is there" do
-    course=Course.new(:name => "Some name")
+    course=Course.new(:name => "Some name", :term => "spring")
     assert course.valid?, "Please enter course name"
   end
 
@@ -17,6 +28,3 @@ class CourseTest < ActiveSupport::TestCase
   end
 
 end
-
-
-##testinggggg
