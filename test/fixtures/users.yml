@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 regular:
+  id: 2
   username: Username1
   password: Password1
   last_name: Regular
@@ -9,6 +10,7 @@ regular:
   role: user
 
 admin:
+  id: 1
   username: Username2
   password: Password2
   last_name: Admin

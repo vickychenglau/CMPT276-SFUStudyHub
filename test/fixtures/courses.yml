@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 CMPT276:
+  id: 1
   name: CMPT 276
 
 CMPT405:
+  id: 2
   name: CMPT 405

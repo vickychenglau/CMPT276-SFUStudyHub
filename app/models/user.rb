@@ -6,6 +6,7 @@ class EmailValidator < ActiveModel::EachValidator
   end
 end
 
+
 class MyValidator < ActiveModel::Validator
   def validate(record)
       if (record.password == record.username)
@@ -28,9 +29,7 @@ class User < ActiveRecord::Base
   validates :first_name, :presence =>true
   validates :last_name, :presence =>true
   validates :role, :inclusion => {:in => ["admin", "user"]}
-  
+
   ratyrate_rater
   ratyrate_rateable 'Knowledgeability','Clarity','Availability','Enthusiasm'
 end
-
-

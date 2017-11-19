@@ -2,9 +2,9 @@
 <html>
 <head>
   <% if @course_title.nil? %>
-  <title>Courses Messageboard</title>
+    <% provide :title, "Courses Messageboard" %>
   <% else %>
-  <title><%= @course_title%></title>
+    <% provide :title, @course_title %>
   <% end %>
   <%= javascript_include_tag('application') %>
 </head>
