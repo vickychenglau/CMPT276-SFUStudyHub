@@ -29,14 +29,19 @@
     <td><%= @user.rates("Knowledgeability").count %></td>
   </tr>
   <tr>
-    <td>Clarity</td>
-    <td><%= rating_for @user,'Clarity',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Clarity").count %></td>
+    <td>Communication</td>
+    <td><%= rating_for @user,'Communication',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Communication").count %></td>
   </tr>
   <tr>
-    <td>Availability</td>
-    <td><%= rating_for @user,'Availability',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Availability").count %></td>
+    <td>Professionalism</td>
+    <td><%= rating_for @user,'Professionalism',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Professionalism").count %></td>
+  </tr>
+  <tr>
+    <td>Flexibility</td>
+    <td><%= rating_for @user,'Flexibility',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+    <td><%= @user.rates("Flexibility").count %></td>
   </tr>
   <tr>
     <td>Enthusiasm</td>

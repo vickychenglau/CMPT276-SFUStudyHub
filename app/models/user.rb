@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates :role, :inclusion => {:in => ["admin", "user"]}
   
   ratyrate_rater
-  ratyrate_rateable 'Knowledgeability','Clarity','Availability','Enthusiasm'
+  ratyrate_rateable 'Knowledgeability','Professionalism','Flexibility', 'Communication', 'Enthusiasm'
 end
 
 
