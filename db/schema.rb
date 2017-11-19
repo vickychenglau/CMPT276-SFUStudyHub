@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 20171118230825) do
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
+  create_table "reviews", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "rater_id"
+    t.integer  "ratee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string   "description"
     t.string   "title"
@@ -112,7 +120,6 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
-    t.string   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
