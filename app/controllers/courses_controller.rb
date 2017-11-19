@@ -18,7 +18,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
       flash[:notice] = "Successfully added #{@course.name}"
       redirect_to courses_path
     else
-      flash[:notice] = "Course not added"
+      flash[:notice] = "Course not added. Please double-check your input."
  	    render 'new'
     end
   end

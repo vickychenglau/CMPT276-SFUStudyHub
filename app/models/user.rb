@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   validates :first_name, :presence =>true
   validates :last_name, :presence =>true
   validates :role, :inclusion => {:in => ["admin", "user"]}
+  validates :password, format: { with: /.*[0-9]+.*/ }
+  validates :password, format: { with: /.*[A-Z]+.*/ }
   
   ratyrate_rater
   ratyrate_rateable 'Knowledgeability','Clarity','Availability','Enthusiasm'

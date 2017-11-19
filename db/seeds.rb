@@ -12,13 +12,13 @@ Course.create([ {term: 'Spring 2018', name: 'CMPT276: Introduction to Software E
 				{term: 'Spring 2018', name: 'CMPT225: Algorithms and Database analysis'}] )
 
 # Remember it also has to pass the validators as well or it secretly fails
-User.create([{username: 'Admin', password: '12345678', last_name: 'Al', first_name: 'Admin',
+User.create([{username: 'Admin', password: '12345678A', last_name: 'Al', first_name: 'Admin',
 	email: 'admin@test.ca', role:'admin'},
-	{username: 'User1', password: '12345678', last_name: 'James', first_name: 'Franco',
+	{username: 'User1', password: '12345678A', last_name: 'James', first_name: 'Franco',
 		email: 'JFranco@test.ca', role:'user'},
-		{username: 'User2', password: 'a12345678', last_name: 'Jean', first_name: 'Billy',
+		{username: 'User2', password: 'A12345678', last_name: 'Jean', first_name: 'Billy',
 			email: 'Jimmy@test.ca', role: 'user'},
-			{username: 'Admin2', password: 'a12345678', last_name: 'Cucumber', first_name: 'James',
+			{username: 'Admin2', password: 'A12345678', last_name: 'Cucumber', first_name: 'James',
 				email: 'CuJames@test.ca', role: 'admin'}])
 
 Topic.create([

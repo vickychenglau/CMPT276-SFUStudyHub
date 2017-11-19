@@ -1,10 +1,18 @@
 <h1>Auto-Populate Course Database</h1>
 <p>Enter the year, term, and department you want to download course data for. The data are pulled via the SFU Course Outlines API.</p>
+
 <%= form_tag do %>
 	<%= label :year, "Year (e.g. '2018'): " %>
-	<%= text_field_tag :year %><br><br>
-	<%= label :term, "Term (e.g. 'Spring', 'Summer', 'Fall'): " %>
-	<%= text_field_tag :term %><br><br>
+	<%= text_field_tag :year %>
+	</br>
+	<%= label :term, "Term: " %>
+    	<%= radio_button_tag(:term, "spring") %> 
+    	<%= label_tag(:term, "Spring") %>
+    	<%= radio_button_tag(:term, "summer") %>
+    	<%= label_tag(:term, "Summer") %>
+      	<%= radio_button_tag(:term, "fall") %>
+    	<%= label_tag(:term, "Fall") %>
+  	</br>
 	<%= label :term, "Department (e.g. 'CMPT', 'PSYC'): " %>
 	<%= text_field_tag :department %><br><br>
 	<%= submit_tag(value = "Download Course Data")%><br><br>

@@ -1,11 +1,16 @@
-<% base_url = 'http://www.sfu.ca/bin/wcm/course-outlines?' + params[:year] + '/' + params[:term] + '/' + params[:department] %>
-<% rawcoursedata = RestClient.get (base_url) %>
-<% coursedata = JSON.parse(rawcoursedata) %> 
-<% courseterm = params[:term].capitalize + ' ' + params[:year] %>
-<% coursedata.each do |course| %>
-<%		coursename = params[:department].upcase + course['value'] + ': ' + course['title'] %><br>
-<%		course = Course.new(:name => coursename, :term => courseterm) %>
-<%		course.save %>
+<% if params[:year] !~ /^2\d{3}$/ %>
+<% 		flash[:notice] = "Please enter a valid year" %>
+<% 		controller.redirect_to courses_download_path %>
+<% else %>
+<%		base_url = 'http://www.sfu.ca/bin/wcm/course-outlines?' + params[:year] + '/' + params[:term] + '/' + params[:department] %>
+<% 		rawcoursedata = RestClient.get (base_url) %>
+<% 		coursedata = JSON.parse(rawcoursedata) %> 
+<% 		courseterm = params[:term].capitalize + ' ' + params[:year] %>
+<% 		coursedata.each do |course| %>
+<%			coursename = params[:department].upcase + course['value'] + ': ' + course['title'] %><br>
+<%			course = Course.new(:name => coursename, :term => courseterm) %>
+<%			course.save %>
+<% 		end %>
+<% 		flash[:notice] = "Processing finished" %>
+<% 		controller.redirect_to root_path %>
 <% end %>
-<% flash[:notice] = "Processing finished" %>
-<% controller.redirect_to root_path %>
