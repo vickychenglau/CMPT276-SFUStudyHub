@@ -13,7 +13,7 @@ class FbsessionsController < ApplicationController
 
   def destroy
 
-    fbsession[:user_id] = nil
+    session[:user_id] = nil
     redirect_to root_path
 
 
