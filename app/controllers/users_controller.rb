@@ -32,10 +32,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "User updated"
-      redirect_to users_list_path
+      flash[:notice] = "User information updated."
+      if @user.role == 'admin'
+        redirect_to users_list_path
+      else
+        redirect_to user_path
+      end
     else
-      flash[:notice] = "User not updated"
+      flash[:notice] = "User information not updated."
       render 'edit'
     end
   end

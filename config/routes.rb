@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'reviews/new'
+  get 'reviews/create'
+  get 'reviews/update'
+  get 'reviews/edit'
+  get 'reviews/destroy'
+  get 'reviews/index'
+  get 'reviews/show'
+
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
@@ -16,10 +24,6 @@ Rails.application.routes.draw do
 
   get 'home/show'
 
-#root 'sessions#login'
-#root 'courses#index'
-
-#  root 'courses#index'
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
@@ -65,9 +69,6 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
-  get 'fbsessions/create'
-
-  get 'fbsessions/destroy'
 
       get 'auth/:provider/callback', to: 'fbsessions#create'
       get 'auth/failure', to: redirect('/')
