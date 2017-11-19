@@ -3,8 +3,8 @@ require 'test_helper'
 class MessageboardControllerTest < ActionController::TestCase
 
   setup do
-    @user = create(:user)
-    @course = create(:course)
+    @user = FactoryBot.create(:user)
+    @course = FactoryBot.create(:course)
   end
 
   test "get messageboard index" do
@@ -14,10 +14,10 @@ class MessageboardControllerTest < ActionController::TestCase
   end
 
   test "get the title for the cmpt 276 page" do
-    FactoryBot.create(:topic, id: 1)
-    post :index, id: 1
+    message = FactoryBot.create(:topic)
+    post :index, course: message.course.id
     assert_response :success
-    assert_select "title", "CMPT 276"
+    assert_select "title", message.course.name
   end
 
   test "remove a topic" do
@@ -28,12 +28,25 @@ class MessageboardControllerTest < ActionController::TestCase
     assert_redirected_to '/messageboard/index'
   end
 
-  # Strange error when trying to create
-  # test "new topic" do
-  #   assert_difference('Topic.count', +1) do
-  #     get :create, FactoryBot.attributes_for(:topic)
-  #   end
-  # end
+  test "show topic" do
+    topic = FactoryBot.create(:topic)
+    get :show, id: topic.id
+    assert_response :success
+    assert_select "title", topic.title
+  end
+
+  test "new topic" do
+    person = FactoryBot.create(:user)
+    course = FactoryBot.create(:course)
+    topic = attributes_for(:topic)
+    session[:user_id] = person.id
+    assert_difference('Topic.count', +1) do
+      get :create, topic: {title: "Help me", first_post: "Yaa",
+        description: "general", course: course.id}
+    end
+    # assert_response :redirect
+    assert_redirected_to controller:"messageboard", action: "index", course: course.id
+  end
 
 
   test "get into post about a topic" do

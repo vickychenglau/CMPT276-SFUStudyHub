@@ -33,7 +33,7 @@ class MessageboardController < ApplicationController
     topic_params[:course_id] = @course
     @topic = Topic.new(topic_params)
     @topic.course_id = @course
-    @topic.user_id = current_user.id
+    @topic.user_id = session[:user_id]
     if @topic.save
       redirect_to action: 'index', :course => @course
     else
