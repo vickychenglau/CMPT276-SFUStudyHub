@@ -1,9 +1,0 @@
-<h1>Edit User Information</h1>
-
-<%= render 'form' %>
-
-<% if current_user.role == 'admin' %>
-	<p><%= link_to 'Back', users_list_path %></p>
-<% else %>
-	<p><%= link_to 'Back', user_path %></p>
-<% end %>
