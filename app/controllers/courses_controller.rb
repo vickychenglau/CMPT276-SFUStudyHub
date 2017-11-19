@@ -14,6 +14,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   # Create new course
   def create
    	@course = Course.new(course_params)
+    @course.term = @course.term.capitalize
     if @course.save
       flash[:notice] = "Successfully added #{@course.name}"
       redirect_to courses_path
