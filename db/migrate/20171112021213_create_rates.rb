@@ -6,7 +6,7 @@ class CreateRates < ActiveRecord::Migration
         t.belongs_to :rateable, :polymorphic => true
         t.float :stars, :null => false
         t.string :dimension
-        t.timestamps
+        t.timestamps null: false
       end
 
       add_index :rates, :rater_id

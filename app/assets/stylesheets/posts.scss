@@ -10,7 +10,11 @@ div.nested_posts_border{
 
 div.nested_posts{
   margin-left: 15px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #d7dae0;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+div.post{
+  margin-top: 2px;
+  margin-bottom: 2px
 }

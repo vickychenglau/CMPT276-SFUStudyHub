@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "avg",           null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -49,17 +49,20 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "overall_avg",   null: false
+<<<<<<< HEAD
     t.datetime "created_at"
     t.datetime "updated_at"
+=======
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+>>>>>>> 812a75745aa87e4650e8833baa9a50c04196608d
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.integer  "rating"
     t.boolean  "anon"
-    t.integer  "parent"
     t.integer  "postable_id"
     t.string   "postable_type"
     t.boolean  "deleted"
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "rateable_type"
     t.float    "stars",         null: false
     t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
@@ -86,8 +89,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.float    "avg",            null: false
     t.integer  "qty",            null: false
     t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
@@ -120,9 +123,25 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
+    t.boolean  "tutor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   create_table "widgets", force: :cascade do |t|
     t.string   "name"

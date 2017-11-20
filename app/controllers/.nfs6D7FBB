@@ -10,24 +10,15 @@ class MessageboardController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
+    @id = params[:id]
+    @topic = Topic.find(@id)
     @user = User.find(@topic.user_id)
-    @course = params[:course]
-    if !Course.find_by(:id => @course)
-      @course_title = nil
-    else
-      @course_title = Course.find_by(:id => @course).name
-    end
+    @post = Post.where(parent: 0).where(topic_id: @id)
   end
 
   def new
     @course = params[:course]
     @topic = Topic.new
-  end
-
-  def edit
-    @topic = Topic.find(params[:id])
-    @course = params[:course]
   end
 
   def destroy
@@ -47,16 +38,6 @@ class MessageboardController < ApplicationController
       redirect_to action: 'index', :course => @course
     else
       render 'new'
-    end
-  end
-
-  def update
-    @topic = Topic.find(params[:id])
-    @course = params[:topic][:course]
-    if @topic.update(topic_params)
-      redirect_to action: 'index', :course => @course, notice: 'Topic was successfully updated.'
-    else
-      redirect_to action: 'index', :course => @course, notice: 'Topic was not updated.'
     end
   end
 
