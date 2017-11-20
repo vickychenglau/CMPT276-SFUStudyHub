@@ -33,11 +33,23 @@ class UsersControllerTest < ActionController::TestCase
   test "Updating user" do
     new_user = FactoryBot.create(:user)
     assert_difference("User.count", 0) do
-      put :update, id:new_user[:id], user_params: { username: new_user[:username],
+      put :update, id: new_user[:id], user: { username: new_user[:username],
         email: "Hamesbonderrr@gmail.com", last_name: new_user[:last_name], first_name: new_user[:first_name],
         password: new_user[:password], role: new_user[:role] }
     end
     assert_equal "User updated", flash[:notice]
+    assert_redirected_to users_list_path
+  end
+
+  test "Fail updating user" do
+    new_user = FactoryBot.create(:user)
+    assert_difference("User.count", 0) do
+      put :update, id: new_user[:id], user: {username: "",
+        email: "", last_name: "", first_name: "",
+        password: "", role: "" }
+    end
+    assert_equal "User not updated", flash[:notice]
+    assert_template :edit
   end
 
 end

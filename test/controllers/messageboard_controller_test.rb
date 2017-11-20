@@ -13,6 +13,12 @@ class MessageboardControllerTest < ActionController::TestCase
     assert_select "title", "Courses Messageboard"
   end
 
+  test "all the topics are shown" do
+    post :index
+    assert_response :success
+    assert_select "dl dt", Topic.all.count
+  end
+
   test "get the title for the cmpt 276 page" do
     message = FactoryBot.create(:topic)
     post :index, course: message.course.id
