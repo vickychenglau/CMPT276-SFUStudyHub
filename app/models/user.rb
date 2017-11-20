@@ -21,6 +21,7 @@ class EmailValidator < ActiveModel::EachValidator
   end
 end
 
+
 class MyValidator < ActiveModel::Validator
   def validate(record)
       if (record.password == record.username)

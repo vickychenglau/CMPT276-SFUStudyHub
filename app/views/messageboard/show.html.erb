@@ -1,12 +1,17 @@
-<% if @course_title.nil? %>
-  <%= link_to('Back to Topics', {:controller => 'messageboard', :action => 'index', :course => @course}) %>
-<% else %>
-  <h1>
-    <%= link_to(@course_title, {:controller => 'messageboard', :action => 'index', :course => @course}) %>
-  </h1>
-<% end %>
+<head>
+  <% provide :title, @topic.title %>
+</head>
 
-<h3> [<%= @topic.description %>] <%= @topic.title %> </h3>
+<div class="container">
+  <% if @course_title.nil? %>
+    <%= link_to('Back to Topics', {:controller => 'messageboard', :action => 'index', :course => @course}) %>
+  <% else %>
+    <h1>
+      <%= link_to(@course_title, {:controller => 'messageboard', :action => 'index', :course => @course}) %>
+    </h1>
+  <% end %>
+
+  <h3> [<%= @topic.description %>] <%= @topic.title %> </h3>
 
 Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %>
 -
@@ -17,7 +22,7 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
 
 <% if current_user %>
   <hr/>
-  
+
   <%= form_for [@topic, Post.new] do |f| %>
     <%= f.text_area :text, cols: 50, rows: 4, placeholder: "Add a comment" %> <br/>
     <%= f.check_box :anon %>

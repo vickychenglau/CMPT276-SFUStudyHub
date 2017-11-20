@@ -17,6 +17,7 @@ require 'test_helper'
 class TopicTest < ActiveSupport::TestCase
   fixtures :users
 
+
   test "If Topic empty" do
     topic = Topic.new
     assert !topic.valid?, "Passing when Topic is empty"
@@ -99,6 +100,11 @@ class TopicTest < ActiveSupport::TestCase
                       :title => "Physics 101 help",
                       :first_post => "" )
     assert topic.invalid?, "Topic with empty first post considered valid"
+  end
+
+  test "factory associated is valid" do
+    post = FactoryBot.build(:topic)
+    assert post.valid?, "Factory is invalid"
   end
 
 end
