@@ -30,7 +30,6 @@ test "If username is there" do
   assert user.valid?, "Invalid with username"
 end
 
-
 test "Username required" do
   user=User.new(:password => "Somepass1", :email => "manikrai29@gmail.com",
                 :first_name => "Somename", :role => "user",
