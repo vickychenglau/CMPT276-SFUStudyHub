@@ -11,17 +11,18 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  description: MyString
-  title: MyString
-  course_id: 
-  user_id: 
+  user_id: 1
+  course_id: 1
+  description: general
+  title: Cmpt276 exam
+  first_post: Did anyone find that test unfair?
 
 two:
-  description: MyString
-  title: MyString
-  course_id: 
-  user_id: 
+  user_id: 2
+  course_id: 2
+  description: tutor
+  title: Tutor for this class
+  first_post: I am available for tutoring if anyone needs it

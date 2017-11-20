@@ -4,7 +4,7 @@ ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~>0.20.0'
 gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.3'
@@ -40,6 +40,11 @@ end
 
 gem 'omniauth-facebook', '~> 1.4.1'
 gem 'oauth'
+group :test do
+  gem 'factory_bot_rails'
+  gem "capybara"
+  gem "guard-rspec"
+end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -48,3 +53,5 @@ gem 'oauth'
 ##just migrate
 # Use to interact with REST API
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
+
+gem 'acts_as_votable', '~> 0.11.1'

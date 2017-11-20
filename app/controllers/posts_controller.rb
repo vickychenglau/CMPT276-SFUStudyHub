@@ -12,7 +12,6 @@ before_action :find_postable
   def create
     @post = @postable.posts.new post_params
     @post.user_id = current_user.id
-    @post.rating = 0
     @post.deleted = false
 
     if @post.save
@@ -40,10 +39,22 @@ before_action :find_postable
     redirect_to :back, notice: 'Post deleted'
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_by current_user
+    redirect_to :back
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :text, :anon, :deleted)
+    params.require(:post).permit(:topic_id, :user_id, :text, :anon, :deleted)
   end
 
   def find_postable
