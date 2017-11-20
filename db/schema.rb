@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118230825) do
+ActiveRecord::Schema.define(version: 20171120040603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,13 +49,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "overall_avg",   null: false
-<<<<<<< HEAD
-    t.datetime "created_at"
-    t.datetime "updated_at"
-=======
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
->>>>>>> 812a75745aa87e4650e8833baa9a50c04196608d
   end
 
   create_table "posts", force: :cascade do |t|
