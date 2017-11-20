@@ -14,7 +14,7 @@ require 'test_helper'
 class CourseTest < ActiveSupport::TestCase
   test "If course name is there" do
     course=Course.new(:name => "Some name")
-    assert course.invalid?, "Please enter course name"
+    assert course.valid?, "Please enter course name"
   end
 
   test "Course with no name" do
@@ -25,6 +25,11 @@ class CourseTest < ActiveSupport::TestCase
   test "Course with has blank name" do
     course=Course.new(:name => "")
     assert course.invalid?, "Course has blank name"
+  end
+
+  test "Term is blank" do
+    course=Course.new(:term => "")
+    assert course.invalid?, "Course has no term"
   end
 
 end
