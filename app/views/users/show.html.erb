@@ -16,7 +16,41 @@
   <% end %>
 <% end %>
 
- <table>
+<table>
+  <caption>About <%= @user.username %></caption>
+  <tr>
+    <th>Field</th>
+    <th>User Information</th>
+  </tr>
+
+  <tr>
+    <td>Username</td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td>First Name</td>
+    <td><%= @user.first_name %></td>
+  </tr>
+  <tr>
+    <td>Last Name</td>
+    <td><%= @user.last_name %></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>Tutoring</td>
+    <% if @user.tutor == true %>
+      <td><p>Available</p></td>
+    <% else %>
+      <td><p>Unavailable</p></td>
+    <% end %>
+  </tr>
+</table>
+
+<% if @user.tutor == true %>
+<table>
    <caption>Tutoring Service Ratings for <%= @user.username %></caption>
   <tr>
     <th>Field</th>
@@ -49,32 +83,7 @@
     <td><%= @user.rates("Enthusiasm").count %></td>
   </tr>
 </table> 
-
-
-<table>
-  <caption>About <%= @user.username %></caption>
-  <tr>
-    <th>Field</th>
-    <th>User Information</th>
-  </tr>
-
-  <tr>
-    <td>Username</td>
-    <td><%= @user.username %></td>
-  </tr>
-  <tr>
-    <td>First Name</td>
-    <td><%= @user.first_name %></td>
-  </tr>
-  <tr>
-    <td>Last Name</td>
-    <td><%= @user.last_name %></td>
-  </tr>
-  <tr>
-    <td>Email</td>
-    <td><%= @user.email %></td>
-  </tr>
-</table>
+<% end %>
 
 
 <%if defined?(current_user)%>

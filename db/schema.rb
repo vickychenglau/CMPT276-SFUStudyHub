@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118230825) do
+ActiveRecord::Schema.define(version: 20171120015510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,14 +57,11 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.integer  "rating"
+    t.float    "rating"
     t.boolean  "anon"
     t.integer  "parent"
-    t.integer  "postable_id"
-    t.string   "postable_type"
-    t.boolean  "deleted"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rates", force: :cascade do |t|
@@ -94,10 +91,10 @@ ActiveRecord::Schema.define(version: 20171118230825) do
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
-    t.integer  "rater_id"
-    t.integer  "ratee_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "person_rating_id"
+    t.integer  "person_rated_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "topics", force: :cascade do |t|
@@ -105,7 +102,6 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "title"
     t.integer  "course_id"
     t.integer  "user_id"
-    t.text     "first_post"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -122,6 +118,7 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "tutor"
   end
 
   create_table "widgets", force: :cascade do |t|
