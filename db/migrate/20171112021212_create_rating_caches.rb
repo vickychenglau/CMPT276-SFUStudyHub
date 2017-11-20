@@ -6,7 +6,7 @@ class CreateRatingCaches < ActiveRecord::Migration
         t.float :avg, :null => false
         t.integer :qty, :null => false
         t.string :dimension
-        t.timestamps
+        t.timestamps null: false
       end
 
       add_index :rating_caches, [:cacheable_id, :cacheable_type]
