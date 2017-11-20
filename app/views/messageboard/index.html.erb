@@ -44,7 +44,7 @@
         <p> Topic title or description is missing. </p>
       <% else %>
         <h3>
-          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %>
+          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id, :course => @course) %>
         </h3>
 
         <% if current_user && current_user.role == 'admin' %>

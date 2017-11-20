@@ -27,8 +27,6 @@
         <% end %>
       </div>
 
-      <br/>
-
       <small>
         <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
       </small>
@@ -56,10 +54,11 @@
           <%= form_for [post, Post.new] do |f| %>
             <%= f.text_area :text, placeholder: "Reply to this post" %> <br/>
             <%= f.check_box :anon %>
+            <%= f.hidden_field :topic_id, value: t_id %>
             <small> Post anonymously </small> <br/>
             <%= f.submit "Reply"  %>
           <% end %>
-        <br/>
+          <br />
         <% else %>
           <p> Please log in to reply </p>
         <% end %>
@@ -67,13 +66,13 @@
 
     <% end %> <!-- end of post -->
 
-    <br/>
   </div>
 
-<%= render partial: 'posts/post', collection: post.posts %>
+  <%= render(partial: 'posts/post', collection: post.posts, locals: {t_id: t_id}) %>
 
 </div>
 </div>
+
 
 <script>
 $(function()

@@ -13,6 +13,11 @@ class MessageboardController < ApplicationController
     @topic = Topic.find(params[:id])
     @user = User.find(@topic.user_id)
     @course = params[:course]
+    if !Course.find_by(:id => @course)
+      @course_title = nil
+    else
+      @course_title = Course.find_by(:id => @course).name
+    end
   end
 
   def new

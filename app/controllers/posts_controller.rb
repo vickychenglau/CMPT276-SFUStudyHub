@@ -43,7 +43,7 @@ before_action :find_postable
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :text, :anon, :deleted)
+    params.require(:post).permit(:topic_id, :user_id, :text, :anon, :deleted)
   end
 
   def find_postable
