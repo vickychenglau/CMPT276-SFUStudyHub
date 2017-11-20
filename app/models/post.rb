@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
 
   validates :rating, :presence =>true
   validates :user_id, :presence =>true
+  validates :topic_id, :presence =>true
   validates :anon, :inclusion => {:in => [true, false]}
   validates :deleted, :inclusion => {:in => [true, false]}
   validates :text, presence: true, length: {minimum: 2}

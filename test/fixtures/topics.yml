@@ -13,10 +13,3 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  description: tutor
-  title: Need a tutor
-  course_id: 1
-  user_id: 1
-  first_post: some text here yay
