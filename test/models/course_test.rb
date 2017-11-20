@@ -11,20 +11,27 @@
 
 require 'test_helper'
 
-class CourseTest < ActiveSupport::TestCase
-  test "If course name is there" do
-    course=Course.new(:name => "Some name")
-    assert course.invalid?, "Please enter course name"
-  end
 
-  test "Course with no name" do
+class CourseTest < ActiveSupport::TestCase
+
+  test "Course with no parameters" do
     course=Course.new()
-    assert course.invalid?, "Course does not have an ID"
+    assert course.invalid?, "Passing when course is empty"
   end
 
   test "Course with has blank name" do
-    course=Course.new(:name => "")
+    course=Course.new(:term => "Spring 2018", :name => "")
     assert course.invalid?, "Course has blank name"
   end
 
+  test "Course with blank term" do
+    course=Course.new(:term => "", :name => "CMPT276")
+    assert course.invalid?, "Course has blank term"
+  end
+
+  test "Term has valid format" do
+    course=Course.new(:term => "Fall2018", :name => "CMPT276")
+    assert_match(/\A(Spring|Summer|Fall) {1}20\d{2}/, :term, "Term is not in correct format")
+  end
+  
 end
