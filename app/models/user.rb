@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, email: true, uniqueness: {case_sensitive: false}
   validates :first_name, :presence =>true
   validates :last_name, :presence =>true
+  validates :tutor, :presence =>true
   validates :role, :inclusion => {:in => ["admin", "user"]}
   validates_format_of :password, :with => /\A(?=.*[A-Z])(?=.*[0-9]).+\Z/, :on => :create
 
