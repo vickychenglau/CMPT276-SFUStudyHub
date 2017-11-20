@@ -54,4 +54,12 @@ class CoursesControllerTest < ActionController::TestCase
     assert_redirected_to courses_path
   end
 
+  test "Failing to update a course" do
+    assert_difference('Course.count', 0) do
+      put :update, id:@course[:id] ,course: {name: "", term: ""}
+    end
+    assert_equal "Course failed to update", flash[:notice]
+    assert_template :edit
+  end
+
 end

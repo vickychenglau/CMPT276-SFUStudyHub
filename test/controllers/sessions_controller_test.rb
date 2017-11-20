@@ -39,7 +39,7 @@ end
   end
 
   test"Check if user can log out" do
-    session[:user_id] = @user.id
+    session[:user_id] = @user[:id]
     get :logout
     assert_equal "Logged out", flash[:notice]
   end
