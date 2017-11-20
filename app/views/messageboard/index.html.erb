@@ -1,27 +1,71 @@
+<script>
+  $(document).ready(function(){
+    $(":checkbox").attr("checked", true);
+
+    $(":checkbox").change(function(){
+      var checkbox_val = $(this).val();
+
+      if ($(this).prop("checked")){
+        $('div#'+checkbox_val).show()
+      }
+      else{
+        $('div#'+checkbox_val).hide()
+      }
+    });
+  });
+</script>
+
 <% if @course_title.nil? %>
-  <h1>All the topics</h1>
+  <h1> All Topics </h1>
 <% else %>
-  <h1><%= @course_title%></h1>
+  <h1> <%= @course_title %> </h1>
 <% end %>
 
-<% @topics.each do |topic| %>
-  <% if topic.title.nil? || topic.description.nil? %>
-    </p> something is missing </p>
+<br/>
+
+<div class="check_box_filter">
+  <br />
+  <%= check_box_tag(:generalcheck, :general)%>
+  <%= label_tag(:generalcheck, "GENERAL") %> <br />
+  <%= check_box_tag(:tutorcheck, :tutor) %>
+  <%= label_tag(:tutorcheck, "TUTOR") %> <br />
+  <%= check_box_tag(:studygroupcheck, :studygroup) %>
+  <%= label_tag(:studygroupcheck, "STUDYGROUP") %>
+</div>
+
+<div class="topic_listing">
+  <% if @topics.empty? %>
+    <h2>Nothing to see here</h2>
+  <% end %>
+
+  <% @topics.each do |topic| %>
+    <div id = "<%= topic.description %>">
+      <% if topic.title.nil? || topic.description.nil? %>
+        <p> Topic title or description is missing. </p>
+      <% else %>
+        <h3>
+          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %>
+        </h3>
+
+        <% if current_user && current_user.role == 'admin' %>
+          <p>
+            <%= link_to 'Delete', messageboard_path(topic, :course => @course),
+                method: :delete, data: {confirm: 'Are you sure?' } %>
+            <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <hr/>
+
+  <%= link_to "Back to Courses", :controller => 'courses', :action => 'index' %>
+
+  <% if @course_title.nil? %>
   <% else %>
-    <h3><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></h3>
-    <% if current_user && current_user.role == 'admin' %>
-      <p><%= link_to 'DELETE', messageboard_path(topic, :course => @course),
-              method: :delete, data: {confirm: 'Are you sure?' } %></p>
+    <% if current_user %>
+      | <%= link_to "Create New Topic", messageboard_path('new', :course => @course) %>
     <% end %>
   <% end %>
-<% end %>
-</p>
-
-<% if @course_title.nil? %>
-<% else %>
-  <% if current_user %>
-    <%= link_to "Create New Topic", messageboard_path('new', :course => @course) %>
-  <% end %>
-<% end %>
-
-<p><%= link_to "Back to Courses", :controller => 'courses', :action => 'index' %></p>
+</div>

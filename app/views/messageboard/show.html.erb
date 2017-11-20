@@ -1,6 +1,6 @@
-<div class="container">
+
 <hr />
-<h4>[<%= @topic.description %>] <%= @topic.title %></h4>
+<h3> [<%= @topic.description %>] <%= @topic.title %> </h3>
 
 Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %>
 -
@@ -19,8 +19,10 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
     <br/>
     <%= f.submit "Post" %>
   <% end %>
+  <br/>
 <% end %>
 
 <%= render(partial: 'posts/post', collection: @topic.posts) %>
 
-</div>
+<br/>
+<%= link_to 'Back', :back %>

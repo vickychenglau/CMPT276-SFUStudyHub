@@ -13,7 +13,6 @@ before_action :find_postable
     @post = @postable.posts.new post_params
     @post.user_id = current_user.id
     @post.rating = 0
-    @post.parent = 1
     @post.deleted = false
 
     if @post.save
@@ -21,6 +20,10 @@ before_action :find_postable
     else
       redirect_to :back, notice: 'Your comment was not posted.'
     end
+  end
+
+  def edit
+    @post = Post.find params[:id]
   end
 
   def update

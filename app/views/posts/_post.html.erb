@@ -1,3 +1,80 @@
+<div class="nested_posts_border">
+<div class="nested_posts">
+
+  <div class="post">
+    <% if post.deleted == true %>
+        [deleted]
+    <% else %>   <!-- Start of post -->
+        <% if post.anon == true %>
+          Anon
+        <% else %>
+          <a href= <%= user_path('show',id: post.user_id) %>>
+            <%= post.user.username unless post.user.blank?%>
+          </a>
+        <% end %>
+      -
+      <small> <%= time_ago_in_words(post.created_at) %> ago</small>
+      <br/>
+
+      <div id="post_body_<%= post.id %>">
+        <%= post.text %>
+      </div>
+
+      <div id="edit_body_<%= post.id %>" style="display: none;">
+        <%= form_for(post) do |f| %>
+          <%= f.text_area :text %> <br/>
+          <%= f.submit "Save Changes" %>
+        <% end %>
+      </div>
+
+      <br/>
+
+      <small>
+        <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
+      </small>
+
+      <% if current_user %>
+        <small>
+
+          <% if (current_user.id == post.user_id) || (current_user.role == 'admin') %>
+            <a href="#" id="edit_toggle_<%= post.id %>"> Edit </a>
+          <% end %>
+
+          <% if current_user.role == 'admin' %>
+            <%= link_to "Delete",
+                post_path(post, :post => { :deleted => true}),
+                :method => :put,
+                :confirm => "Are you sure?"
+            %>
+          <% end %>
+        </small>
+      <% end %>
+
+      <div id="hide_comment_box_<%= post.id %>" style="display: none;">
+        <% if current_user %>
+          <br/>
+          <%= form_for [post, Post.new] do |f| %>
+            <%= f.text_area :text, placeholder: "Reply to this post" %> <br/>
+            <%= f.check_box :anon %>
+            <small> Post anonymously </small> <br/>
+            <%= f.submit "Reply"  %>
+          <% end %>
+        <br/>
+        <% else %>
+          <p> Please log in to reply </p>
+        <% end %>
+      </div>
+
+    <% end %> <!-- end of post -->
+
+    <br/>
+  </div>
+
+<%= render partial: 'posts/post', collection: post.posts %>
+
+</div>
+</div>
+
 <script>
 $(function()
 {
@@ -7,62 +84,16 @@ $(function()
     $('div#hide_comment_box_<%= post.id %>').toggle();
   });
 });
+
+$('#edit_toggle_<%= post.id %>').on('click',function()
+{
+    if($('#post_body_<%= post.id %>').css('display')!='none')
+    {
+      $('#edit_body_<%= post.id %>').html($('#edit_body_<%= post.id %>').html()).show().siblings('div').hide();
+    }
+    else if($('#edit_body_<%= post.id %>').css('display')!='none')
+    {
+      $('#post_body_<%= post.id %>').show().siblings('div').hide();
+    }
+});
 </script>
-
-<div class="nested_posts_border">
-<div class="nested_posts">
-
-  <% if post.parent != 0 %>
-    <div class="post">
-    <% if post.deleted == true %>
-        [deleted]
-    <% else %>   <!-- Start of post -->
-      <strong>
-        <% if post.anon == true %>
-          Anon
-        <% else %>
-          <a href= <%= user_path('show',id: post.user_id) %>>
-            <%= post.user.username unless post.user.blank?%>
-          </a>
-        <% end %>
-      </strong>
-      -
-      <small> <%= time_ago_in_words(post.created_at) %> ago</small>
-      <br/>
-      <%= post.text %>
-      <br/>
-
-      <% if current_user %>
-      <small>
-        <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
-
-        <% if current_user.role == 'admin' %>
-          <%= link_to "Delete",
-              post_path(post, :post => { :deleted => true}),
-              :method => :put,
-              :confirm => "Are you sure?"
-          %>
-        <% end %>
-      </small>
-
-      <div id="hide_comment_box_<%= post.id %>" style="display: none;">
-        <br/>
-        <%= form_for [post, Post.new] do |f| %>
-          <%= f.text_area :text, placeholder: "Reply to this post" %> <br/>
-          <%= f.check_box :anon %>
-          <small> Post anonymously </small> <br/>
-          <%= f.submit "Reply"  %>
-        <% end %>
-      </div>
-      <% end %>
-
-    <% end %> <!-- end of post -->
-
-    <br/><br/>
-    </div>
-  <% end %>
-
-<%= render partial: 'posts/post', collection: post.posts %>
-
-</div>
-</div>
