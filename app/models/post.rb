@@ -23,7 +23,6 @@ class Post < ActiveRecord::Base
   has_many :posts, as: :postable
   acts_as_votable
 
-  validates :rating, :presence =>true
   validates :user_id, :presence =>true
   validates :topic_id, :presence =>true
   validates :anon, :inclusion => {:in => [true, false]}

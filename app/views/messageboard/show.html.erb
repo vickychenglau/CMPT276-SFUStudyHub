@@ -15,9 +15,9 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
 
 <p> <%= @topic.first_post %> </p>
 
-<hr/>
-
 <% if current_user %>
+  <hr/>
+  
   <%= form_for [@topic, Post.new] do |f| %>
     <%= f.text_area :text, cols: 50, rows: 4, placeholder: "Add a comment" %> <br/>
     <%= f.check_box :anon %>

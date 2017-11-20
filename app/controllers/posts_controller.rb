@@ -12,7 +12,6 @@ before_action :find_postable
   def create
     @post = @postable.posts.new post_params
     @post.user_id = current_user.id
-    @post.rating = 0
     @post.deleted = false
 
     if @post.save

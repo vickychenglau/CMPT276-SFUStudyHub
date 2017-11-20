@@ -3,7 +3,7 @@
 
   <div class="post">
     <% if post.deleted == true %>
-        [deleted]
+        <p> [deleted] </p>
     <% else %>   <!-- Start of post -->
         <% if post.anon == true %>
           Anon
@@ -15,48 +15,51 @@
       -
       <small> <%= time_ago_in_words(post.created_at) %> ago</small>
       <br/>
+      <p>
+        <div id="post_body_<%= post.id %>">
+         <%= post.text %>
+        </div>
 
-      <div id="post_body_<%= post.id %>">
-        <%= post.text %>
-      </div>
+        <div id="edit_body_<%= post.id %>" style="display: none;">
+          <%= form_for(post) do |f| %>
+            <%= f.text_area :text %> <br/>
+            <%= f.submit "Save Changes" %>
+          <% end %>
+        </div>
+      </p>
 
-      <div id="edit_body_<%= post.id %>" style="display: none;">
-        <%= form_for(post) do |f| %>
-          <%= f.text_area :text %> <br/>
-          <%= f.submit "Save Changes" %>
-        <% end %>
-      </div>
-
-      <small>
-        <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
-      </small>
-
-      <% if current_user %>
+      <p class="post_links">
         <small>
-
-          <% if (current_user.id == post.user_id) || (current_user.role == 'admin') %>
-            <a href="#" id="edit_toggle_<%= post.id %>"> Edit </a>
-          <% end %>
-
-          <%= link_to like_post_path(post), method: :put do %>
-              Upvote
-              <%= post.get_upvotes.size %>
-          <% end %>
-
-          <%= link_to dislike_post_path(post), method: :put do %>
-            Downvote
-            <%= post.get_downvotes.size %>
-          <% end %>
-
-          <% if current_user.role == 'admin' %>
-            <%= link_to "Delete",
-                post_path(post, :post => { :deleted => true}),
-                :method => :put,
-                :confirm => "Are you sure?"
-            %>
-          <% end %>
+          <a href="#" id="show_comment_box_<%= post.id %>"> Reply </a>
         </small>
+
+        <% if current_user %>
+          <small>
+
+            <% if (current_user.id == post.user_id) || (current_user.role == 'admin') %>
+              <a href="#" id="edit_toggle_<%= post.id %>"> Edit </a>
+            <% end %>
+
+            <%= link_to like_post_path(post), method: :put do %>
+                Upvote
+                <%= post.get_upvotes.size %>
+            <% end %>
+
+            <%= link_to dislike_post_path(post), method: :put do %>
+              Downvote
+              <%= post.get_downvotes.size %>
+            <% end %>
+
+            <% if current_user.role == 'admin' %>
+              <%= link_to "Delete",
+                  post_path(post, :post => { :deleted => true}),
+                  :method => :put,
+                  :confirm => "Are you sure?"
+              %>
+            <% end %>
+          </small>
       <% end %>
+      </p>
 
       <div id="hide_comment_box_<%= post.id %>" style="display: none;">
         <% if current_user %>
