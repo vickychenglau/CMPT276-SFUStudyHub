@@ -204,14 +204,6 @@ GEM
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
-    rspec-rails (3.7.1)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (~> 3.7.0)
-      rspec-expectations (~> 3.7.0)
-      rspec-mocks (~> 3.7.0)
-      rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
     ruby_dep (1.5.0)
     sass (3.5.3)
@@ -272,7 +264,6 @@ DEPENDENCIES
   rails_12factor
   ratyrate
   rest-client (~> 2.0, >= 2.0.2)
-  rspec-rails
   sass-rails (~> 5.0.3)
   sdoc (~> 0.4.0)
   spring
