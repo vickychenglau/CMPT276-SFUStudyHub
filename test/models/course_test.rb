@@ -43,9 +43,4 @@ class CourseTest < ActiveSupport::TestCase
   end
 
 
-  #test "Term has valid format" do
-  #  course=Course.new(:term => "Fall2018", :name => "CMPT276")
-  #  assert_match(/\A(Spring|Summer|Fall) {1}20\d{2}/, :term, "Term is not in correct format")
-  #end
-  
 end
