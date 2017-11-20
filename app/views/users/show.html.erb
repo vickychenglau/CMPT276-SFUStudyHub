@@ -10,9 +10,8 @@
 
 <%if defined?(current_user)%>
   <% if @user.id == current_user.id %>
-  <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
-  <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
-  
+    <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
+    <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
   <% end %>
 <% end %>
 
