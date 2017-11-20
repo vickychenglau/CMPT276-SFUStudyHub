@@ -5,7 +5,7 @@ class CreateAverageCaches < ActiveRecord::Migration
       t.belongs_to :rater
       t.belongs_to :rateable, :polymorphic => true
       t.float :avg, :null => false
-      t.timestamps
+      t.timestamps null: false
     end
   end
 
