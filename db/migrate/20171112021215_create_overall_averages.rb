@@ -4,7 +4,7 @@ class CreateOverallAverages < ActiveRecord::Migration
     create_table :overall_averages do |t|
       t.belongs_to :rateable, :polymorphic => true
       t.float :overall_avg, :null => false
-      t.timestamps
+      t.timestamps null: false
     end
   end
 

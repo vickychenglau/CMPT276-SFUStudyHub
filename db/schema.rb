@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "email"
     t.string   "role"
     t.string   "salt"
+    t.boolean  "tutor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
