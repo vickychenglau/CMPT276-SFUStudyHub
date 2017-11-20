@@ -49,9 +49,11 @@
 
         <% if current_user && current_user.role == 'admin' %>
           <p>
-            <%= link_to 'Delete', messageboard_path(topic, :course => @course),
-                method: :delete, data: {confirm: 'Are you sure?' } %>
-            <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+            <small>
+              <%= link_to 'Delete', messageboard_path(topic, :course => @course),
+                  method: :delete, data: {confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+            </small>
           </p>
         <% end %>
       <% end %>

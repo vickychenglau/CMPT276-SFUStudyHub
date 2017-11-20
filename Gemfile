@@ -48,3 +48,5 @@ gem 'oauth'
 ##just migrate
 # Use to interact with REST API
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
+
+gem 'acts_as_votable', '~> 0.11.1'
