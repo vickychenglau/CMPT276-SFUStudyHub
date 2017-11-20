@@ -34,6 +34,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
       flash[:notice] = "Course updated"
       redirect_to courses_path
     else
+      flash[:notice] = "Course failed to update"
       render 'edit'
     end
   end

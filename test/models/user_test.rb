@@ -195,11 +195,20 @@ end
     assert user.invalid?, "Password is 4 character"
   end
 
+  test "factory if it works" do
+    user = FactoryBot.build(:user, username: "batman")
+    assert user.valid?, "Factory is invalid"
+  end
+
+  test "admin class" do
+    admin = FactoryBot.build(:admin)
+    assert admin.valid?, "Factory admin is invalid"
+  end
+
   test "tutor attribute is valid" do
     user=User.new(:username => "Somename", :password => "Somepass1",
                   :email => "manikrai29@gmail.com", :first_name => "Somename",
                   :last_name=> "LastName", :role => "user", :tutor => true)
     assert user.valid?, "Tutor attribute is valid"
   end
-
 end

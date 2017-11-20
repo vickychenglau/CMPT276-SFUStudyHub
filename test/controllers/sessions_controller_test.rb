@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class SessionsControllerTest  < ActionController::TestCase
-
+setup do
+  @user = FactoryBot.build(:user)
+end
 
 
 
@@ -21,6 +23,25 @@ class SessionsControllerTest  < ActionController::TestCase
     get :setting
     assert_response(:success, message = nil)
 
+  end
+
+  test "Check if user can log in" do
+    user = FactoryBot.build(:user)
+    get :login_attempt, params: {login_username: user[:username], login_password: user[:password]}
+    assert_equal "Logged in", flash[:notice]
+    assert_redirected_to root_path
+  end
+
+  test "User does not exist" do
+    get :login_attempt, params: {login_username: "ShallnotPAss", login_password: "What password"}
+    assert_equal "Invalid username or password", flash[:notice]
+    assert_template :login
+  end
+
+  test"Check if user can log out" do
+    session[:user_id] = @user[:id]
+    get :logout
+    assert_equal "Logged out", flash[:notice]
   end
 
 end

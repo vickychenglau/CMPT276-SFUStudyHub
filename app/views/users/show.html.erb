@@ -6,112 +6,119 @@
   <%= javascript_include_tag 'ratyrate.js.erb', "data-turbolinks-track" => false %>
 </head>
 
-<h1><%= @user.username %></h1>
+<div class="top">
+  <h1><%= @user.username %></h1>
 
-<%if defined?(current_user)%>
-  <% if @user.id == current_user.id %>
-  <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
-  <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
-  
-  <% end %>
-<% end %>
-
-<table>
-  <caption>About <%= @user.username %></caption>
-  <tr>
-    <th>Field</th>
-    <th>User Information</th>
-  </tr>
-
-  <tr>
-    <td>Username</td>
-    <td><%= @user.username %></td>
-  </tr>
-  <tr>
-    <td>First Name</td>
-    <td><%= @user.first_name %></td>
-  </tr>
-  <tr>
-    <td>Last Name</td>
-    <td><%= @user.last_name %></td>
-  </tr>
-  <tr>
-    <td>Email</td>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
-    <td>Tutoring</td>
-    <% if @user.tutor == true %>
-      <td>Available</td>
-    <% else %>
-      <td>Unavailable</td>
+  <%if defined?(current_user)%>
+    <br/>
+    <% if (current_user) && (@user.id == current_user.id) %>
+      <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
+      <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
     <% end %>
-  </tr>
-</table>
+  <% end %>
 
-<% if @user.tutor == true %>
-<table>
-   <caption>Tutoring Service Ratings for <%= @user.username %></caption>
-  <tr>
-    <th>Field</th>
-    <th>Rating</th>
-    <th>Number of Ratings</th>
-  </tr>
-  <tr>
-    <td>Knowledgeability</td>
-    <td><%= rating_for @user,'Knowledgeability',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Knowledgeability").count %></td>
-  </tr>
-  <tr>
-    <td>Communication</td>
-    <td><%= rating_for @user,'Communication',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Communication").count %></td>
-  </tr>
-  <tr>
-    <td>Professionalism</td>
-    <td><%= rating_for @user,'Professionalism',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Professionalism").count %></td>
-  </tr>
-  <tr>
-    <td>Flexibility</td>
-    <td><%= rating_for @user,'Flexibility',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Flexibility").count %></td>
-  </tr>
-  <tr>
-    <td>Enthusiasm</td>
-    <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
-    <td><%= @user.rates("Enthusiasm").count %></td>
-  </tr>
-</table> 
-<% end %>
+  <div class="user_about">
+    <br/>
 
+    <h4>About</h4>
+    <table class="user_about">
+      <tr>
+        <td>Name:</td>
+        <td>
+          <%= @user.first_name %>
+          <%= @user.last_name %>
+        </td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Tutoring:</td>
+        <% if @user.tutor == true %>
+          <td>Available</td>
+        <% else %>
+          <td>Unavailable</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
 
-<%if defined?(current_user)%>
-  <% if @user.id == current_user.id %>
-    <h3>My Topics</h3>
+  <div class="user_tutor">
+    <br/>
+
+    <% if @user.tutor == true %>
+      <h4>Tutoring Service Ratings for <%= @user.username %></h4>
+
+      <table>
+        <tr>
+          <td>Knowledgeability</td>
+          <td><%= rating_for @user,'Knowledgeability',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+          <td><%= @user.rates("Knowledgeability").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Communication</td>
+          <td><%= rating_for @user,'Communication',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+          <td><%= @user.rates("Communication").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Professionalism</td>
+          <td><%= rating_for @user,'Professionalism',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+          <td><%= @user.rates("Professionalism").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td><%= rating_for @user,'Flexibility',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+          <td><%= @user.rates("Flexibility").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Enthusiasm</td>
+          <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: true, enable_half: true %></td>
+          <td><%= @user.rates("Enthusiasm").count %> ratings</td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+<div class="user_blurb">
+  <p> </p>
+</div>
+
+<div class="user_lists">
+  <br/>
+  <%if defined?(current_user)%>
+    <% if (current_user) && (@user.id == current_user.id) %>
+      <h4>My Topics</h4>
+    <% else %>
+      <h4><%= @user.username%>'s Topics</h4>
+    <% end %>
   <% else %>
-    <h3><%= @user.username%>'s Topics</h3>
+    <h4><%= @user.username%>'s Topics</h4>
+  <% end %>
+
+  <table>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td>
+          <a href= <%= messageboard_path('show',id: topic.id, course: topic.course_id) %> >
+            <%= topic.title unless topic.title.blank? %>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<br/>
+<%if defined?(current_user)%>
+  <% if (current_user) && (@user.id == current_user.id) %>
+    <h4>My Posts</h4>
+  <% else %>
+    <h4><%= @user.username%>'s Posts</h4>
   <% end %>
 <% else %>
-  <h3><%= @user.username%>'s Topics</h3>
-<% end %>
-
-<table>
-  <% @topics.each do |topic| %>
-    <tr>
-      <td><%= topic.title unless topic.title.blank? %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%if defined?(current_user)%>
-  <% if @user.id == current_user.id %>
-    <h3>My Posts</h3>
-  <% else %>
-    <h3><%= @user.username%>'s Posts</h3>
-  <% end %>
-<% else %>
-  <h3><%= @user.username%>'s Posts</h3>
+  <h4><%= @user.username%>'s Posts</h4>
 <% end %>
 
 <table>
@@ -124,4 +131,3 @@
 
 </body>
 </html>
-

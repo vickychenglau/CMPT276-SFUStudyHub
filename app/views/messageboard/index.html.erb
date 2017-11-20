@@ -1,19 +1,13 @@
-<script>
-  $(document).ready(function(){
-    $(":checkbox").attr("checked", true);
-
-    $(":checkbox").change(function(){
-      var checkbox_val = $(this).val();
-
-      if ($(this).prop("checked")){
-        $('div#'+checkbox_val).show()
-      }
-      else{
-        $('div#'+checkbox_val).hide()
-      }
-    });
-  });
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <% if @course_title.nil? %>
+    <% provide :title, "Courses Messageboard" %>
+  <% else %>
+    <% provide :title, @course_title %>
+  <% end %>
+  <%= javascript_include_tag('application') %>
+</head>
 
 <% if @course_title.nil? %>
   <h1> All Topics </h1>
@@ -21,22 +15,28 @@
   <h1> <%= @course_title %> </h1>
 <% end %>
 
-<br/>
-
-<div class="check_box_filter">
-  <br />
-  <%= check_box_tag(:generalcheck, :general)%>
-  <%= label_tag(:generalcheck, "GENERAL") %> <br />
-  <%= check_box_tag(:tutorcheck, :tutor) %>
-  <%= label_tag(:tutorcheck, "TUTOR") %> <br />
-  <%= check_box_tag(:studygroupcheck, :studygroup) %>
-  <%= label_tag(:studygroupcheck, "STUDYGROUP") %>
-</div>
-
-<div class="topic_listing">
-  <% if @topics.empty? %>
-    <h2>Nothing to see here</h2>
+<%= check_box_tag(:generalcheck, :general)%>
+<%= label_tag(:generalcheck, "GENERAL") %>
+<%= check_box_tag(:tutorcheck, :tutor) %>
+<%= label_tag(:tutorcheck, "TUTOR") %>
+<%= check_box_tag(:studygroupcheck, :studygroup) %>
+<%= label_tag(:studygroupcheck, "STUDYGROUP") %>
+<% if @topics.empty? %>
+  <h2>Nothing to see here</h2>
+<% end %>
+<dl>
+<% @topics.each do |topic| %>
+  <% if topic.title.nil? || topic.description.nil? %>
+    <dt> something is missing </dt>
+  <% else %>
+    <dt class= "<%= topic.description %>" ><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></li>
+    <% if current_user && current_user.role == 'admin' %>
+      <span><%= link_to 'DELETE', messageboard_path(topic, :course => @course),
+              method: :delete, data: {confirm: 'Are you sure?' } %></span><br/>
+    <% end %>
   <% end %>
+<% end %>
+</dl>
 
   <% @topics.each do |topic| %>
     <div id = "<%= topic.description %>">
@@ -44,14 +44,16 @@
         <p> Topic title or description is missing. </p>
       <% else %>
         <h3>
-          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %>
+          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id, :course => @course) %>
         </h3>
 
         <% if current_user && current_user.role == 'admin' %>
           <p>
-            <%= link_to 'Delete', messageboard_path(topic, :course => @course),
-                method: :delete, data: {confirm: 'Are you sure?' } %>
-            <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+            <small>
+              <%= link_to 'Delete', messageboard_path(topic, :course => @course),
+                  method: :delete, data: {confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+            </small>
           </p>
         <% end %>
       <% end %>

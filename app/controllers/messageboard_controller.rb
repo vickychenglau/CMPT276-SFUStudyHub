@@ -13,6 +13,11 @@ class MessageboardController < ApplicationController
     @topic = Topic.find(params[:id])
     @user = User.find(@topic.user_id)
     @course = params[:course]
+    if !Course.find_by(:id => @course)
+      @course_title = nil
+    else
+      @course_title = Course.find_by(:id => @course).name
+    end
   end
 
   def new
@@ -37,7 +42,7 @@ class MessageboardController < ApplicationController
     topic_params[:course_id] = @course
     @topic = Topic.new(topic_params)
     @topic.course_id = @course
-    @topic.user_id = current_user.id
+    @topic.user_id = session[:user_id]
     if @topic.save
       redirect_to action: 'index', :course => @course
     else
