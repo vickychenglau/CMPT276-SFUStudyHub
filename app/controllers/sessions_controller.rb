@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    flash[:notice] = "Logged out"
     redirect_to root_path
   end
 
@@ -22,10 +23,10 @@ class SessionsController < ApplicationController
     user = User.find_by(:username => params[:login_username], :password => params[:login_password] )
     if user
       session[:user_id] = user.id
-      #flash[:notice] = "Welcome again, you logged in as #{user.username}"
+      flash[:notice] = "Logged in"
       redirect_to root_path
     else
-      #flash[:notice] = "Invalid username or password - why is this message showing up everywhere?"
+      flash[:notice] = "Invalid username or password"
       render "login"
     end
     #render :text => @user.inspect
