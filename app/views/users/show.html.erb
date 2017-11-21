@@ -12,7 +12,7 @@
 
   <%if defined?(current_user)%>
     <br/>
-    <% if (current_user) && (@user.id == current_user.id) %>
+    <% if (current_user)  %>
       <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
       <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
     <% end %>
@@ -26,13 +26,13 @@
       <tr>
         <td>Name:</td>
         <td>
-          <%= @user.first_name %>
-          <%= @user.last_name %>
+          <%= current_user.first_name %>
+          <%= current_user.last_name %>
         </td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td><%= @user.email %></td>
+        <td><%= current_user.email %></td>
       </tr>
       <tr>
         <td>Tutoring:</td>
