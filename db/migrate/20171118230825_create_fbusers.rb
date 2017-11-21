@@ -9,6 +9,7 @@ class CreateFbusers < ActiveRecord::Migration
       t.string :oauth_token
       t.datetime :oauth_expires_at
       t.string :role
+      t.string :email
 
       t.timestamps null: false
     end
