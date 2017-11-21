@@ -1,7 +1,6 @@
 class FbsessionsController < ApplicationController
 
   def create
-    
     user = Fbuser.from_omniauth(env["omniauth.auth"])
 
      session[:user_id] = user.id
@@ -13,9 +12,8 @@ class FbsessionsController < ApplicationController
   end
 
   def destroy
-    $apiflag = 0
-    session[:user_id] = nil
 
+    session[:user_id] = nil
     redirect_to root_path
 
 

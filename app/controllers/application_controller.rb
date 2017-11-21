@@ -25,12 +25,10 @@ class ApplicationController < ActionController::Base
 #end
 
 def current_user
-  if $apiflag==1
-  @current_user ||= Fbuser.find(session[:user_id]) if session[:user_id]
 
-else
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-end
+  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+
+
 end
 
 helper_method :current_user

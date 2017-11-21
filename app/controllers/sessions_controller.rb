@@ -14,14 +14,12 @@ class SessionsController < ApplicationController
   end
 
   def logout
-$apiflag = 0
     session[:user_id] = nil
     flash[:notice] = "Logged out"
     redirect_to root_path
   end
 
   def login_attempt
-
     user = User.find_by(:username => params[:login_username], :password => params[:login_password] )
     if user
       session[:user_id] = user.id

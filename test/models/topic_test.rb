@@ -27,7 +27,7 @@ class TopicTest < ActiveSupport::TestCase
     course = Course.new(:name => "Physics 101")
     user=users(:regular)
     topic = Topic.new(:course_id => 1, :user_id => 1 ,
-                      :description => "Tutor",
+                      :description => "tutor",
                       :title => "Physics 101 help",
                       :first_post => "I need a tutor" )
     assert topic.valid?, "Valid Topic counts as invalid"
