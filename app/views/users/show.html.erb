@@ -54,27 +54,27 @@
       <table>
         <tr>
           <td>Knowledgeability</td>
-          <td><%= rating_for @user,'Knowledgeability',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= rating_for @user,'Knowledgeability',disable_after_rate: false ,imdb_avg: false, enable_half: true, star_path: '/images' %></td>
           <td><%= @user.rates("Knowledgeability").count %> ratings</td>
         </tr>
         <tr>
           <td>Communication</td>
-          <td><%= rating_for @user,'Communication',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= rating_for @user,'Communication',disable_after_rate: false ,imdb_avg: false, enable_half: true, star_path: '/images' %></td>
           <td><%= @user.rates("Communication").count %> ratings</td>
         </tr>
         <tr>
           <td>Professionalism</td>
-          <td><%= rating_for @user,'Professionalism',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= rating_for @user,'Professionalism',disable_after_rate: false ,imdb_avg: false, enable_half: true, star_path: '/images' %></td>
           <td><%= @user.rates("Professionalism").count %> ratings</td>
         </tr>
         <tr>
           <td>Flexibility</td>
-          <td><%= rating_for @user,'Flexibility',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= rating_for @user,'Flexibility',disable_after_rate: false ,imdb_avg: false, enable_half: true, star_path: '/images' %></td>
           <td><%= @user.rates("Flexibility").count %> ratings</td>
         </tr>
         <tr>
           <td>Enthusiasm</td>
-          <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: false, enable_half: true, star_path: '/images' %></td>
           <td><%= @user.rates("Enthusiasm").count %> ratings</td>
         </tr>
       </table>
