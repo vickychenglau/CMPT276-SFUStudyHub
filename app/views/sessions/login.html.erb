@@ -3,9 +3,11 @@
 	<div class= "Sign_Form">
 	  <h1>Log in</h1>
 	  <%= form_tag(:method => 'login_attempt') do %>
-	    <p>Username:</br> <%= text_field_tag :login_username %></p> 
-	    <p>Password:</br> <%= password_field_tag :login_password %></p> 
+	    <p>Username:</br> <%= text_field_tag :login_username %></p>
+	    <p>Password:</br> <%= password_field_tag :login_password %></p>
 	    <%= submit_tag("Log In") %>
 	  <% end %>
 	</div>
-
+<br>
+<h4>	<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+<br>	<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
