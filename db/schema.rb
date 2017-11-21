@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "avg",           null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "overall_avg",   null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "rateable_type"
     t.float    "stars",         null: false
     t.string   "dimension"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.float    "avg",            null: false
     t.integer  "qty",            null: false
     t.string   "dimension"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
-    t.boolean  "tutor"
+    t.string   "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
