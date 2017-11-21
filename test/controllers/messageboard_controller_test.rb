@@ -48,7 +48,7 @@ class MessageboardControllerTest < ActionController::TestCase
     session[:user_id] = person.id
     assert_difference('Topic.count', +1) do
       get :create, topic: {title: "Help me", first_post: "Yaa",
-        description: topic[:description], course: topic[:id]}
+        description: topic[:description], course: course.id }
     end
     # assert_response :redirect
     assert_redirected_to controller:"messageboard", action: "index", course: course.id

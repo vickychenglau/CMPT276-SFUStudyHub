@@ -29,7 +29,7 @@
   <% if topic.title.nil? || topic.description.nil? %>
     <dt> something is missing </dt>
   <% else %>
-    <dt class= "<%= topic.description %>" ><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %></dt>
+    <dt class= "<%= topic.description %>" ><%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %> <%= %></dt>
     <% if current_user && current_user.role == 'admin' %>
     <p>
       <small>

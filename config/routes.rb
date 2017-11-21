@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get 'users/list', to: "users#list"
   get 'courses/download', to: "courses#download_request"
   post 'courses/download', to: "courses#download"
-  post 'login', to: "sessions#login_attempt"
+  post 'login', :to => "sessions#login_attempt"
 
   get 'users/new'
   get 'courses/index'
