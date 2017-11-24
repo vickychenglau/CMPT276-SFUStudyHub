@@ -57,9 +57,7 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.integer  "rating"
     t.boolean  "anon"
-    t.integer  "parent"
     t.integer  "postable_id"
     t.string   "postable_type"
     t.boolean  "deleted"
@@ -106,6 +104,7 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.integer  "course_id"
     t.integer  "user_id"
     t.text     "first_post"
+    t.boolean  "pinned"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

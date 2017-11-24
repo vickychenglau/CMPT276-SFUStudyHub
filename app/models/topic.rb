@@ -23,5 +23,6 @@ class Topic < ActiveRecord::Base
   validates :course_id, presence: true
   validates :user_id, presence: true
   validates :first_post, presence: true, length: {minimum: 2}
+  validates :pinned, :inclusion => {:in => [true, false]}
 
 end

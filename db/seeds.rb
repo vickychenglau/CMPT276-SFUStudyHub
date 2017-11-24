@@ -26,8 +26,12 @@ User.create([
 
 
 Topic.create([
-	{description: 'tutor', title: 'Anyone able to help?', user_id: 2 , course_id: 1, first_post: "Please?"},
-	{description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2, first_post: "Well?"},
-	{description: 'general', title: 'How was the exam', user_id: 1 , course_id: 2, first_post: "Well?"},
-	{description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1, first_post: "I did terrible. :("}
+	{description: 'tutor', title: 'Anyone able to help?', user_id: 2 , course_id: 1,
+	 first_post: "Please?", pinned: false},
+	{description: 'general', title: 'How was the exam', user_id: 4 , course_id: 2,
+	 first_post: "Well?", pinned: false},
+	{description: 'general', title: 'How was the exam', user_id: 1 , course_id: 2,
+	 first_post: "Well?", pinned: false},
+	{description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1,
+	 first_post: "I did terrible. :(", pinned: false}
 ])
