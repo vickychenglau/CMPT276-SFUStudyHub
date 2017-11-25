@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "role"
-    t.string   "email"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -105,6 +104,7 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.integer  "course_id"
     t.integer  "user_id"
     t.text     "first_post"
+    t.boolean  "pinned"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
+    t.text     "status"
     t.boolean  "tutor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
