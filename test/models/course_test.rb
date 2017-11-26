@@ -13,7 +13,6 @@ require 'test_helper'
 
 
 class CourseTest < ActiveSupport::TestCase
-
   fixtures :courses
   
   test "Course with no parameters" do

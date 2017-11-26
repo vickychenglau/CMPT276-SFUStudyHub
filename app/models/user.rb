@@ -48,7 +48,8 @@ class User < ActiveRecord::Base
   validates :last_name, :presence =>true
   validates :tutor, :inclusion => {:in => [true, false]}
   validates :role, :inclusion => {:in => ["admin", "user"]}
-  validates_format_of :password, :with => /\A(?=.*[A-Z])(?=.*[0-9]).+\Z/, :on => :create
+  validates :password, format: { :with => /.*[A-Z]+.*/, message: " needs at least one uppercase letter" }
+  validates :password, format: { :with => /.*\d+.*/, message: " needs at least one number" }
 
   ratyrate_rater
   ratyrate_rateable 'Knowledgeability','Professionalism','Flexibility', 'Communication', 'Enthusiasm'

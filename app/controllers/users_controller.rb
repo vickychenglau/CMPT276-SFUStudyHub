@@ -31,6 +31,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if @pass != @passconfirm
+      @user.errors.add(:password_confirmation, " and Password do not match")
+    end
     if @user.update(user_params)
       flash[:notice] = "User information updated."
       if @user.role == 'admin'
@@ -39,7 +42,7 @@ class UsersController < ApplicationController
         redirect_to user_path
       end
     else
-      flash[:notice] = "User information not updated."
+      flash[:notice] = "Update failed. Please fix the errors listed below this form."
       render 'edit'
     end
   end
