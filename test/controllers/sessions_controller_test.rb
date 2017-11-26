@@ -32,7 +32,7 @@ end
     assert(User.find_by(id: user[:id]))
     assert(!ActionController::Base.allow_forgery_protection)
     # Unable disable CSRF in tests but works in rails console
-    post :login_attempt, params: {login_username: user[:username], login_password: user[:password]}
+    post :login_attempt, params: {login_username: user[:username], login_password: user[:password_digest]}
     assert_equal "Logged in", flash[:notice]
     assert_redirected_to root_path
     # ActionController::Base.allow_forgery_protection = true
