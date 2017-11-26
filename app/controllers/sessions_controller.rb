@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
   end
 
   def login_attempt
-    user = User.find_by(:username => params[:login_username], :password => params[:login_password] )
-    if user
+    user = User.find_by(:username => params[:login_username])#, :password => params[:login_password] )
+    if user && user.authenticate(params[:login_password])
       session[:user_id] = user.id
       flash[:notice] = "Logged in"
       redirect_to root_path

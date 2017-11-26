@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @pass != @passconfirm
       @user.errors.add(:password_confirmation, " and Password do not match")
     end
-    @user.role = "user"
+    @user.role = "admin"
     if @pass == @passconfirm && @user.save
       flash[:notice] = "You signed up successfully"
       redirect_to login_path

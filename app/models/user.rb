@@ -13,6 +13,8 @@
 #  updated_at :datetime         not null
 #
 
+require 'bcrypt'
+
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
@@ -34,6 +36,8 @@ end
 class User < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with MyValidator
+
+  has_secure_password
 
   has_many :posts
   has_many :topics
