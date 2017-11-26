@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20171120040603) do
 
   # These are extensions that must be enabled in order to support this database
@@ -50,20 +49,17 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "overall_avg",   null: false
-<<<<<<< HEAD
-    t.datetime "created_at"
-    t.datetime "updated_at"
-=======
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
->>>>>>> 88476378bc5ef270c54c78fed51e176ddebc0782
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
+    t.integer  "rating"
     t.boolean  "anon"
+    t.integer  "parent"
     t.integer  "postable_id"
     t.string   "postable_type"
     t.boolean  "deleted"
@@ -110,7 +106,6 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.integer  "course_id"
     t.integer  "user_id"
     t.text     "first_post"
-    t.boolean  "pinned"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -125,11 +120,7 @@ ActiveRecord::Schema.define(version: 20171120040603) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
-<<<<<<< HEAD
-    t.string   "salt"
-=======
     t.boolean  "tutor"
->>>>>>> 88476378bc5ef270c54c78fed51e176ddebc0782
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
