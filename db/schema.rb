@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118230825) do
+
+ActiveRecord::Schema.define(version: 20171120040603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +22,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "avg",           null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -49,17 +50,20 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "rateable_id"
     t.string   "rateable_type"
     t.float    "overall_avg",   null: false
+<<<<<<< HEAD
     t.datetime "created_at"
     t.datetime "updated_at"
+=======
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+>>>>>>> 88476378bc5ef270c54c78fed51e176ddebc0782
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "text"
-    t.integer  "rating"
     t.boolean  "anon"
-    t.integer  "parent"
     t.integer  "postable_id"
     t.string   "postable_type"
     t.boolean  "deleted"
@@ -73,8 +77,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "rateable_type"
     t.float    "stars",         null: false
     t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
@@ -86,8 +90,8 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.float    "avg",            null: false
     t.integer  "qty",            null: false
     t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
@@ -106,6 +110,7 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.integer  "course_id"
     t.integer  "user_id"
     t.text     "first_post"
+    t.boolean  "pinned"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -120,10 +125,29 @@ ActiveRecord::Schema.define(version: 20171118230825) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
+<<<<<<< HEAD
     t.string   "salt"
+=======
+    t.boolean  "tutor"
+>>>>>>> 88476378bc5ef270c54c78fed51e176ddebc0782
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   create_table "widgets", force: :cascade do |t|
     t.string   "name"

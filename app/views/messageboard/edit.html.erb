@@ -1,24 +1,33 @@
-<h4> Edit Topic </h4>
 
-<p><%= form_for @topic, url:{action: 'update'} do |f|  %></p>
-  <%= f.radio_button(:description, "general") %>
-  <%= label_tag(:description, "general") %>
+<% if current_user %>
+  <h4> Edit Topic </h4>
 
-  <%= f.radio_button(:description, "tutor") %>
-  <%= label_tag(:description, "tutor") %>
+  <p><%= form_for @topic, url:{action: 'update'} do |f|  %></p>
+    <%= f.radio_button(:description, "general") %>
+    <%= label_tag(:description, "general") %>
 
-  <%= f.radio_button(:description, "studygroup") %>
-  <%= label_tag(:description, "studygroup") %>
-  <p>
-    <%= f.label :title %><br/>
-    <%= f.text_area :title %><br/>
-    <%= f.label :first_post %><br/>
-    <%= f.text_area :first_post %><br/>
-  </p>
-  <p>
-    <%= f.hidden_field :course, value: @course %>
-    <%= f.submit "Save Changes" %>
-  </p>
+    <%= f.radio_button(:description, "tutor") %>
+    <%= label_tag(:description, "tutor") %>
+
+    <%= f.radio_button(:description, "studygroup") %>
+    <%= label_tag(:description, "studygroup") %>
+    <p>
+      <%= f.label :title %><br/>
+      <%= f.text_area :title %><br/>
+      <%= f.label :first_post %><br/>
+      <%= f.text_area :first_post %><br/>
+      <% if current_user.role == 'admin' %>
+        <%= f.label :pinned %>: 
+        <%= f.check_box :pinned %>
+      <% else %>
+        <%= f.hidden_field :course, value: @course %>
+      <% end %>
+    </p>
+    <p>
+      <%= f.hidden_field :course, value: @course %>
+      <%= f.submit "Save Changes" %>
+    </p>
+  <% end %>
+
+  <%= link_to 'Back', messageboard_path('index', :course=> @course)  %>
 <% end %>
-
-<%= link_to 'Back', messageboard_path('index', :course=> @course)  %>

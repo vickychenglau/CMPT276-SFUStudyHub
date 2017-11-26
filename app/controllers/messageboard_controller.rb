@@ -1,7 +1,7 @@
 class MessageboardController < ApplicationController
   def index
     @course = params[:course]
-    @topics = Topic.where(:course_id => @course)
+    @topics = Topic.order("created_at DESC").where(:course_id => @course)
     if !Course.find_by(:id => @course)
       @course_title = nil
     else
@@ -13,6 +13,11 @@ class MessageboardController < ApplicationController
     @topic = Topic.find(params[:id])
     @user = User.find(@topic.user_id)
     @course = params[:course]
+    if !Course.find_by(:id => @course)
+      @course_title = nil
+    else
+      @course_title = Course.find_by(:id => @course).name
+    end
   end
 
   def new
@@ -37,10 +42,12 @@ class MessageboardController < ApplicationController
     topic_params[:course_id] = @course
     @topic = Topic.new(topic_params)
     @topic.course_id = @course
-    @topic.user_id = current_user.id
+    @topic.user_id = session[:user_id]
     if @topic.save
+      flash[:notice] = "New Topic was created"
       redirect_to action: 'index', :course => @course
     else
+      flash[:notice] = "Failed to create topic"
       render 'new'
     end
   end
@@ -58,7 +65,7 @@ class MessageboardController < ApplicationController
   private
   def topic_params
     # Also have to include that they are logged in
-    params.require(:topic).permit(:description, :title, :course_id, :first_post)
+    params.require(:topic).permit(:description, :title, :course_id, :first_post, :pinned)
   end
 
 end

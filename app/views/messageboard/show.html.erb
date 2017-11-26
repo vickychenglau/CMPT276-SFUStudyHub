@@ -1,6 +1,17 @@
+<head>
+  <% provide :title, @topic.title %>
+</head>
 
-<hr />
-<h3> [<%= @topic.description %>] <%= @topic.title %> </h3>
+<div class="container">
+  <% if @course_title.nil? %>
+    <%= link_to('Back to Topics', {:controller => 'messageboard', :action => 'index', :course => @course}) %>
+  <% else %>
+    <h1>
+      <%= link_to(@course_title, {:controller => 'messageboard', :action => 'index', :course => @course}) %>
+    </h1>
+  <% end %>
+
+  <h3> [<%= @topic.description %>] <%= @topic.title %> </h3>
 
 Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id: @user %>
 -
@@ -8,13 +19,15 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
 <br/> <br/>
 
 <p> <%= @topic.first_post %> </p>
-
-<hr/>
+<p> <small> Subscribe </small> <p>
 
 <% if current_user %>
+  <hr/>
+
   <%= form_for [@topic, Post.new] do |f| %>
-    <%= f.text_area :text, placeholder: "Add a comment" %> <br/>
+    <%= f.text_area :text, cols: 50, rows: 4, placeholder: "Add a comment" %> <br/>
     <%= f.check_box :anon %>
+    <%= f.hidden_field :topic_id, value: @topic %>
     <small> Post anonymously </small>
     <br/>
     <%= f.submit "Post" %>
@@ -22,7 +35,8 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
   <br/>
 <% end %>
 
-<%= render(partial: 'posts/post', collection: @topic.posts) %>
+<%= render(partial: 'posts/post', collection: @topic.posts, locals: {t_id: @topic.id}) %>
 
-<br/>
-<%= link_to 'Back', :back %>
+<hr/>
+
+<%= link_to('Back to Topics', {:controller => 'messageboard', :action => 'index', :course => @course}) %>

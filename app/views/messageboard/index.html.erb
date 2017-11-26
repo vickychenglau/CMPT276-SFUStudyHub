@@ -1,19 +1,30 @@
-<script>
-  $(document).ready(function(){
-    $(":checkbox").attr("checked", true);
-
-    $(":checkbox").change(function(){
-      var checkbox_val = $(this).val();
-
-      if ($(this).prop("checked")){
-        $('div#'+checkbox_val).show()
-      }
-      else{
-        $('div#'+checkbox_val).hide()
-      }
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Moving this javascript elsewhere causes bugs -->
+  <script>
+    $(document).ready(function(){
+      $(":checkbox").attr("checked", true);
+      $(":checkbox").change(function(){
+        var checkbox_val = $(this).val();
+        if ($(this).prop("checked")){
+          $('div#'+checkbox_val).show()
+        }
+        else{
+          $('div#'+checkbox_val).hide()
+        }
+      });
     });
-  });
-</script>
+  </script>
+
+  <% if @course_title.nil? %>
+    <% provide :title, "Courses Messageboard" %>
+  <% else %>
+    <% provide :title, @course_title %>
+  <% end %>
+  <%= javascript_include_tag('application') %>
+
+</head>
 
 <% if @course_title.nil? %>
   <h1> All Topics </h1>
@@ -38,21 +49,55 @@
     <h2>Nothing to see here</h2>
   <% end %>
 
-  <% @topics.each do |topic| %>
+  <% @topics.where(pinned: true).each do |topic| %>
     <div id = "<%= topic.description %>">
       <% if topic.title.nil? || topic.description.nil? %>
         <p> Topic title or description is missing. </p>
       <% else %>
         <h3>
-          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id) %>
+          <%= link_to "*[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id, :course => @course) %>
         </h3>
+        <small>
+          Created by
+          <a href= <%= user_path('show',id: topic.user_id) %>>
+            <%= topic.user.username unless topic.user.blank?%>
+          </a>
+          <%= time_ago_in_words(topic.created_at) %> ago
+        </small>
 
         <% if current_user && current_user.role == 'admin' %>
-          <p>
-            <%= link_to 'Delete', messageboard_path(topic, :course => @course),
-                method: :delete, data: {confirm: 'Are you sure?' } %>
-            <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
-          </p>
+            <small>
+              <%= link_to 'Delete', messageboard_path(topic, :course => @course),
+                  method: :delete, data: {confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+            </small>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% @topics.where(pinned: false).each do |topic| %>
+    <div id = "<%= topic.description %>">
+      <% if topic.title.nil? || topic.description.nil? %>
+        <p> Topic title or description is missing. </p>
+      <% else %>
+        <h3>
+          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id, :course => @course) %>
+        </h3>
+        <small>
+          Created by
+          <a href= <%= user_path('show',id: topic.user_id) %>>
+            <%= topic.user.username unless topic.user.blank?%>
+          </a>
+          <%= time_ago_in_words(topic.created_at) %> ago
+        </small>
+
+        <% if current_user && current_user.role == 'admin' %>
+            <small>
+              <%= link_to 'Delete', messageboard_path(topic, :course => @course),
+                  method: :delete, data: {confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_messageboard_path(id: topic.id, :course => @course) %>
+            </small>
         <% end %>
       <% end %>
     </div>
