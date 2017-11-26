@@ -36,9 +36,10 @@ class UsersController < ApplicationController
     end
     if @user.update(user_params)
       flash[:notice] = "User information updated."
-      if @user.role == 'admin'
+      if @user.role == 'admin' && @user.status.length < 100
         redirect_to users_list_path
       else
+        flash[:notice] = "Your status can be at most 50 characters"
         redirect_to user_path
       end
     else
