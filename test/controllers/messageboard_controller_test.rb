@@ -41,14 +41,14 @@ class MessageboardControllerTest < ActionController::TestCase
     assert_select "title", topic.title
   end
 
-  test "new topic" do
+  test "create a new topic" do
     person = FactoryBot.create(:user)
     course = FactoryBot.create(:course)
     topic = attributes_for(:topic)
     session[:user_id] = person.id
     assert_difference('Topic.count', +1) do
       get :create, topic: {title: "Help me", first_post: "Yaa",
-        description: "general", course: course.id}
+        description: topic[:description], course: course.id }
     end
     # assert_response :redirect
     assert_redirected_to controller:"messageboard", action: "index", course: course.id

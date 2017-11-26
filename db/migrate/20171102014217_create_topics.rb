@@ -6,6 +6,7 @@ class CreateTopics < ActiveRecord::Migration
       t.references :course, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.text :first_post
+      t.boolean :pinned
 
       t.timestamps null: false
 

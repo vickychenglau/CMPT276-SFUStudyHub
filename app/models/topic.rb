@@ -19,9 +19,10 @@ class Topic < ActiveRecord::Base
 
 
   validates :title, presence: true, length: {minimum: 2}
-  validates :description, presence: true
+  validates :description, presence: true, format: { with: /\A(tutor|studygroup|general)/ }, :on => :create
   validates :course_id, presence: true
   validates :user_id, presence: true
   validates :first_post, presence: true, length: {minimum: 2}
+  validates :pinned, :inclusion => {:in => [true, false]}
 
 end
