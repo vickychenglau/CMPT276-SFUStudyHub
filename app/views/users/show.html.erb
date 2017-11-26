@@ -35,22 +35,22 @@
     left: -7px;
 }
 .status_bubble{
+  float: right;
+  padding: 2px;
 }
 
 </style>
 
-<!-- <div class="status_bubble">
-  <div class="speech-bubble">
-  <div class="arrow bottom right"></div>
-  <%= @user.status %>
-  </div>
-</div> -->
-
 <div class="top">
-  <h1><%= @user.username %></h1>
 
-  <!-- TESTING TESTING -->
-  <%= @user.status %>
+    <h1><%= @user.username %></h1>
+
+    <div class="status_bubble">
+      <div class="speech-bubble">
+        <div class="arrow bottom right"></div>
+          <%= @user.status %>
+        </div>
+    </div>
 
   <%if defined?(current_user)%>
     <br/>

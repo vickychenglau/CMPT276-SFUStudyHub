@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   validates :tutor, :inclusion => {:in => [true, false]}
   validates :role, :inclusion => {:in => ["admin", "user"]}
   validates_format_of :password, :with => /\A(?=.*[A-Z])(?=.*[0-9]).+\Z/, :on => :create
+  validates_length_of :status, :maximum => 50
 
   ratyrate_rater
   ratyrate_rateable 'Knowledgeability','Professionalism','Flexibility', 'Communication', 'Enthusiasm'

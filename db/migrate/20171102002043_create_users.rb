@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name
       t.string :email
       t.string :role
-      t.text   :status
+      t.string :status
       t.boolean :tutor
       
       t.timestamps null: false
