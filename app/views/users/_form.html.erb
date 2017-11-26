@@ -5,10 +5,6 @@
     <p> First Name:</br> <%= f.text_field :first_name%> </p>
     <p> Tutor: <%= f.check_box :tutor %> </p>
 
-    <% if current_user %>
-    <p> Status:</br> <%= f.text_field :status%> </p>
-    <% end %>
-
 	  <% if current_user && current_user.role == 'admin' %>
       <p> Password:</br> <%= f.password_field :password%></p>
     	<p> Password Confirmation:</br> <%= f.password_field :password_confirmation %> </p>

@@ -6,37 +6,43 @@
   <%= javascript_include_tag 'ratyrate.js.erb', "data-turbolinks-track" => false %>
 </head>
 <style>
-.speech-bubble {
-    background-color: #f8f8f8;
-    border: 1px solid #c8c8c8;
-    border-radius: 5px;
-    width: 110px;
-    text-align: center;
-    padding: 20px;
-    position: absolute;
+
+.talkbubble {
+  position: relative;
+  width: 300px;
+  height: 125px;
+  /*padding: 10px
+  border-radius: 5px;
+  border: solid lightblue;*/
+  background: lightblue;
+  float:right;
 }
-.speech-bubble .arrow {
-    border-style: solid;
-    position: absolute;
+
+.talkbubble:before {
+  content:"";
+  position: absolute;
+  right: 100%;
+  top: 26px;
+  width: 0;
+  height: 0;
+  
+  border-top: 13px solid transparent;
+  border-right: 26px solid lightblue;
+  border-bottom: 13px solid transparent;
 }
- 
-.bottom {
-    border-color: #c8c8c8 transparent transparent transparent;
-    border-width: 8px 8px 0px 8px;
-    bottom: -8px;
-}
-.bottom:after {
-    border-color: #f8f8f8 transparent transparent transparent;
-    border-style: solid;
-    border-width: 7px 7px 0px 7px;
-    bottom: 1px;
-    content: "";
-    position: absolute;
-    left: -7px;
-}
-.status_bubble{
-  float: right;
-  padding: 2px;
+
+.talkbubble textarea {
+  position: inherit;
+  width: inherit;
+  height: inherit;
+  background: inherit;
+  text-align: center;
+  
+  margin: 0;
+  padding: 10px;
+  
+  border: none;
+  resize: none;
 }
 
 </style>
@@ -44,19 +50,26 @@
 <div class="top">
 
     <h1><%= @user.username %></h1>
-
-    <div class="status_bubble">
-      <div class="speech-bubble">
-        <div class="arrow bottom right"></div>
-          <%= @user.status %>
-        </div>
-    </div>
+   
+    <% if @user.status? %>
+      <div class="talkbubble">
+        <textarea><%= @user.status %></textarea>
+      </div>
+    <% end %>
 
   <%if defined?(current_user)%>
     <br/>
     <% if (current_user) && (@user.id == current_user.id) %>
       <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
       <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
+
+        <%= form_for(@user) do |s| %>
+          <p> Status Update:</br> <%= s.text_field :status%> </p>
+        <%= s.submit "Update Status" %>
+        <% end %>
+
+
+
     <% end %>
   <% end %>
 

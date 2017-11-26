@@ -210,5 +210,11 @@ end
                   :email => "manikrai29@gmail.com", :first_name => "Somename",
                   :last_name=> "LastName", :role => "user", :tutor => true)
     assert user.valid?, "Tutor attribute is valid"
+
+    test "status is valid" do
+    user=User.new(:username => "Somename", :password => "Sa1m", :email => "manikrai29@gmail.com",
+                  :first_name => "Somename", :last_name=> "LastName", :role => "user", :tutor => true, :status=> "I love CMPT276 so much!")
+    assert user.invalid?, "Status can be at most 50 characters"
+  end
   end
 end
