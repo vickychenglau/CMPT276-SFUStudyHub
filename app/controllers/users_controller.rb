@@ -39,12 +39,11 @@ class UsersController < ApplicationController
       if @user.role == 'admin' && @user.status.length < 100
         redirect_to users_list_path
       else
-        flash[:notice] = "Your status can be at most 50 characters"
         redirect_to user_path
       end
     else
       if @user.status.length > 100
-        flash[:notice] = "Your status can be at most 50 characters"
+        flash[:notice] = "Your status can be at most 100 characters"
         redirect_to :back
       else
       flash[:notice] = "Update failed. Please fix the errors listed below this form."
