@@ -17,7 +17,16 @@
 
 class Fbuser < ActiveRecord::Base
 
+
+
+          $apiflag = 0
+        
+
+
   def self.from_omniauth(auth)
+    $apiflag = 1
+
+
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
         user.uid = auth.uid
