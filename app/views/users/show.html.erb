@@ -27,7 +27,7 @@
   top: 26px;
   width: 0;
   height: 0;
-  
+
   border-top: 13px solid transparent;
   border-right: 26px solid lightblue;
   border-bottom: 13px solid transparent;
@@ -39,10 +39,10 @@
   height: inherit;
   background: inherit;
   text-align: center;
-  
+
   margin: 0;
   padding: 10px;
-  
+
   border: none;
   resize: none;
 }
@@ -52,7 +52,7 @@
 <div class="top">
 
     <h1><%= @user.username %></h1>
-   
+
     <% if @user.status? %>
       <div class="talkbubble">
         <textarea><%= @user.status %></textarea>
@@ -61,16 +61,24 @@
 
   <%if defined?(current_user)%>
     <br/>
-    <% if (current_user) && (@user.id == current_user.id) %>
-      <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
-      <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
 
-        <%= form_for(@user) do |s| %>
-          <p> Status Update:</br> <%= s.text_field :status%> </p>
-        <%= s.submit "Update Status" %>
-        <% end %>
+  <%  if $apiflag !=1 %>
+  <% if (current_user) && (@user.id == current_user.id) %>
+     <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
+     <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
 
-    <% end %>
+      <%= form_for(current_user) do |s| %>
+         <p> Status Update:</br> <%= s.text_field :status%> </p>
+       <%= s.submit "Update Status" %>
+       <% end %>
+     <% end %>
+
+  <%  end %>
+
+
+
+
+
   <% end %>
 
   <div class="user_about">
@@ -106,7 +114,7 @@
     <% if @user.tutor == true %>
 
       <a href=<%= reviews_show_path(:id=>@user.id) %>>Tutor's Reviews</a>
-      
+
       <h4>Tutoring Service Ratings for <%= @user.username %></h4>
 
       <table>

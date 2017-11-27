@@ -20,7 +20,11 @@ class Fbuser < ActiveRecord::Base
 
 
           $apiflag = 0
-        
+          if Fbuser.maximum("id") == nil
+            @fbid = 100000
+          else
+              @fbid = Fbuser.maximum("id")+1
+          end
 
 
   def self.from_omniauth(auth)
@@ -28,6 +32,7 @@ class Fbuser < ActiveRecord::Base
 
 
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.id = @fbid
         user.provider = auth.provider
         user.uid = auth.uid
         user.username = auth.info.name
@@ -36,6 +41,7 @@ class Fbuser < ActiveRecord::Base
         user.role = user
         user.first_name = auth.info.name
         user.last_name = ""
+        user.status = "t"
         user.save!
       end
     end
