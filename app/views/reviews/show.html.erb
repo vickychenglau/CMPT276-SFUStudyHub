@@ -1,2 +1,18 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<h1>Comment Reviews for Tutor</h1>
+
+<table>
+  <% @reviews.each do |review| %>
+    <tr>
+      <td><%= review.comment unless review.comment.blank? %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% if current_user %>
+	<%= form_for [review, Review.new] do |f| %>
+    <%= f.text :comment, placeholder: "Write a Review" %> <br/>
+    <%= f.submit "Post Review"  %>
+	<% end %>
+<% end %>
+
+<a href=<%= user_path(:id=>@user.id) %>>Back</a>

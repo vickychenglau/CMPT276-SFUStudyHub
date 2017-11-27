@@ -7,6 +7,8 @@
 </head>
 <style>
 
+/*This speech bubble CSS is provided by: https://codepen.io/jamesbarnett/pen/GmFjB*/
+
 .talkbubble {
   position: relative;
   width: 300px;
@@ -68,8 +70,6 @@
         <%= s.submit "Update Status" %>
         <% end %>
 
-
-
     <% end %>
   <% end %>
 
@@ -104,6 +104,9 @@
     <br/>
 
     <% if @user.tutor == true %>
+
+      <a href=<%= reviews_show_path(:id=>@user.id) %>>Tutor's Reviews</a>
+      
       <h4>Tutoring Service Ratings for <%= @user.username %></h4>
 
       <table>
@@ -137,9 +140,6 @@
   </div>
 </div>
 
-<div class="user_blurb">
-  <p> </p>
-</div>
 
 <div class="user_lists">
   <br/>
