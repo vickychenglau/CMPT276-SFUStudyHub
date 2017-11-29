@@ -34,6 +34,9 @@ gem 'puma'
 
 gem 'ratyrate'
 
+gem 'private_pub'
+gem 'thin'
+
 group :development do
   gem 'annotate'
 end
