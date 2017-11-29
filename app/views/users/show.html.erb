@@ -53,7 +53,7 @@
 
     <h1><%= @user.username %></h1>
     <% if current_user.id != @user.id %>
-    <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "user-rip" => @user.id %>
+    <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => @user.id %>
     <% end %>
 
     <% if @user.status? %>

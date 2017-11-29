@@ -69,9 +69,17 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/users' do
+    resources :conversations do
+      resources :messages
+    end
+  end
+
   resources :conversations do
     resources :messages
   end
+
+
 
 
 
