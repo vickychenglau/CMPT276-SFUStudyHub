@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
   validates :role, :inclusion => {:in => ["admin", "user"]}
   validates_length_of :status, :maximum => 100
 
+  has_many :conversations, :foreign_key => :sender_id
+
   ratyrate_rater
   ratyrate_rateable 'Knowledgeability','Professionalism','Flexibility', 'Communication', 'Enthusiasm'
 end
