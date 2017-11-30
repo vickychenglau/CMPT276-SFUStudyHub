@@ -3,7 +3,16 @@
 <table>
   <% @reviews.each do |review| %>
     <tr>
-      <td><%= review.comment unless review.comment.blank? %></td>
+      <td>
+      	<%= review.comment unless review.comment.blank? %>
+      	<br/>
+      	-
+      	<small><a href= <%= user_path('show',id: review.person_rating) %>>
+        	<%= review.person_rating.username %>
+        </a></small>
+        <small> <%= time_ago_in_words(review.created_at) %> ago</small>
+      	<br/>
+      </td>
     </tr>
   <% end %>
 </table>
