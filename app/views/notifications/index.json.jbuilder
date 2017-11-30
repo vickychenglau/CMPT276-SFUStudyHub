@@ -1,10 +1,11 @@
 json.array! @notifications do |notification|
   json.id notification.id
   json.action notification.action
-  json.notifiable do #notification.notifiable
-    json.type "#{notification.notifiable.title}"
+  if notification.notifiable.is_a?(Topic)
+    json.url messageboard_path(id: notification.notifiable.id,
+                               course: notification.notifiable.course_id,
+                               p_order: 'newest')
+  else
+    json.url root_path
   end
-  json.url messageboard_path(id: notification.notifiable.id,
-                             course: notification.notifiable.course_id,
-                             p_order: 'newest')
 end

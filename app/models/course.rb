@@ -11,6 +11,7 @@
 
 class Course < ActiveRecord::Base
   has_many :topics, :dependent => :delete_all
+  acts_as_followable
 
   validates :term, :presence =>true, format: { with: /\A(Spring|Summer|Fall) {1}20\d{2}/ }, :on => :create
   validates :name, :presence =>true, uniqueness: { scope: [:term] }

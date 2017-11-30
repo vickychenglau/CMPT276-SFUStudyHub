@@ -23,16 +23,16 @@ class Notifications
       url: "/notifications/mark_as_read"
       dataType: "JSON"
       method: "POST"
-      console.log("clicked?");
       success: ->
-        console.log("click success!");
         $("[data-behavior='unread-count']").text(0)
     )
 
   handleSuccess: (data) =>
     if data.length > 0
       items = $.map data, (notification) ->
-        "<a class='dropdown-item' href='#{notification.url}'> #{notification.action} #{notification.notifiable.type} <br/></a>"
+        "<a class='dropdown-item' href='#{notification.url}'>
+          #{notification.action} <br/>
+         </a>"
 
       $("[data-behavior='unread-count']").text(items.length)
       $("[data-behavior='notification-items']").html(items)

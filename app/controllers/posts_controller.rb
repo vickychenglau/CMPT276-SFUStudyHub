@@ -19,9 +19,8 @@ before_action :find_postable
       @OP = User.find(@topic.user_id)
 
       ((@topic.users.uniq + [@OP] - [current_user]).uniq).each do |user|
-        Notification.create(recipient: user, actor: current_user, action: "New Post in", notifiable: @topic)
+        Notification.create(recipient: user, actor: current_user, action: "New Post in " << @topic.title, notifiable: @topic)
       end
-
 
       redirect_to :back, notice: 'Comment posted.'
     else
