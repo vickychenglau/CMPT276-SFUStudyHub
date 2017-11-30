@@ -105,7 +105,7 @@
 
     <% if @user.tutor == true %>
 
-      <a href=<%= reviews_show_path(:id=>@user.id) %>>Tutor's Reviews</a>
+     <%= link_to 'Tutor Reviews', review_path(:person_rated => @user.id) %>
       
       <h4>Tutoring Service Ratings for <%= @user.username %></h4>
 
