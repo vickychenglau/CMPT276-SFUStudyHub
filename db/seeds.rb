@@ -15,13 +15,13 @@ Course.create([
 # Remember it also has to pass the validators as well or it secretly fails
 User.create([
 	{username: 'Admin', password: '12345678A', last_name: 'Al', first_name: 'Admin',
-	 email: 'admin@test.ca', role:'admin', tutor: true},
+	 email: 'admin@test.ca', role:'admin', tutor: true, status: 'Hello, everyone. I am the Admin!'},
 	{username: 'User1', password: '12345678A', last_name: 'James', first_name: 'Franco',
-	 email: 'JFranco@test.ca', role:'user', tutor: true},
+	 email: 'JFranco@test.ca', role:'user', tutor: true, status: 'The weather has been great recently!'},
 	{username: 'User2', password: 'A12345678', last_name: 'Jean', first_name: 'Billy',
-	 email: 'Jimmy@test.ca', role: 'user', tutor: true},
+	 email: 'Jimmy@test.ca', role: 'user', tutor: true, status: 'Does anyone need help with Calculus?'},
 	{username: 'Admin2', password: 'A12345678', last_name: 'Cucumber', first_name: 'James',
-	 email: 'CuJames@test.ca', role: 'admin', tutor: true}
+	 email: 'CuJames@test.ca', role: 'admin', tutor: true, status: 'Does pinapple belong on pizza....?'}
 ])
 
 
