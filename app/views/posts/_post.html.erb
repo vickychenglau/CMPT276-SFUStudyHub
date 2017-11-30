@@ -43,7 +43,7 @@
               <a href="#" id="edit_toggle_<%= post.id %>"> Edit </a>
             <% end %>
 
-            <% if (current_user.id == post.user_id) %>
+            <% if (current_user.id != post.user_id) %>
               <%= link_to like_post_path(post), method: :put do %>
                   Upvote
               <% end %>

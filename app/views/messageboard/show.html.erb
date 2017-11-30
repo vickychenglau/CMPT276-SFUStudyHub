@@ -19,7 +19,15 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
 <br/> <br/>
 
 <p> <%= simple_format(@topic.first_post) %> </p>
-<p> <small> Subscribe </small> <p>
+<p>
+  <small>
+    <% if current_user.following?(@topic) %>
+      <%= link_to "Unsubscribe", subscribe_messageboard_path(@topic) %>
+    <% else %>
+      <%= link_to "Subscribe", subscribe_messageboard_path(@topic) %>
+    <% end %>
+  </small>
+</p>
 
 <hr/>
 

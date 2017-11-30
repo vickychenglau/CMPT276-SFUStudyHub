@@ -46,11 +46,18 @@ Rails.application.routes.draw do
   resources :widgets
   resources :users
   resources :fbsessions
-  resources :courses
+  resources :courses do
+    member do
+      get :subscribe
+    end
+  end
   # resources :posts
   # Nest posts inside of messageboard
   resources :messageboard do
     resources :posts
+    member do
+      get :subscribe
+    end
   end
   resources :topic do
     resources :posts
