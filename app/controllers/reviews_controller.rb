@@ -6,8 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review.person_rated = @user.id
-    @review.person_rating = current_user.id
+    @review = Review.new(review_params)
     
     if @review.save
       redirect_to :back, notice: 'Review posted.'
@@ -39,12 +38,12 @@ class ReviewsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reviews = Review.where(person_rated: @user.id)
+    @reviews = Review.where(person_rated_id: @user.id)
   end
 
   private
   def review_params
-    params.require(:review).permit(:person_rated,:person_rating, :comment)
+    params.require(:review).permit(:person_rated_id,:person_rating_id, :comment)
   end
   
 end

@@ -11,6 +11,8 @@
 <% if current_user %>
 	<%= form_for [@review, Review.new] do |f| %>
     <%= f.text_area :comment, placeholder: "Write a Review" %> <br/>
+    <%= f.hidden_field :person_rated_id, value: @user.id %>
+    <%= f.hidden_field :person_rating_id, value: current_user.id %>
     <%= f.submit "Post Review" %>
 	<% end %>
 <% end %>
