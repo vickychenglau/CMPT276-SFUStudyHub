@@ -27,7 +27,7 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
   <%= form_for [@topic, Post.new] do |f| %>
     <%= f.text_area :text, cols: 50, rows: 4, placeholder: "Add a comment" %> <br/>
     <%= f.check_box :anon %>
-    <%= f.hidden_field :topic_id, value: @topic %>
+    <%= f.hidden_field :topic_id, value: @topic.id %>
     <small> Post anonymously </small>
     <br/>
     <%= f.submit "Post" %>

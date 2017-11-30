@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with MyValidator
 
+  has_many :notifications, foreign_key: :recipient_id
   has_many :posts
   has_many :topics
 

@@ -11,19 +11,13 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
-
   get 'fbsessions/destroy'
-
   get 'fbsessions/create'
-
   get 'fbsessions/destroy'
-
   get 'sessions/create'
-
   get 'sessions/destroy'
 
   get 'home/show'
-
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
@@ -69,20 +63,22 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
-  Rails.application.routes.draw do
-
-      get 'auth/:provider/callback', to: 'fbsessions#create'
-      get 'auth/failure', to: redirect('/')
-      get 'signout', to: 'fbsessions#destroy', as: 'signout'
-
-      resources :fbsessions, only: [:create, :destroy]
-      resource :home, only: [:show]
-
-      root to: "courses#index"
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
   end
+
+  get 'auth/:provider/callback', to: 'fbsessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'fbsessions#destroy', as: 'signout'
+
+  resources :fbsessions, only: [:create, :destroy]
+  resource :home, only: [:show]
+
+
+  root to: "courses#index"
+
 
 
 
