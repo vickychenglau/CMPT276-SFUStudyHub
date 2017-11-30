@@ -12,8 +12,9 @@ class FbsessionsController < ApplicationController
   end
 
   def destroy
-
+      $apiflag = 0
     session[:user_id] = nil
+
     redirect_to root_path
 
 

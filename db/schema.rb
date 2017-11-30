@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20171130015713) do
     t.string   "role"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "status"
+    t.string   "email"
+    t.boolean  "tutor"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -158,9 +161,11 @@ ActiveRecord::Schema.define(version: 20171130015713) do
     t.string   "first_name"
     t.string   "email"
     t.string   "role"
+    t.string   "status"
     t.boolean  "tutor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
   create_table "votes", force: :cascade do |t|

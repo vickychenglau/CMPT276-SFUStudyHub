@@ -31,16 +31,24 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if @pass != @passconfirm
+      @user.errors.add(:password_confirmation, " and Password do not match")
+    end
     if @user.update(user_params)
       flash[:notice] = "User information updated."
-      if @user.role == 'admin'
+      if @user.role == 'admin' && @user.status.length < 100
         redirect_to users_list_path
       else
         redirect_to user_path
       end
     else
-      flash[:notice] = "User information not updated."
+      if @user.status.length > 100
+        flash[:notice] = "Your status can be at most 100 characters"
+        redirect_to :back
+      else
+      flash[:notice] = "Update failed. Please fix the errors listed below this form."
       render 'edit'
+      end
     end
   end
 
@@ -55,14 +63,19 @@ class UsersController < ApplicationController
   end
 
   def show
+  #  @user = User.find(params[:id])
+  if $apiflag==1
+    @user = Fbuser.find(params[:id])
+  else
     @user = User.find(params[:id])
+  end
     @topics = Topic.where(user_id: @user.id)
     @posts = Post.where(user_id: @user.id)
   end
 
   private
     def user_params
-      params.require(:user).permit(:username, :email, :last_name, :first_name, :password, :role, :tutor)
+      params.require(:user).permit(:username, :email, :last_name, :first_name, :password, :role, :tutor, :status)
     end
 
 end

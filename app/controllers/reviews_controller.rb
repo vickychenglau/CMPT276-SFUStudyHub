@@ -6,7 +6,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    if @post.save
+    @review.person_rating = @user.id
+    @review.person_rating = current_user.id
+    
+    if @review.save
       redirect_to :back, notice: 'Review posted.'
     else
       redirect_to :back, notice: 'Your review was not posted.'
@@ -35,12 +38,11 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @reviews = Review.where(person_rated: @user.id)
   end
 
-  
   private
-
   def review_params
     params.require(:review).permit(:person_rated,:person_rating, :comment)
   end

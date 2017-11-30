@@ -1,0 +1,132 @@
+/* line 5, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/courses.scss */
+table, th, td {
+  border: 1px solid black;
+  padding: 1em;
+}
+/* line 5, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/messageboard.scss */
+div.check_box_filter {
+  float: left;
+  width: auto;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+/* line 12, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/messageboard.scss */
+div.topic_listing {
+  width: 80%;
+  align-self: center;
+  margin-left: 10px;
+  padding-left: 20px;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #d7dae0;
+  display: inline-block;
+}
+/* line 5, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/posts.scss */
+div.nested_posts_border {
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #d7dae0;
+}
+
+/* line 11, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/posts.scss */
+div.nested_posts {
+  margin-left: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+/* line 17, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/posts.scss */
+div.post {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+/* line 4, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.jumbotron {
+  background: #532F8C;
+  color: white;
+  padding-bottom: 80px;
+}
+/* line 9, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.jumbotron .btn-primary {
+  background: #845ac7;
+  border-color: #845ac7;
+}
+/* line 12, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.jumbotron .btn-primary:hover {
+  background: #7646c1;
+}
+/* line 17, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.jumbotron p {
+  color: #d9ccee;
+  max-width: 75%;
+  margin: 1em auto 2em;
+}
+/* line 23, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.navbar + .jumbotron {
+  margin-top: -20px;
+}
+/* line 28, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.jumbotron .lang-logo {
+  display: block;
+  background: #B01302;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border: 2px solid white;
+}
+/* line 37, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/theme.css.scss */
+.jumbotron .lang-logo img {
+  max-width: 100%;
+}
+/* line 5, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/users.scss */
+div.user_about {
+  float: left;
+  margin-right: 50px;
+}
+
+/* line 10, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/users.scss */
+div.user_tutor {
+  margin-right: 50px;
+}
+
+/* line 14, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/users.scss */
+div.user_lists {
+  clear: both;
+}
+
+/* line 18, /home/nlchao/sfuhome/iteration1/CMPT276-SFUStudyHub/app/assets/stylesheets/users.scss */
+table.user_about {
+  border-width: 0px;
+  border-color: white;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+div.header{
+  background-color: #222222;
+  padding-top: 25px;
+  padding-bottom: 5px;
+}
+
+h1.headertitle{
+  margin-top: 4px;
+  margin-bottom: 4px;
+  color: white;
+}
