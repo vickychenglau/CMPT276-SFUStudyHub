@@ -35,6 +35,18 @@ class ReviewTest < ActiveSupport::TestCase
   test "If comment is more than 1 character" do
     review=Review.new(:comment => "This is a review", :person_rated_id => 1, 
     				:person_rating_id => 1)
-    assert review.valid?, "Review comment > 1 characters is invalid"
+    assert review.valid?, "Review comment > 1 characters is valid"
+  end
+
+  test "If comment is 1 character" do
+    review=Review.new(:comment => "G", :person_rated_id => 1, 
+    				:person_rating_id => 1)
+    assert review.valid?, "Review comment = 1 characters is valid"
+  end
+  
+  test "If comment is < 1 character" do
+    review=Review.new(:comment => "", :person_rated_id => 1, 
+    				:person_rating_id => 1)
+    assert review.invalid?, "Review comment < 1 characters is valid"
   end
 end
