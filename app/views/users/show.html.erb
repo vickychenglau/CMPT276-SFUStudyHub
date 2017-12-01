@@ -112,11 +112,9 @@
     <br/>
 
     <% if @user.tutor == true %>
-
-     <%= link_to 'Tutor Reviews', review_path(:person_rated => @user.id) %>
       
       <h4>Tutoring Service Ratings for <%= @user.username %></h4>
-
+      <%= link_to 'Tutoring Service Reviews', review_path(:person_rated => @user.id) %>
       <table>
         <tr>
           <td>Knowledgeability</td>

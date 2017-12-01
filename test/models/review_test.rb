@@ -26,9 +26,15 @@ class ReviewTest < ActiveSupport::TestCase
     assert review.invalid?, "Empty review is valid"
   end
 
-  test "If comment is more than 2 characters" do
+  test "Review has blank comment" do
+    review=Review.new(:comment => "", :person_rated_id => 1,
+                  :person_rating_id => 2)
+    assert review.invalid?, "Review has no comment"
+  end
+
+  test "If comment is more than 1 character" do
     review=Review.new(:comment => "This is a review", :person_rated_id => 1, 
-    				:person_rating_id => 2)
-    assert review.valid?, "Review comment > 2 characters is invalid"
+    				:person_rating_id => 1)
+    assert review.valid?, "Review comment > 1 characters is invalid"
   end
 end
