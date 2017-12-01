@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
@@ -30,8 +30,10 @@ gem 'spring',        group: :development
 # Use bcrypt for hashing passwords
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
+gem 'sinatra', '>= 1.3'
 gem 'puma'
-
+#gem 'google-api-client', '~> 0.7.1'
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem 'ratyrate'
 
 group :development do
@@ -55,3 +57,5 @@ end
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
 
 gem 'acts_as_votable', '~> 0.11.1'
+
+gem 'jquery-ui-rails', '~> 5.0.5'
