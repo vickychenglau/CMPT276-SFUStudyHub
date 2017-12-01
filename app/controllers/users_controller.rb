@@ -51,6 +51,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def tutor
+    @user = User.find(params[:id])
+    @courses = Course.all
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

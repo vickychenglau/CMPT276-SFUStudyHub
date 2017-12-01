@@ -1,0 +1,8 @@
+<h1>Tutorings#index</h1>
+<p>Find me in app/views/tutorings/index.html.erb</p>
+
+<%= form_for Tutoring.new do |t| %>
+  <%= t.collection_select :course_id, Course.order(:term, :name), :id, :name, include_blank: true %>
+  <%= t.submit %>
+
+<% end %>

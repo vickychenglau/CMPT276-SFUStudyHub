@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'tutorings/index'
+
+  get 'tutorings/new'
+
+  get 'tutorings/edit'
+
+  get 'tutorings/show'
+
   get 'reviews/new'
   get 'reviews/create'
   get 'reviews/update'
@@ -53,6 +61,7 @@ Rails.application.routes.draw do
   resources :users
   resources :fbsessions
   resources :courses
+  resources :tutorings
   # resources :posts
   # Nest posts inside of messageboard
   resources :messageboard do
@@ -73,6 +82,14 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
+
+  get 'tutorings/index'
+
+  get 'tutorings/new'
+
+  get 'tutorings/edit'
+
+  get 'tutorings/show'
 
       get 'auth/:provider/callback', to: 'fbsessions#create'
       get 'auth/failure', to: redirect('/')
