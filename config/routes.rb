@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
   get 'tutorings/index'
-
   get 'tutorings/new'
-
   get 'tutorings/edit'
-
   get 'tutorings/show'
 
   get 'reviews/new'
@@ -19,19 +16,13 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
-
   get 'fbsessions/destroy'
-
   get 'fbsessions/create'
-
   get 'fbsessions/destroy'
-
   get 'sessions/create'
-
   get 'sessions/destroy'
 
   get 'home/show'
-
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
@@ -60,12 +51,20 @@ Rails.application.routes.draw do
   resources :widgets
   resources :users
   resources :fbsessions
-  resources :courses
   resources :tutorings
+  resources :courses do
+    member do
+      get :subscribe
+    end
+  end
+
   # resources :posts
   # Nest posts inside of messageboard
   resources :messageboard do
     resources :posts
+    member do
+      get :subscribe
+    end
   end
   resources :topic do
     resources :posts
@@ -78,28 +77,22 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
-  Rails.application.routes.draw do
-
-  get 'tutorings/index'
-
-  get 'tutorings/new'
-
-  get 'tutorings/edit'
-
-  get 'tutorings/show'
-
-      get 'auth/:provider/callback', to: 'fbsessions#create'
-      get 'auth/failure', to: redirect('/')
-      get 'signout', to: 'fbsessions#destroy', as: 'signout'
-
-      resources :fbsessions, only: [:create, :destroy]
-      resource :home, only: [:show]
-
-      root to: "courses#index"
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
   end
+
+  get 'auth/:provider/callback', to: 'fbsessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'fbsessions#destroy', as: 'signout'
+
+  resources :fbsessions, only: [:create, :destroy]
+  resource :home, only: [:show]
+
+
+  root to: "courses#index"
+
 
 
 

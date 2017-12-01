@@ -55,3 +55,4 @@ end
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
 
 gem 'acts_as_votable', '~> 0.11.1'
+gem "acts_as_follower"

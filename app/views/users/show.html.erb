@@ -5,18 +5,77 @@
 <head>
   <%= javascript_include_tag 'ratyrate.js.erb', "data-turbolinks-track" => false %>
 </head>
+<style>
+
+/*This speech bubble CSS is provided by: https://codepen.io/jamesbarnett/pen/GmFjB*/
+
+.talkbubble {
+  position: relative;
+  width: 300px;
+  height: 125px;
+  /*padding: 10px
+  border-radius: 5px;
+  border: solid lightblue;*/
+  background: lightblue;
+  float:right;
+}
+
+.talkbubble:before {
+  content:"";
+  position: absolute;
+  right: 100%;
+  top: 26px;
+  width: 0;
+  height: 0;
+
+  border-top: 13px solid transparent;
+  border-right: 26px solid lightblue;
+  border-bottom: 13px solid transparent;
+}
+
+.talkbubble textarea {
+  position: inherit;
+  width: inherit;
+  height: inherit;
+  background: inherit;
+  text-align: center;
+
+  margin: 0;
+  padding: 10px;
+
+  border: none;
+  resize: none;
+}
+
+</style>
 
 <div class="top">
-  <h1><%= @user.username %></h1>
 
+    <h1><%= @user.username %></h1>
+
+    <% if @user.status? %>
+      <div class="talkbubble">
+        <textarea><%= @user.status %></textarea>
+      </div>
+    <% end %>
 
   <%if defined?(current_user)%>
     <br/>
-    <% if (current_user) && (@user.id == current_user.id) %>
-      <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
-      <p><%= link_to "Edit Tutoring Information", tutorings_path(:id => @user.id) %></p>
-      <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
-    <% end %>
+
+  <%  if $apiflag !=1 %>
+  <% if (current_user) && (@user.id == current_user.id) %>
+     <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
+     <p><%= link_to "Edit Tutoring Information", tutorings_path(:id => @user.id) %></p>
+     <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
+
+      <%= form_for(current_user) do |s| %>
+         <p> Status Update:</br> <%= s.text_field :status%> </p>
+       <%= s.submit "Update Status" %>
+       <% end %>
+     <% end %>
+
+  <%  end %>
+
   <% end %>
   
   <div class="user_about">
@@ -50,6 +109,9 @@
     <br/>
 
     <% if @user.tutor == true %>
+
+      <a href=<%= reviews_show_path(:id=>@user.id) %>>Tutor's Reviews</a>
+
       <h4>Tutoring Service Ratings for <%= @user.username %></h4>
 
       <table>
@@ -83,9 +145,6 @@
   </div>
 </div>
 
-<div class="user_blurb">
-  <p> </p>
-</div>
 
 <div class="user_lists">
   <br/>

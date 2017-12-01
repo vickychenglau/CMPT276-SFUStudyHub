@@ -50,6 +50,20 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   def download
   end
 
+  def subscribe
+    @course = Course.find(params[:id])
+    if current_user
+      if current_user.following?(@course)
+        current_user.stop_following(@course)
+      else
+        current_user.follow(@course)
+      end
+    else
+      flash[:notice] = "You must log in to subscribe."
+    end
+    redirect_to :back
+  end
+
 
   # These variables are used above
   private
