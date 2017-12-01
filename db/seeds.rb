@@ -17,7 +17,7 @@ User.create([
 	{username: 'Admin', password: '12345678A', last_name: 'Al', first_name: 'Admin',
 	 email: 'admin@test.ca', role:'admin', tutor: true},
 	{username: 'User1', password: '12345678A', last_name: 'James', first_name: 'Franco',
-	 email: 'JFranco@test.ca', role:'user', tutor: true},
+	 email: 'JFranco@test.ca', role:'user', tutor: true, status: "Hello, everyone!"},
 	{username: 'User2', password: 'A12345678', last_name: 'Jean', first_name: 'Billy',
 	 email: 'Jimmy@test.ca', role: 'user', tutor: true},
 	{username: 'Admin2', password: 'A12345678', last_name: 'Cucumber', first_name: 'James',

@@ -63,7 +63,12 @@ class UsersController < ApplicationController
   end
 
   def show
+  #  @user = User.find(params[:id])
+  if $apiflag==1
+    @user = Fbuser.find(params[:id])
+  else
     @user = User.find(params[:id])
+  end
     @topics = Topic.where(user_id: @user.id)
     @posts = Post.where(user_id: @user.id)
   end
