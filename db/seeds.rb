@@ -15,13 +15,13 @@ Course.create([
 # Remember it also has to pass the validators as well or it secretly fails
 User.create([
 	{username: 'Admin', password: '12345678A', last_name: 'Al', first_name: 'Admin',
-	 email: 'admin@test.ca', role:'admin', tutor: true, status: 'Hello, everyone. I am the Admin!'},
+	 email: 'admin@test.ca', role:'admin', tutor: true},
 	{username: 'User1', password: '12345678A', last_name: 'James', first_name: 'Franco',
-	 email: 'JFranco@test.ca', role:'user', tutor: true, status: 'The weather has been great recently!'},
+	 email: 'JFranco@test.ca', role:'user', tutor: true},
 	{username: 'User2', password: 'A12345678', last_name: 'Jean', first_name: 'Billy',
-	 email: 'Jimmy@test.ca', role: 'user', tutor: true, status: 'Does anyone need help with Calculus?'},
+	 email: 'Jimmy@test.ca', role: 'user', tutor: true},
 	{username: 'Admin2', password: 'A12345678', last_name: 'Cucumber', first_name: 'James',
-	 email: 'CuJames@test.ca', role: 'admin', tutor: true, status: 'Does pinapple belong on pizza....?'}
+	 email: 'CuJames@test.ca', role: 'admin', tutor: true}
 ])
 
 
@@ -34,4 +34,12 @@ Topic.create([
 	 first_post: "Well?", pinned: false},
 	{description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1,
 	 first_post: "I did terrible. :(", pinned: false}
+])
+
+
+Review.create([
+	{comment: "They are okay I guess...He gets kind of frustrated easily..", person_rating_id: 2, person_rated_id: 1},
+	{comment: "Literally the best tutor ever!!", person_rating_id: 3, person_rated_id: 1},
+	{comment: "I am never going to ask this person for help again..E-V-E-R!!", person_rating_id: 1, person_rated_id: 2},
+	{comment: "User2 is an amazing tutor! I got an A+ after he tutored me!", person_rating_id: 3, person_rated_id: 2}
 ])
