@@ -1,0 +1,18 @@
+<h1>Tutors for <%= @course.name %></h1>
+<table>
+	<tr>
+		<th>Tutor Username</th>
+		<th>Hourly Rate</th>
+		<th>Description</th>
+		<th>Tutor Email</th>		
+	</tr>
+	<% @tutorings.each do |t| %>
+		<tr>
+			<% @tutor = User.where(:id => t.user_id).first %>
+			<td><%= @tutor.username %></td>
+			<td><%= t.hourly %></td>
+			<td><%= t.description %></td>
+			<td><%= @tutor.email %></td>
+		</tr>
+	<% end %>
+</table>

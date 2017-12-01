@@ -64,6 +64,9 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
     redirect_to :back
   end
 
+  def tutors
+    @course = Course.find(params[:id])
+  end
 
   # These variables are used above
   private

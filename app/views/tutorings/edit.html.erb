@@ -1,2 +1,10 @@
-<h1>Tutorings#edit</h1>
-<p>Find me in app/views/tutorings/edit.html.erb</p>
+<h1>Edit Information</h1>
+
+<%= form_for(@tutoring) do |t| %>
+  <p>Course: <%= t.collection_select :course_id, Course.order(:name, :term), :id, :term_and_name, :include_blank => true %></p>
+  <p>Hourly rate: <%= t.number_field :hourly, :class => 'text_field', :step => 0.01 %></p>
+  <!-- add in field for mode of delivery if I have time -->
+  <p>Description: <%= t.text_field :description, :size => 100 %> </br>(enter any additional info you want, e.g. if you've tutored or TA'd for this course before, with this specific prof, etc.)</p>
+  <%= t.submit "Update" %>
+
+<% end %>

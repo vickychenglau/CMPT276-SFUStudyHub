@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'tutorings/new'
   get 'tutorings/edit'
   get 'tutorings/show'
+  get 'tutorings/list'
 
   get 'reviews/new'
   get 'reviews/create'

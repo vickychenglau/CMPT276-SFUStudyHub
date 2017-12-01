@@ -1,0 +1,10 @@
+<h1>Add Course to Tutor</h1>
+
+<%= form_for Tutoring.new do |t| %>
+  <p><%= t.collection_select :course_id, Course.order(:name, :term), :id, :term_and_name, :include_blank => true %></p>
+  <p>Hourly rate: <%= t.number_field :hourly, :class => 'text_field', :step => 0.01 %></p>
+  <!-- add in field for mode of delivery if I have time -->
+  <p>Description: <%= t.text_field :description %> </br>(enter any additional info you want, e.g. if you've tutored or TA'd for this course before, with this specific prof, etc.)</p>
+  <%= t.submit "Add" %>
+
+<% end %>

@@ -49,20 +49,16 @@ function filterCourseTable() {
 	<col width = '150'>
 	<col width = '700'>
 	<col width = '150'>
+	<col width = '150'>
 	<% if current_user && current_user.role == 'admin' %>
 		<col width = '100'>
 		<col width = '100'>
 	<% end %>
 	<tr class='header'>
-		<th>
-			Term
-		</th>
-		<th>
-			Course
-		</th>
-		<th>
-			# of Discussions
-		</th>
+		<th>Term</th>
+		<th>Course</th>
+		<th># of Discussions</th>
+		<th># of Tutors</th>
 		<% if current_user && current_user.role == 'admin' %>
 			<th></th>
 			<th></th>
@@ -70,21 +66,17 @@ function filterCourseTable() {
 	</tr>
 	<% @courses.order(:term, :name).each do |course| %>
 		<tr>
-			<td>
-				<%= course.term %>
-			</td>
-			<td>
-				<%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %>
-			</td>
-			<td>
-				<%= Topic.where(:course_id => course.id).count %>
-			</td>
+			<td><%= course.term %></td>
+			<td><%= link_to(course.name, {:controller => 'messageboard', :action => 'index', :course => course.id}) %></td>
+			<td><%= Topic.where(:course_id => course.id).count %></td>
+			<% if Tutoring.where(:course_id => course.id).count == 0 %>
+				<td>0</td>
+			<% else %>
+				<td><%= link_to Tutoring.where(:course_id => course.id).count, {:controller => 'tutorings', :action => 'list', :course => course.id} %></td>
+			<% end %>
 			<% if current_user && current_user.role == 'admin' %>
-				<td>
-					<%= link_to 'Edit', edit_course_path(course) %>
-				<td>
-					<%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
-				</td>
+				<td><%= link_to 'Edit', edit_course_path(course) %></td>
+				<td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			<% end %>
 		</tr>
 	<% end %>
