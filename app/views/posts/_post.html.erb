@@ -13,11 +13,14 @@
           </a>
         <% end %>
       -
-      <small> <%= time_ago_in_words(post.created_at) %> ago</small>
+      <small>
+        <%= time_ago_in_words(post.created_at) %> ago |
+        <%= post.cached_votes_score %>
+      </small>
       <br/>
       <p>
         <div id="post_body_<%= post.id %>">
-         <%= post.text %>
+         <%= simple_format(post.text) %>
         </div>
 
         <div id="edit_body_<%= post.id %>" style="display: none;">
@@ -40,14 +43,14 @@
               <a href="#" id="edit_toggle_<%= post.id %>"> Edit </a>
             <% end %>
 
-            <%= link_to like_post_path(post), method: :put do %>
-                Upvote
-                <%= post.get_upvotes.size %>
-            <% end %>
+            <% if (current_user.id != post.user_id) %>
+              <%= link_to like_post_path(post), method: :put do %>
+                  Upvote
+              <% end %>
 
-            <%= link_to dislike_post_path(post), method: :put do %>
-              Downvote
-              <%= post.get_downvotes.size %>
+              <%= link_to dislike_post_path(post), method: :put do %>
+                Downvote
+              <% end %>
             <% end %>
 
             <% if current_user.role == 'admin' %>
@@ -81,7 +84,13 @@
 
   </div>
 
-  <%= render(partial: 'posts/post', collection: post.posts, locals: {t_id: t_id}) %>
+  <% if p_order == 'rating' %>
+    <%= render(partial: 'posts/post', collection: post.posts.order(cached_votes_score: :desc),
+               locals: {t_id: @topic.id, p_order: p_order}) %>
+  <% else %>
+    <%= render(partial: 'posts/post', collection: post.posts.order(:created_at).reverse_order,
+               locals: {t_id: @topic.id, p_order: p_order}) %>
+  <% end %>
 
 </div>
 </div>

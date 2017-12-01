@@ -57,5 +57,9 @@ end
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
 
 gem 'acts_as_votable', '~> 0.11.1'
+<<<<<<< HEAD
 
 gem 'jquery-ui-rails', '~> 5.0.5'
+=======
+gem "acts_as_follower"
+>>>>>>> dcb04ca887bb1cf5ef11cfd2bb61ae9d315dfee2

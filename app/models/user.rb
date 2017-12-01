@@ -37,13 +37,16 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with MyValidator
 
+  has_many :notifications, foreign_key: :recipient_id
   has_secure_password
-
   has_many :posts
   has_many :topics
 
   has_many :rated_reviews, :class_name => 'Review', :foreign_key => 'person_rating_id'
   has_many :tutor_reviews, :class_name => 'Review', :foreign_key => 'person_rated_id'
+
+  acts_as_followable
+  acts_as_follower
 
   validates :username, :presence =>true, uniqueness: {case_sensitive: false}
   validates_length_of :password, presence: true, :minimum => 7, :on => :create
