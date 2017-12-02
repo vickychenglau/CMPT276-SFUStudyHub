@@ -4,10 +4,6 @@
 <head>
 </head>
 <style>
-textarea{
-  width: 225px;
-  height: 90px;
-}
 .wrapper {
     width: 600px;
     border: 1px solid black;
@@ -39,8 +35,13 @@ textarea{
           </a></small>
           <small> <%= time_ago_in_words(review.created_at) %> ago</small>
           <%if(review.person_rating == current_user) %>
-            <small><%= link_to "Edit", edit_review_path(review), :method => :edit %></small>
             <small><%= link_to "Delete", review_path(review), :method => :delete %></small>
+
+            <%= form_for(review) do |f| %>
+            <%= f.text_area :comment, size: "20x1"%> <br/>
+            <small><%= f.submit "Save Changes" %></small>
+            <% end %>
+
           <% end %>
         </td>
       </tr>
@@ -53,7 +54,7 @@ textarea{
 <div class="write_review">
   <% if current_user %>
   	<%= form_for [@review, Review.new] do |f| %>
-      <%= f.text_area :comment, placeholder: "Write a Review" %> <br/>
+      <%= f.text_area :comment, placeholder: "Write a Review", size: "25x5"%> <br/>
       <%= f.hidden_field :person_rated_id, value: @user.id %>
       <%= f.hidden_field :person_rating_id, value: current_user.id %>
       <%= f.submit "Post Review" %>
