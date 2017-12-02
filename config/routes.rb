@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
 
-  # get 'reviews/new'
-  # get 'reviews/create'
-  # get 'reviews/update'
-  # get 'reviews/edit'
-  # get 'reviews/destroy'
-  # get 'reviews/index'
-  # get 'reviews/show'
-
+  post 'reviews/edit', :to => "reviews#edit"
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
