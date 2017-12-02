@@ -39,7 +39,7 @@
 
             <%= form_for(review) do |f| %>
             <%= f.text_area :comment, size: "20x1"%> <br/>
-            <small><%= f.submit "Save Changes" %></small>
+            <span style="font-size:0.7em"><%= f.submit "Save Changes" %></span>
             <% end %>
 
           <% end %>
@@ -54,7 +54,7 @@
 <div class="write_review">
   <% if current_user %>
   	<%= form_for [@review, Review.new] do |f| %>
-      <%= f.text_area :comment, placeholder: "Write a Review", size: "25x5"%> <br/>
+      <%= f.text_area :comment, placeholder: "Write a Review", size: "26x5"%> <br/>
       <%= f.hidden_field :person_rated_id, value: @user.id %>
       <%= f.hidden_field :person_rating_id, value: current_user.id %>
       <%= f.submit "Post Review" %>

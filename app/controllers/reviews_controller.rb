@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to :back, notice: 'Review was successfully updated.'
     else
-      redirect_to :back, notice: 'Review was not updated.'
+      redirect_to :back, notice: 'Review must be at least 1 character.'
     end
   end
 
