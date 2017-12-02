@@ -23,7 +23,6 @@ before_action :find_tutoring, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-
   end
 
   def update

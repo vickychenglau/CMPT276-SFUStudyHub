@@ -9,7 +9,7 @@
 	<% @tutorings.each do |t| %>
 		<tr>
 			<% @tutor = User.where(:id => t.user_id).first %>
-			<td><%= @tutor.username %></td>
+			<td><%= link_to @tutor.username, user_path(:id => @tutor.id) %></td>
 			<td><%= t.hourly %></td>
 			<td><%= t.description %></td>
 			<td><%= @tutor.email %></td>
