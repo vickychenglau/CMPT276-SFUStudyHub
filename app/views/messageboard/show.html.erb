@@ -21,10 +21,12 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
 <p> <%= simple_format(@topic.first_post) %> </p>
 <p>
   <small>
-    <% if current_user.following?(@topic) %>
-      <%= link_to "Unsubscribe", subscribe_messageboard_path(@topic) %>
-    <% else %>
-      <%= link_to "Subscribe", subscribe_messageboard_path(@topic) %>
+    <% if current_user %>
+      <% if current_user.following?(@topic) %>
+        <%= link_to "Unsubscribe", subscribe_messageboard_path(@topic) %>
+      <% else %>
+        <%= link_to "Subscribe", subscribe_messageboard_path(@topic) %>
+      <% end %>
     <% end %>
   </small>
 </p>
