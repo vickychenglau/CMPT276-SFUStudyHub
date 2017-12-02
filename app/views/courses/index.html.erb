@@ -73,7 +73,7 @@ function filterCourseTable() {
 			<% if Tutoring.where(:course_id => course.id).count == 0 %>
 				<td>0</td>
 			<% else %>
-				<td><%= link_to Tutoring.where(:course_id => course.id).count, {:controller => 'tutorings', :action => 'list', :course => course.id} %></td>
+				<td><%= Tutoring.where(:course_id => course.id).count %> (<%= link_to "View Tutors", {:controller => 'tutorings', :action => 'list', :course => course.id} %>)</td>
 			<% end %>
 			<% if current_user && current_user.role == 'admin' %>
 				<td><%= link_to 'Edit', edit_course_path(course) %></td>
@@ -82,13 +82,6 @@ function filterCourseTable() {
 		</tr>
 	<% end %>
 </table>
-
-
-
-
-
-
-
 
 
 
