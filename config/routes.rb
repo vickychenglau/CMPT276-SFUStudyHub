@@ -96,13 +96,13 @@ Rails.application.routes.draw do
 
 
   root to: "courses#index"
-
+  get 'calendars', to: 'calendars#index'
 
 
 
   get '/redirect', to: 'fbsessions#redirect', as: 'redirect'
   get '/callback', to: 'fbsessions#callback', as: 'callback'
-  get '/calendars', to: 'fbsessions#calendars', as: 'calendars'
+  # get '/calendars', to: 'fbsessions#calendars', as: 'calendars'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
