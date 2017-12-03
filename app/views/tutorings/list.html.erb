@@ -7,12 +7,15 @@
 		<th>Tutor Email</th>		
 	</tr>
 	<% @tutorings.each do |t| %>
-		<tr>
-			<% @tutor = User.where(:id => t.user_id).first %>
-			<td><%= link_to @tutor.username, user_path(:id => @tutor.id) %></td>
-			<td><%= t.hourly %></td>
-			<td><%= t.description %></td>
-			<td><%= @tutor.email %></td>
-		</tr>
+		<% @tutor = User.where(:id => t.user_id).first %>
+		<% if @tutor.tutor %>
+			<tr>
+				<% @tutor = User.where(:id => t.user_id).first %>
+				<td><%= link_to @tutor.username, user_path(:id => @tutor.id) %></td>
+				<td><%= t.hourly %></td>
+				<td><%= t.description %></td>
+				<td><%= @tutor.email %></td>
+			</tr>
+		<% end %>
 	<% end %>
 </table>
