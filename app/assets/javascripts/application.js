@@ -16,10 +16,11 @@
 //= chat
 //= require private_pub
 //= require turbolinks
-//= require_tree .
 //= require jquery.raty
 //= require ratyrate
 //= require moment
 //= require fullcalendar
 //= require full_calendar
 //= require messageboard
+//= require daterangepicker
+//= require_tree .

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   post 'reviews/edit', :to => "reviews#edit"
   get 'tutorings/index'
   get 'tutorings/new'

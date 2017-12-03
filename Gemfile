@@ -62,6 +62,7 @@ gem 'rest-client', '~> 2.0', '>= 2.0.2'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'simple_form'
 
 
 #gem 'jquery-ui-rails', '~> 5.0.5'
