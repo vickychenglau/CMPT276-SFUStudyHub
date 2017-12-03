@@ -1,0 +1,31 @@
+<h1>Courses I'm Tutoring</h1>
+<p><%= link_to "Add Course", new_tutoring_path %></p>
+
+<table id='tutoringsTable'>
+	<col width = '150'>
+	<col width = '500'>
+	<col width = '150'>
+	<col width = '500'>
+	<tr class='header'>
+		<th>Term</th>
+		<th>Course</th>
+		<th>Hourly rate</th>
+		<th>Description</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	<% @tutorings.order(:id).each do |tutoring| %>
+		<tr>
+			<% @course = Course.where(:id => tutoring.course_id).first %>
+			<td><%= @course.term %></td>
+			<td><%= @course.name %></td>
+			<td><%= number_with_precision(tutoring.hourly, :precision => 2) %></td>
+			<td><%= tutoring.description %></td>
+			<td><%= link_to 'Edit', edit_tutoring_path(tutoring) %></td>
+			<td><%= link_to 'Delete', tutoring, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+	<% end %>
+</table>
+
+<br>
+<a href=<%= user_path(:id=>current_user.id) %>>Back</a>

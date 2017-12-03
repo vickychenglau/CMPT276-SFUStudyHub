@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :posts
   has_many :topics
+  has_many :tutorings, dependent: :delete_all
 
   has_many :rated_reviews, :class_name => 'Review', :foreign_key => 'person_rating_id'
   has_many :tutor_reviews, :class_name => 'Review', :foreign_key => 'person_rated_id'

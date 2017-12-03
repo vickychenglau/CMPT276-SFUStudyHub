@@ -36,10 +36,12 @@
 
 <div class="check_box_filter">
   <p>
-    <% if current_user.following?(@course_obj) %>
-      <%= link_to "Unsubscribe", subscribe_course_path(@course_obj) %>
-    <% else %>
-      <%= link_to "Subscribe", subscribe_course_path(@course_obj) %>
+    <% if current_user %>
+      <% if current_user.following?(@course_obj) %>
+        <%= link_to "Unsubscribe", subscribe_course_path(@course_obj) %>
+      <% else %>
+        <%= link_to "Subscribe", subscribe_course_path(@course_obj) %>
+      <% end %>
     <% end %>
   </p>
   <%= check_box_tag(:generalcheck, :general)%>

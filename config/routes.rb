@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
   post 'reviews/edit', :to => "reviews#edit"
+  get 'tutorings/index'
+  get 'tutorings/new'
+  get 'tutorings/edit'
+  get 'tutorings/show'
+  get 'tutorings/list'
+
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
@@ -40,11 +46,13 @@ Rails.application.routes.draw do
   resources :users
   resources :fbsessions
   resources :reviews
+  resources :tutorings
   resources :courses do
     member do
       get :subscribe
     end
   end
+
   # resources :posts
   # Nest posts inside of messageboard
   resources :messageboard do
@@ -83,8 +91,9 @@ Rails.application.routes.draw do
 
 
 
-
-
+  get '/redirect', to: 'fbsessions#redirect', as: 'redirect'
+  get '/callback', to: 'fbsessions#callback', as: 'callback'
+  get '/calendars', to: 'fbsessions#calendars', as: 'calendars'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

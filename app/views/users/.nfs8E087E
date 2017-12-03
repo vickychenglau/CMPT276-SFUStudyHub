@@ -65,9 +65,6 @@
   <%  if $apiflag !=1 %>
   <% if (current_user) && (@user.id == current_user.id) %>
      <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
-     <% if @user.tutor %>
-        <p><%= link_to "Edit Tutoring Information", tutorings_path(:id => @user.id) %></p>
-     <% end %>
      <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
 
       <%= form_for(current_user) do |s| %>
@@ -78,8 +75,12 @@
 
   <%  end %>
 
+
+
+
+
   <% end %>
-  
+
   <div class="user_about">
     <br/>
 
@@ -189,9 +190,6 @@
     </tr>
   <% end %>
 </table>
-
-
-
 
 </body>
 </html>
