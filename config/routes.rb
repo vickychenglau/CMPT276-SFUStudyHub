@@ -1,29 +1,22 @@
 Rails.application.routes.draw do
 
-  get 'reviews/new'
-  get 'reviews/create'
-  get 'reviews/update'
-  get 'reviews/edit'
-  get 'reviews/destroy'
-  get 'reviews/index'
-  get 'reviews/show'
+  post 'reviews/edit', :to => "reviews#edit"
+  get 'tutorings/index'
+  get 'tutorings/new'
+  get 'tutorings/edit'
+  get 'tutorings/show'
+  get 'tutorings/list'
 
   post '/rate' => 'rater#create', :as => 'rate'
 
   get 'fbsessions/create'
-
   get 'fbsessions/destroy'
-
   get 'fbsessions/create'
-
   get 'fbsessions/destroy'
-
   get 'sessions/create'
-
   get 'sessions/destroy'
 
   get 'home/show'
-
 
   get "signup", :to => "users#new"
   get "login", :to => "sessions#login"
@@ -52,11 +45,21 @@ Rails.application.routes.draw do
   resources :widgets
   resources :users
   resources :fbsessions
-  resources :courses
+  resources :reviews
+  resources :tutorings
+  resources :courses do
+    member do
+      get :subscribe
+    end
+  end
+
   # resources :posts
   # Nest posts inside of messageboard
   resources :messageboard do
     resources :posts
+    member do
+      get :subscribe
+    end
   end
   resources :topic do
     resources :posts
@@ -69,25 +72,28 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
-  Rails.application.routes.draw do
-
-      get 'auth/:provider/callback', to: 'fbsessions#create'
-      get 'auth/failure', to: redirect('/')
-      get 'signout', to: 'fbsessions#destroy', as: 'signout'
-
-      resources :fbsessions, only: [:create, :destroy]
-      resource :home, only: [:show]
-
-      root to: "courses#index"
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
   end
 
+  get 'auth/:provider/callback', to: 'fbsessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'fbsessions#destroy', as: 'signout'
+
+  resources :fbsessions, only: [:create, :destroy]
+  resource :home, only: [:show]
+
+
+  root to: "courses#index"
 
 
 
 
+  get '/redirect', to: 'fbsessions#redirect', as: 'redirect'
+  get '/callback', to: 'fbsessions#callback', as: 'callback'
+  get '/calendars', to: 'fbsessions#calendars', as: 'calendars'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

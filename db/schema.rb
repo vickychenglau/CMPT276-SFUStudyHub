@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126204304) do
+ActiveRecord::Schema.define(version: 20171130015713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,33 @@ ActiveRecord::Schema.define(version: 20171126204304) do
     t.string   "role"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "status"
+    t.string   "email"
+    t.boolean  "tutor"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "followable_id",                   null: false
+    t.string   "followable_type",                 null: false
+    t.integer  "follower_id",                     null: false
+    t.string   "follower_type",                   null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "actor_id"
+    t.datetime "read_at"
+    t.string   "action"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "overall_averages", force: :cascade do |t|
@@ -61,9 +88,24 @@ ActiveRecord::Schema.define(version: 20171126204304) do
     t.integer  "postable_id"
     t.string   "postable_type"
     t.boolean  "deleted"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
+
+  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
+  add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score", using: :btree
+  add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
+  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
+  add_index "posts", ["cached_weighted_average"], name: "index_posts_on_cached_weighted_average", using: :btree
+  add_index "posts", ["cached_weighted_score"], name: "index_posts_on_cached_weighted_score", using: :btree
+  add_index "posts", ["cached_weighted_total"], name: "index_posts_on_cached_weighted_total", using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"
@@ -112,6 +154,19 @@ ActiveRecord::Schema.define(version: 20171126204304) do
   add_index "topics", ["course_id"], name: "index_topics_on_course_id", using: :btree
   add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
+  create_table "tutorings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.decimal  "hourly"
+    t.string   "mode"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "tutorings", ["course_id"], name: "index_tutorings_on_course_id", using: :btree
+  add_index "tutorings", ["user_id"], name: "index_tutorings_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password"
@@ -151,4 +206,6 @@ ActiveRecord::Schema.define(version: 20171126204304) do
 
   add_foreign_key "topics", "courses"
   add_foreign_key "topics", "users"
+  add_foreign_key "tutorings", "courses"
+  add_foreign_key "tutorings", "users"
 end

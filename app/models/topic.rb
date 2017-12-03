@@ -15,7 +15,10 @@
 class Topic < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
+  has_many :users, through: :posts
   has_many :posts, as: :postable, dependent: :nullify
+  acts_as_followable
+  acts_as_follower
 
 
   validates :title, presence: true, length: {minimum: 2}

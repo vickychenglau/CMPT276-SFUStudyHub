@@ -35,7 +35,15 @@
 <br/>
 
 <div class="check_box_filter">
-  <br />
+  <p>
+    <% if current_user %>
+      <% if current_user.following?(@course_obj) %>
+        <%= link_to "Unsubscribe", subscribe_course_path(@course_obj) %>
+      <% else %>
+        <%= link_to "Subscribe", subscribe_course_path(@course_obj) %>
+      <% end %>
+    <% end %>
+  </p>
   <%= check_box_tag(:generalcheck, :general)%>
   <%= label_tag(:generalcheck, "GENERAL") %> <br />
   <%= check_box_tag(:tutorcheck, :tutor) %>
@@ -55,11 +63,14 @@
         <p> Topic title or description is missing. </p>
       <% else %>
         <h3>
-          <%= link_to "*[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id, :course => @course) %>
+          <%= link_to "*[" << topic.description << "] " << topic.title,
+              messageboard_path('show', id: topic.id, course: @course,
+                                p_order: 'rating')
+          %>
         </h3>
         <small>
           Created by
-          <a href= <%= user_path('show',id: topic.user_id) %>>
+          <a href= <%= user_path('show',id: topic.user_id) %> >
             <%= topic.user.username unless topic.user.blank?%>
           </a>
           <%= time_ago_in_words(topic.created_at) %> ago
@@ -82,7 +93,10 @@
         <p> Topic title or description is missing. </p>
       <% else %>
         <h3>
-          <%= link_to "[" << topic.description << "] " << topic.title, messageboard_path('show', id: topic.id, :course => @course) %>
+          <%= link_to "[" << topic.description << "] " << topic.title,
+              messageboard_path('show', id: topic.id, course: @course,
+                                p_order: 'rating')
+          %>
         </h3>
         <small>
           Created by

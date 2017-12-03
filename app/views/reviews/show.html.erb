@@ -1,11 +1,67 @@
-<h1>Comment Reviews for Tutor</h1>
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+</head>
+<style>
+.wrapper {
+    width: 600px;
+    border: 1px solid black;
+    overflow: auto;
+}
+.reviews_table {
+    width: 310px;
+    float:left;
+    padding-right: 10px;
+}
+.write_review {
+    float: left;
+}
+</style>
 
-<table>
-  <% @reviews.each do |review| %>
-    <tr>
-      <td><%= review.comment unless review.comment.blank? %></td>
-    </tr>
+<h1><%= @user.username %>'s Tutoring Service Reviews</h1>
+
+<div class="_reviews_wrapper">
+<div class="reviews_table">
+  <table width="300">
+    <% @reviews.each do |review| %>
+      <tr>
+        <td>
+        	<%= review.comment unless review.comment.blank? %>
+        	<br/>
+        	-
+        	<small><a href= <%= user_path('show',id: review.person_rating) %>>
+          	<%= review.person_rating.username %>
+          </a></small>
+          <small> <%= time_ago_in_words(review.created_at) %> ago</small>
+          <%if(review.person_rating == current_user) %>
+            <small><%= link_to "Delete", review_path(review), :method => :delete %></small>
+
+            <%= form_for(review) do |f| %>
+            <%= f.text_area :comment, size: "20x1"%> <br/>
+            <span style="font-size:0.7em"><%= f.submit "Edit Review" %></span>
+            <% end %>
+
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <br/>
+  <a href=<%= user_path(:id=>@user.id) %>><span class="glyphicon glyphicon-user"></span> Back to <%= @user.username %>'s Profile</a>
+</div>
+
+<div class="write_review">
+  <% if current_user %>
+  	<%= form_for [@review, Review.new] do |f| %>
+      <%= f.text_area :comment, placeholder: "Write a Review", size: "26x5"%> <br/>
+      <%= f.hidden_field :person_rated_id, value: @user.id %>
+      <%= f.hidden_field :person_rating_id, value: current_user.id %>
+      <%= f.submit "Post Review" %>
+  	<% end %>
   <% end %>
-</table>
+</div>
+</div>
 
-<a href=<%= user_path(:id=>@user.id) %>>Back</a>
+</body>
+</html>

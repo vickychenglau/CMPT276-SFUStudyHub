@@ -15,6 +15,15 @@ before_action :find_postable
     @post.deleted = false
 
     if @post.save
+      @topic = Topic.find(@post.topic_id)
+      @OP = User.find(@topic.user_id)
+
+      ((@topic.users.uniq + [@OP] - [current_user]).uniq).each do |user|
+        if user.following?(@topic)
+          Notification.create(recipient: user, actor: current_user, action: "New Post in " << @topic.title, notifiable: @topic)
+        end
+      end
+
       redirect_to :back, notice: 'Comment posted.'
     else
       redirect_to :back, notice: 'Your comment was not posted.'

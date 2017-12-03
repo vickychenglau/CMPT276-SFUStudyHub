@@ -18,25 +18,56 @@ Created by <%= link_to @user.username , controller: 'users', action: 'show' ,id:
 <small> <%= time_ago_in_words(@topic.created_at) %> ago</small>
 <br/> <br/>
 
-<p> <%= @topic.first_post %> </p>
-<p> <small> Subscribe </small> <p>
+<p> <%= simple_format(@topic.first_post) %> </p>
+<p>
+  <small>
+    <% if current_user %>
+      <% if current_user.following?(@topic) %>
+        <%= link_to "Unsubscribe", subscribe_messageboard_path(@topic) %>
+      <% else %>
+        <%= link_to "Subscribe", subscribe_messageboard_path(@topic) %>
+      <% end %>
+    <% end %>
+  </small>
+</p>
+
+<hr/>
 
 <% if current_user %>
-  <hr/>
-
   <%= form_for [@topic, Post.new] do |f| %>
     <%= f.text_area :text, cols: 50, rows: 4, placeholder: "Add a comment" %> <br/>
     <%= f.check_box :anon %>
-    <%= f.hidden_field :topic_id, value: @topic %>
+    <%= f.hidden_field :topic_id, value: @topic.id %>
     <small> Post anonymously </small>
     <br/>
     <%= f.submit "Post" %>
   <% end %>
   <br/>
 <% end %>
+<p>
+  <small>
+    <%= link_to "Sort by Highest Rated first",
+        messageboard_path('show', id: @topic.id, course: @course,
+                          p_order: 'rating')
+    %>
+    |
+    <%= link_to "Sort by Newest first",
+        messageboard_path('show', id: @topic.id, course: @course,
+                          p_order: 'newest')
+    %>
+  </small>
+<p>
 
-<%= render(partial: 'posts/post', collection: @topic.posts, locals: {t_id: @topic.id}) %>
+<% if @posts_order == 'rating' %>
+  <%= render(partial: 'posts/post', collection: @topic.posts.order(cached_votes_score: :desc),
+           locals: {t_id: @topic.id, p_order: @posts_order}) %>
+<% else %>
+  <%= render(partial: 'posts/post', collection: @topic.posts.order(:created_at).reverse_order,
+            locals: {t_id: @topic.id, p_order: @posts_order}) %>
+<% end %>
+
 
 <hr/>
 
-<%= link_to('Back to Topics', {:controller => 'messageboard', :action => 'index', :course => @course}) %>
+<%= link_to('Back to Topics', {:controller => 'messageboard', :action => 'index',
+            :course => @course}) %>

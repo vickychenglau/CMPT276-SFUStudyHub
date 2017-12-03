@@ -24,22 +24,30 @@ class ApplicationController < ActionController::Base
 #  end
 #end
 
-def current_user
+  def current_user
 
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  #@current_user ||= User.find(session[:user_id]) if session[:user_id]
+    #if $apiflag==1
+     # @current_user ||= Fbuser.find(session[:user_id]) if session[:user_id]
+    #else
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    #end
+  end
 
+  helper_method :current_user
 
-end
+  def authorize
+    redirect_to login_path unless current_user
+  end
 
-helper_method :current_user
+    #def current_user
+    #  @current_user ||= Fbuser.find(session[:user_id]) if session[:user_id]
+    #end
 
-def authorize
-  redirect_to login_path unless current_user
-end
+  before_action :set_notifications, if: :current_user
 
-
-  #def current_user
-  #  @current_user ||= Fbuser.find(session[:user_id]) if session[:user_id]
-  #end
+  def set_notifications
+    @notifications = Notification.where(recipient: current_user).unread
+  end
 
 end

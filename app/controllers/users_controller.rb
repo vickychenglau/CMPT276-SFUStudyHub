@@ -36,10 +36,12 @@ class UsersController < ApplicationController
     end
     if @user.update(user_params)
       flash[:notice] = "User information updated."
-      if @user.role == 'admin' && @user.status.length < 100
-        redirect_to users_list_path
-      else
-        redirect_to user_path
+      if @user.role == 'admin'
+        if current_user.role == 'admin' && current_user.id != @user.id
+          redirect_to users_list_path
+        else
+          redirect_to user_path
+        end
       end
     else
       if @user.status.length > 100
@@ -56,6 +58,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def tutor
+    @user = User.find(params[:id])
+    @courses = Course.all
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -63,7 +70,12 @@ class UsersController < ApplicationController
   end
 
   def show
+  #  @user = User.find(params[:id])
+  if $apiflag==1
+    @user = Fbuser.find(params[:id])
+  else
     @user = User.find(params[:id])
+  end
     @topics = Topic.where(user_id: @user.id)
     @posts = Post.where(user_id: @user.id)
   end
