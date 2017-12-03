@@ -6,8 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review.person_rating = @user.id
-    @review.person_rating = current_user.id
+    @review = Review.new(review_params)
     
     if @review.save
       redirect_to :back, notice: 'Review posted.'
@@ -21,14 +20,16 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to :back, notice: 'Review was successfully updated.'
     else
-      redirect_to :back, notice: 'Review was not updated.'
+      redirect_to :back, notice: 'Review must be at least 1 character.'
     end
   end
 
   def edit
+    @review = Review.find params[:id]
   end
 
   def destroy
+    @review = Review.find(params[:id])        
     @review.destroy
     redirect_to :back, notice: 'Review deleted'
   end
@@ -39,12 +40,12 @@ class ReviewsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reviews = Review.where(person_rated: @user.id)
+    @reviews = Review.where(person_rated_id: @user.id)
   end
 
   private
   def review_params
-    params.require(:review).permit(:person_rated,:person_rating, :comment)
+    params.require(:review).permit(:person_rated_id,:person_rating_id, :comment)
   end
   
 end

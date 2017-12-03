@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<head>
+  <%= javascript_include_tag 'ratyrate.js.erb', "data-turbolinks-track" => false %>
+</head>
+<style>
+
+/*This speech bubble CSS is provided by: https://codepen.io/jamesbarnett/pen/GmFjB*/
+
+.talkbubble {
+  position: relative;
+  width: 300px;
+  height: 125px;
+  /*padding: 10px
+  border-radius: 5px;
+  border: solid lightblue;*/
+  background: lightblue;
+  float:right;
+}
+
+.talkbubble:before {
+  content:"";
+  position: absolute;
+  right: 100%;
+  top: 26px;
+  width: 0;
+  height: 0;
+
+  border-top: 13px solid transparent;
+  border-right: 26px solid lightblue;
+  border-bottom: 13px solid transparent;
+}
+
+.talkbubble textarea {
+  position: inherit;
+  width: inherit;
+  height: inherit;
+  background: inherit;
+  text-align: center;
+
+  margin: 0;
+  padding: 10px;
+
+  border: none;
+  resize: none;
+}
+
+</style>
+
+<div class="top">
+
+    <h1><%= @user.username %></h1>
+
+    <% if @user.status? %>
+      <div class="talkbubble">
+        <textarea><%= @user.status %></textarea>
+      </div>
+    <% end %>
+
+  <%if defined?(current_user)%>
+    <br/>
+
+  <%  if $apiflag !=1 %>
+  <% if (current_user) && (@user.id == current_user.id) %>
+     <a href=<%= edit_user_path %>><span class="glyphicon glyphicon-cog"></span> Update User Information</a>
+     <h3>Welcome back, <%= current_user.first_name %> <%= current_user.last_name %>!</h3>
+
+      <%= form_for(current_user) do |s| %>
+         <p> Status Update:</br> <%= s.text_field :status%> </p>
+       <%= s.submit "Update Status" %>
+       <% end %>
+     <% end %>
+
+  <%  end %>
+
+
+
+
+
+  <% end %>
+
+  <div class="user_about">
+    <br/>
+
+    <h4>About</h4>
+    <table class="user_about">
+      <tr>
+        <td>Name:</td>
+        <td>
+          <%= @user.first_name %>
+          <%= @user.last_name %>
+        </td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Tutoring:</td>
+        <% if @user.tutor == true %>
+          <td>Available</td>
+        <% else %>
+          <td>Unavailable</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+
+  <div class="user_tutor">
+    <br/>
+
+    <% if @user.tutor == true %>
+      
+      <h4>Tutoring Service Ratings for <%= @user.username %></h4>
+      <%= link_to 'Tutoring Service Reviews', review_path(:person_rated => @user.id) %>
+      <table>
+        <tr>
+          <td>Knowledgeability</td>
+          <td><%= rating_for @user,'Knowledgeability',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= @user.rates("Knowledgeability").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Communication</td>
+          <td><%= rating_for @user,'Communication',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= @user.rates("Communication").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Professionalism</td>
+          <td><%= rating_for @user,'Professionalism',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= @user.rates("Professionalism").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td><%= rating_for @user,'Flexibility',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= @user.rates("Flexibility").count %> ratings</td>
+        </tr>
+        <tr>
+          <td>Enthusiasm</td>
+          <td><%= rating_for @user,'Enthusiasm',disable_after_rate: false ,imdb_avg: false, enable_half: true %></td>
+          <td><%= @user.rates("Enthusiasm").count %> ratings</td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="user_lists">
+  <br/>
+  <%if defined?(current_user)%>
+    <% if (current_user) && (@user.id == current_user.id) %>
+      <h4>My Topics</h4>
+    <% else %>
+      <h4><%= @user.username%>'s Topics</h4>
+    <% end %>
+  <% else %>
+    <h4><%= @user.username%>'s Topics</h4>
+  <% end %>
+
+  <table>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td>
+          <a href= <%= messageboard_path('show',id: topic.id, course: topic.course_id) %> >
+            <%= topic.title unless topic.title.blank? %>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<br/>
+<%if defined?(current_user)%>
+  <% if (current_user) && (@user.id == current_user.id) %>
+    <h4>My Posts</h4>
+  <% else %>
+    <h4><%= @user.username%>'s Posts</h4>
+  <% end %>
+<% else %>
+  <h4><%= @user.username%>'s Posts</h4>
+<% end %>
+
+<table>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.text unless post.text.blank? %></td>
+    </tr>
+  <% end %>
+</table>
+
+</body>
+</html>
