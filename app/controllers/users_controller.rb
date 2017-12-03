@@ -69,6 +69,7 @@ class UsersController < ApplicationController
 
   def show
   #  @user = User.find(params[:id])
+  @conversations = Conversation.involving(current_user).order("created_at DESC")
   if $apiflag==1
     @user = Fbuser.find(params[:id])
   else

@@ -77,6 +77,15 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+  scope '/users' do
+    resources :conversations do
+      resources :messages
+    end
+  end
+
+  resources :conversations do
+    resources :messages
+  end
 
   get 'auth/:provider/callback', to: 'fbsessions#create'
   get 'auth/failure', to: redirect('/')

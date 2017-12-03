@@ -36,6 +36,9 @@ gem 'puma'
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem 'ratyrate'
 
+gem 'private_pub'
+gem 'thin'
+
 group :development do
   gem 'annotate'
 end

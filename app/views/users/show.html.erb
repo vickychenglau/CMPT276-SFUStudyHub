@@ -52,6 +52,9 @@
 <div class="top">
 
     <h1><%= @user.username %></h1>
+    <% if current_user.id != @user.id %>
+    <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => @user.id %>
+    <% end %>
 
     <% if @user.status? %>
       <div class="talkbubble">
@@ -79,7 +82,7 @@
   <%  end %>
 
   <% end %>
-  
+
   <div class="user_about">
     <br/>
 
@@ -111,7 +114,7 @@
     <br/>
 
     <% if @user.tutor == true %>
-      
+
       <h4>Tutoring Service Ratings for <%= @user.username %></h4>
       <%= link_to 'Tutoring Service Reviews', review_path(:person_rated => @user.id) %>
       <table>
@@ -190,8 +193,26 @@
   <% end %>
 </table>
 
+<% if defined?(current_user) %>
+  <p>Your conversations</p>
+<% if @conversations.any? %>
+          <ul class="media-list">
+            <% @conversations.each do |conversation| %>
+                <li class="media">
+                  <%= image_tag("http://placehold.it/50x50", class: "media-object pull-left") %>
+                  <div class="media-body">
+                    <%= link_to "Chat", conversation_path(conversation), class: "conversation", "data-cid" => conversation.id %>
+                        <h4 class="media-heading"><%= conversation_interlocutor(conversation).username %></h4>
+                        <p><%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %></p>
+                  </div>
+                </li>
 
-
+            <% end %>
+          </ul>
+      <% else %>
+          <p>You have no conversations.</p>
+      <% end %>
+<% end %>
 
 </body>
 </html>
