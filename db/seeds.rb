@@ -8,8 +8,8 @@
 
 #Course.destroy_all
 Course.create([
-	{term: 'Spring 2018', name: 'CMPT276: Introduction to Software Engineering'},
-	{term: 'Spring 2018', name: 'CMPT307: Algorithm Design'}
+	{term: 'Fall 2017', name: 'CMPT276: Introduction to Software Engineering'},
+	{term: 'Fall 2017', name: 'CMPT307: Algorithm Design'}
 ])
 
 # Remember it also has to pass the validators as well or it secretly fails
@@ -17,11 +17,13 @@ User.create([
 	{username: 'Admin', password: '12345678A', last_name: 'Al', first_name: 'Admin',
 	 email: 'admin@test.ca', role:'admin', tutor: true},
 	{username: 'User1', password: '12345678A', last_name: 'James', first_name: 'Franco',
-	 email: 'JFranco@test.ca', role:'user', tutor: true},
+	 email: 'JFranco@test.ca', role:'user', tutor: false},
 	{username: 'User2', password: 'A12345678', last_name: 'Jean', first_name: 'Billy',
-	 email: 'Jimmy@test.ca', role: 'user', tutor: true},
+	 email: 'Jimmy@test.ca', role: 'user', tutor: false},
 	{username: 'Admin2', password: 'A12345678', last_name: 'Cucumber', first_name: 'James',
-	 email: 'CuJames@test.ca', role: 'admin', tutor: true}
+	 email: 'CuJames@test.ca', role: 'admin', tutor: true},
+	{username: 'Bill23', password: '12345678A', last_name: 'Bob', first_name: 'Bill',
+	 email: 'bill@test.ca', role: 'user', tutor: true}
 ])
 
 
@@ -34,4 +36,8 @@ Topic.create([
 	 first_post: "Well?", pinned: false},
 	{description: 'studygroup', title: 'How was the exam', user_id: 3 , course_id: 1,
 	 first_post: "I did terrible. :(", pinned: false}
+])
+
+Tutoring.create([
+	{user_id: 5, course_id: 1, hourly: 20, description: "I've tutored this class for 2 years. Great reviews!"}
 ])
