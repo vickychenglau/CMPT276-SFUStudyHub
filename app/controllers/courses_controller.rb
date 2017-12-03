@@ -45,7 +45,7 @@ before_action :find_course, only: [:show, :edit, :update, :destroy]
   	@course.destroy
   	redirect_to courses_path
   end
-
+  
   # Download courses
   def download
   end
