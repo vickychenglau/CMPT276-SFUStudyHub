@@ -9,6 +9,10 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.create!(conversation_params)
     end
 
+    @sender = User.find(params[:sender_id])
+    @receiver = User.find(params[:recipient_id])
+    Notification.create(recipient: current_user, actor: @sender, action: "New Message from " << @sender.username, notifiable: @receiver)
+
     render json: {conversation_id: @conversation.id}
   end
 

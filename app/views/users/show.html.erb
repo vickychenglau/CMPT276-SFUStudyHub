@@ -194,7 +194,8 @@
 </table>
 
 <% if current_user.present? %>
-  <p>Your conversations</p>
+<br/>
+<h4>Your conversations</h4>
 <% if @conversations.any? %>
           <ul class="media-list">
             <% @conversations.each do |conversation| %>
