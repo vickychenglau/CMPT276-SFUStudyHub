@@ -19,11 +19,6 @@
 
  */
 
-div.container2{
-  width: auto;
-  float: right;
-}
-
 
 div.header{
   background-color: #222222;
@@ -53,4 +48,9 @@ div.eventContent{
 
 dd{
   color: grey;
+}
+
+div.container2{
+  width: auto;
+  float: right;
 }
