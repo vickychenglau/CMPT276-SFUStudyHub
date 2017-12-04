@@ -6,7 +6,11 @@
         <h4 class="modal-title">Create New Event</h4>
       </div>
       <div class="modal-body">
+        <% if current_user %>
         <%= render 'form', event: @event %>
+        <% else %>
+        <p>Please Sign in</p>
+        <% end %>
       </div>
     </div>
   </div>

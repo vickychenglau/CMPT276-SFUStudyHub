@@ -6,13 +6,16 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.all
   end
 
   def new
     @event = Event.new
+    @course = Course.all
   end
 
   def edit
+    @course = Course.all
   end
 
   def create
@@ -34,6 +37,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :date_range, :start, :end, :color)
+      params.require(:event).permit(:title, :date_range, :start, :end, :color, :course_id, :user_id)
     end
 end

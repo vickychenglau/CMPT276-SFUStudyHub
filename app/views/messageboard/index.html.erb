@@ -44,6 +44,7 @@
       <% end %>
     <% end %>
   </p>
+  <%= link_to "Calendar", {:controller => "calendars", :action => "index" } %>
   <%= check_box_tag(:generalcheck, :general)%>
   <%= label_tag(:generalcheck, "GENERAL") %> <br />
   <%= check_box_tag(:tutorcheck, :tutor) %>

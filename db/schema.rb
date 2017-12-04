@@ -47,9 +47,14 @@ ActiveRecord::Schema.define(version: 20171203203601) do
     t.datetime "start"
     t.datetime "end"
     t.string   "color"
+    t.integer  "course_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "events", ["course_id"], name: "index_events_on_course_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "fbusers", force: :cascade do |t|
     t.string   "provider"

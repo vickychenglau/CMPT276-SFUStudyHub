@@ -13,6 +13,7 @@ class Course < ActiveRecord::Base
   has_many :topics, :dependent => :delete_all
   has_many :tutorings
   has_many :users, through: :topics
+  has_many :events, :foreign_key => :course_id
   acts_as_followable
   acts_as_follower
 

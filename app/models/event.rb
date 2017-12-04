@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  belongs_to :course, :foreign_key => :course_id, class_name: 'Course'
+  belongs_to :user, :foreign_key => :user_id, class_name: 'User'
   validates :title, presence: true
   attr_accessor :date_range
 
