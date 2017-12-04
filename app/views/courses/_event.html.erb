@@ -1,0 +1,3 @@
+<% @events = Event.where(start:Date.yesterday..Date.tomorrow) %>
+
+<%= render 'layouts/events' %>

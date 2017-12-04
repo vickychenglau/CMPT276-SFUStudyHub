@@ -1,0 +1,2 @@
+<% @events = Event.where(start:Date.yesterday..Date.tomorrow).where(course_id:params[:course]) %>
+<%= render 'layouts/events' %>

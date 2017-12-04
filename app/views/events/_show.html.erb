@@ -2,4 +2,5 @@
 <% course = @event.course.name %>
 <%= link_to "#{course}", {:controller => 'messageboard', :action => 'index', :course => @event.course.id } %>
 <% user =  @event.user.username %>
+<br />
 <%= link_to "#{user}", @event.user %>
