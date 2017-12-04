@@ -34,6 +34,8 @@
           	<%= review.person_rating.username %>
           </a></small>
           <small> <%= time_ago_in_words(review.created_at) %> ago</small>
+            
+          <%if defined?(current_user)%>
           <%if(review.person_rating == current_user) %>
             <small><%= link_to "Delete", review_path(review), :method => :delete %></small>
 
@@ -41,7 +43,8 @@
             <%= f.text_area :comment, size: "20x1"%> <br/>
             <span style="font-size:0.7em"><%= f.submit "Edit Review" %></span>
             <% end %>
-
+            
+           <% end %>
           <% end %>
         </td>
       </tr>
