@@ -47,7 +47,9 @@ class MessageboardController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.course_id = @course
     @topic.user_id = session[:user_id]
-    @topic.pinned = false
+    if @topic.pinned != true
+      @topic.pinned = false
+    end
     if @topic.save
       if !current_user.following?(@topic)
         current_user.follow(@topic)
