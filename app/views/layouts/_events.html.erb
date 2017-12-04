@@ -1,28 +1,16 @@
-<style>
-
-.eventScrolling{
-  float: left;
-  position: absolute;
-  left:0; top:105px; bottom: 0;
-  width: 178px;
-  padding: 10px;
-}
-
-.dd{
-  color: grey;
-}
-
-</style>
-
-
 <div class ="eventScrolling">
-<h2> Events</h2>
-<marquee behavior="scroll" direction="up" width="200" height="100" scrollamount="1" scrolldelay="10">
-  <% @events.each do |event| %>
-    <dt><%= event.title %><dt>
-    <dd><%= link_to "#{event.course.name}", {:controller => 'messageboard', :action => 'index', :course => event.course.id } %></dd>
-    <dd><%= link_to "By: #{event.user.username}", event.user %></dd>
-  <% end %>
-</marquee>
-<%= link_to "Calendar", calendars_path %>
+  <div class ="eventContent">
+    <h2> Events</h2>
+
+    <marquee behavior="scroll" direction="up" width="200" height="100" scrollamount="1" scrolldelay="10">
+      <% @events.each do |event| %>
+        <dt><%= event.title %><dt>
+        <dd><%= link_to "#{event.course.name}", {:controller => 'messageboard', :action => 'index', :course => event.course.id } %></dd>
+        <dd><%= link_to "By: #{event.user.username}", event.user %></dd>
+      <% end %>
+      <dd> Test tttttttttttttttt afsgdgS getg r e gr</dd>
+    </marquee>
+
+    <%= link_to "Calendar", calendars_path %>
+  </div>
 </div>

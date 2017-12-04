@@ -36,6 +36,9 @@ class UsersController < ApplicationController
     end
     if @user.update(user_params)
       flash[:notice] = "User information updated."
+        if @user.tutor == false
+          Tutoring.where(:user_id => current_user.id).destroy_all
+        end
         if current_user.role == 'admin' && current_user.id != @user.id
           redirect_to users_list_path
         else

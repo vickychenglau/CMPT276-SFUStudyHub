@@ -19,7 +19,9 @@
 
  */
 
-
+div.container2{
+  margin-left: 178px;
+}
 
 
 div.header{
@@ -32,4 +34,22 @@ h1.headertitle{
   margin-top: 4px;
   margin-bottom: 4px;
   color: white;
+}
+
+div.eventScrolling{
+  float: left;
+  position: fixed;
+  display: inline-block;
+  left:0; top:105px; bottom: 0;
+  width: 178px;
+  padding: 10px;
+  overflow: auto;
+}
+
+div.eventContent{
+  margin-left: 20px;
+}
+
+dd{
+  color: grey;
 }
