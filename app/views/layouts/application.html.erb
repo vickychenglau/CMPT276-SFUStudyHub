@@ -82,11 +82,11 @@
 </nav>
 
 <div class="container">
-  <div class="container2">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
 
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: "alert alert-info" %>
-    <% end %>
+  <div class="container2">
 
     <%= yield %>
 

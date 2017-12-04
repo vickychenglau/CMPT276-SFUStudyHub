@@ -1,3 +1,13 @@
+<style>
+  div.eventContent{
+    margin-left: 20px;
+  }
+
+  dd{
+    color: grey;
+  }
+</style>
+
 <div class ="eventScrolling">
   <div class ="eventContent">
     <h2> Events</h2>
@@ -8,7 +18,6 @@
         <dd><%= link_to "#{event.course.name}", {:controller => 'messageboard', :action => 'index', :course => event.course.id } %></dd>
         <dd><%= link_to "By: #{event.user.username}", event.user %></dd>
       <% end %>
-      <dd> Test tttttttttttttttt afsgdgS getg r e gr</dd>
     </marquee>
 
     <%= link_to "Calendar", calendars_path %>
