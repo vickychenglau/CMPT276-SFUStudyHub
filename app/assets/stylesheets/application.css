@@ -12,7 +12,7 @@
  * file per style scope.
  *
  *= require fullcalendar
- *= require daterangepicker.css
+ *= require daterangepicker
  *= require_tree .
  *= require_self
 
